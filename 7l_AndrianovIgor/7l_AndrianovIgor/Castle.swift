@@ -9,15 +9,34 @@
 
 import Foundation
 
+typealias Result = (Int, PowerError?)
+
+enum LightState {
+    case on
+    case off
+}
+
+enum PowerState {
+    case on
+    case off
+}
+
+enum LightSwitchState {
+    case on
+    case off
+}
+
+
 class Castle {
-    private var lightState: OnOff = .off
-    private var powerState: OnOff = .on
-    private var lightSwitchState: OnOff = .off
-    private var countOnLight: Int = 0
+    private var lightState: LightState = .off
+    private var powerState: PowerState = .on
+    private var lightSwitchState: LightSwitchState = .off
+    private var countOnLight = 0
     
     func changeLightState() -> (Int, PowerError?) {
-        guard self.powerState == .on else { return (countOnLight,
-                                                    PowerError.powerOff) }
+        guard self.powerState == .on else {
+            return (countOnLight, PowerError.powerOff)
+        }
         self.lightState = (self.lightState == .off ? .on : .off)
         if self.lightState == .on {
             countOnLight += 1
@@ -33,13 +52,6 @@ class Castle {
     }
 }
 
-enum OnOff {
-    case on
-    case off
-}
 
-enum PowerError: String, Error {
-    case powerOff = "электричества нет"
-}
 
-typealias Result = (Int, PowerError?)
+

@@ -9,6 +9,8 @@
 
 import Foundation
 
+typealias Picture = String
+
 class PictureServer {
     private var pictureStorage = Queue(storageLimit: 5)
     private var requestCount = 0
@@ -16,16 +18,21 @@ class PictureServer {
     
     func downloadPicture() throws -> Picture {
         self.requestCount += 1
-        guard requestCount <= requestsCountLimit else { throw ServerDownloadError.tooMuchRequestsPerSession (message: "слишком много запросов за сессию")}
+        guard requestCount <= requestsCountLimit else {
+            throw ServerDownloadError.tooMuchRequestsPerSession (message: "слишком много запросов за сессию")
+        }
         
         guard let picture = self.pictureStorage.pop() else {
-            throw ServerDownloadError.pictureStorageEmpty (message: "картин нет") }
+            throw ServerDownloadError.pictureStorageEmpty (message: "картин нет")
+        }
         
         return picture
     }
     
     func uploadPicture(picture: Picture) throws {
-        guard pictureStorage.push(picture) else { throw ServerUploadError.pictureStorageFull (message: "хранилище картин заполнено") }
+        guard pictureStorage.push(picture) else {
+            throw ServerUploadError.pictureStorageFull (message: "хранилище картин заполнено")
+        }
     }
 }
 
@@ -50,13 +57,4 @@ struct Queue {
 }
 
 
-enum ServerUploadError: Error {
-    case pictureStorageFull (message: String)
-}
 
-enum ServerDownloadError: Error {
-    case pictureStorageEmpty (message: String)
-    case tooMuchRequestsPerSession (message: String)
-}
-
-typealias Picture = String

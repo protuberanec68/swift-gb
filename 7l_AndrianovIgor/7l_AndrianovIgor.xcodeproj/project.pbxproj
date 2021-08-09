@@ -8,8 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		784973AC26B9D3D90048E855 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784973AB26B9D3D90048E855 /* main.swift */; };
-		784973B326B9D4890048E855 /* castle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784973B226B9D4890048E855 /* castle.swift */; };
-		784973B526BAF4D10048E855 /* server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784973B426BAF4D10048E855 /* server.swift */; };
+		784973B326B9D4890048E855 /* Castle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784973B226B9D4890048E855 /* Castle.swift */; };
+		784973B526BAF4D10048E855 /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784973B426BAF4D10048E855 /* Server.swift */; };
+		784973BA26C186E90048E855 /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784973B926C186E90048E855 /* ErrorHandler.swift */; };
+		784973BC26C18BEB0048E855 /* ErrorEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784973BB26C18BEB0048E855 /* ErrorEnum.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -27,8 +29,10 @@
 /* Begin PBXFileReference section */
 		784973A826B9D3D90048E855 /* 7l_AndrianovIgor */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = 7l_AndrianovIgor; sourceTree = BUILT_PRODUCTS_DIR; };
 		784973AB26B9D3D90048E855 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		784973B226B9D4890048E855 /* castle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = castle.swift; sourceTree = "<group>"; };
-		784973B426BAF4D10048E855 /* server.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = server.swift; sourceTree = "<group>"; };
+		784973B226B9D4890048E855 /* Castle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Castle.swift; sourceTree = "<group>"; };
+		784973B426BAF4D10048E855 /* Server.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
+		784973B926C186E90048E855 /* ErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandler.swift; sourceTree = "<group>"; };
+		784973BB26C18BEB0048E855 /* ErrorEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorEnum.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,10 +66,20 @@
 			isa = PBXGroup;
 			children = (
 				784973AB26B9D3D90048E855 /* main.swift */,
-				784973B226B9D4890048E855 /* castle.swift */,
-				784973B426BAF4D10048E855 /* server.swift */,
+				784973B226B9D4890048E855 /* Castle.swift */,
+				784973B426BAF4D10048E855 /* Server.swift */,
+				784973B826C186CB0048E855 /* ErrorPictureServer */,
 			);
 			path = 7l_AndrianovIgor;
+			sourceTree = "<group>";
+		};
+		784973B826C186CB0048E855 /* ErrorPictureServer */ = {
+			isa = PBXGroup;
+			children = (
+				784973B926C186E90048E855 /* ErrorHandler.swift */,
+				784973BB26C18BEB0048E855 /* ErrorEnum.swift */,
+			);
+			path = ErrorPictureServer;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -125,9 +139,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				784973BC26C18BEB0048E855 /* ErrorEnum.swift in Sources */,
+				784973BA26C186E90048E855 /* ErrorHandler.swift in Sources */,
 				784973AC26B9D3D90048E855 /* main.swift in Sources */,
-				784973B326B9D4890048E855 /* castle.swift in Sources */,
-				784973B526BAF4D10048E855 /* server.swift in Sources */,
+				784973B326B9D4890048E855 /* Castle.swift in Sources */,
+				784973B526BAF4D10048E855 /* Server.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
