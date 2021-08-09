@@ -41,13 +41,17 @@ struct Queue {
     let storageLimit: Int
     
     mutating func push(_ element: String) -> Bool {
-        guard self.queue.count < storageLimit else { return false }
+        guard self.queue.count < storageLimit else {
+            return false
+        }
         self.queue.append(element)
         return true
     }
     
     mutating func pop() -> String? {
-        guard self.queue.count > 0 else { return nil }
+        guard self.queue.count > 0 else {
+            return nil
+        }
         return self.queue.removeFirst()
     }
     

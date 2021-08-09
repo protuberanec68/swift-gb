@@ -38,8 +38,6 @@ let downloadHandler = DownloadErrorHandler()
 let uploadHandler = UploadErrorHandler()
 var server = PictureServer()
 
-//MARK: ВОПРОС - можно ли как то конструкции do-catch ниже обернуть в функцию, чтобы такого кошмара в коде не было?
-
 //пытаемся получить картинку с пустого хранилища
 downloadHandler.downloadPicture(server: server)
 
