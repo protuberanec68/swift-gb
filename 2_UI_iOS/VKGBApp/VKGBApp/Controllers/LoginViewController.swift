@@ -7,8 +7,8 @@
 
 import UIKit
 
-let globalLogin = "root"
-let globalPassword = "qwerty"
+let globalLogin = "123"
+let globalPassword = "123"
 
 class LoginViewController: UIViewController {
     @IBOutlet var loginLabel: UILabel!
@@ -21,17 +21,36 @@ class LoginViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    @IBAction func toLoginScreen(unwindSegue: UIStoryboardSegue) { }
+    
     @IBAction func loginButtonPressed(_ sender: Any) {
-        let result = checkLoginPassword(login: loginField.text!, password: passwordField.text!)
-        print(result.0)
+        if checkLoginPassword(
+            login: loginField.text!,
+            password: passwordField.text!) {
+            loginField.text = ""
+            passwordField.text = ""
+            performSegue(withIdentifier: "loginSegue", sender: nil)
+        } else {
+            alertWrongLogin()
+            passwordField.text = ""
+        }
     }
     
-    func checkLoginPassword(login: String, password: String) -> (String, Bool) {
-        if login == globalLogin && password == globalPassword {
-            return("Добро пожаловать", true)
-        } else {
-            return("Пара логин/пароль не корректны", false)
-        }
+    func checkLoginPassword(login: String, password: String) -> Bool {
+        return login == globalLogin && password == globalPassword
+    }
+    
+    func alertWrongLogin() {
+        let alertController = UIAlertController(
+            title: "Ошибка",
+            message: "Пара логин/пароль неверна",
+            preferredStyle: .alert)
+        let alertAction = UIAlertAction(
+            title: "Ясно",
+            style: .cancel,
+            handler: nil)
+        alertController.addAction(alertAction)
+        present(alertController, animated: true)
     }
 }
 
