@@ -184,21 +184,6 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="MhH-UO-96E" id="BN0-08-bxz">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cLG-81-18d">
-                                                    <rect key="frame" x="163.66666666666666" y="7" width="48" height="30"/>
-                                                    <state key="normal" title="Logout">
-                                                        <color key="titleColor" systemColor="systemRedColor"/>
-                                                    </state>
-                                                    <connections>
-                                                        <segue destination="Cao-ym-Ykn" kind="unwind" unwindAction="toLoginScreenWithUnwindSegue:" id="Apf-yz-CEy"/>
-                                                    </connections>
-                                                </button>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="cLG-81-18d" firstAttribute="centerX" secondItem="BN0-08-bxz" secondAttribute="centerX" id="Dce-vx-EYD"/>
-                                                <constraint firstItem="cLG-81-18d" firstAttribute="centerY" secondItem="BN0-08-bxz" secondAttribute="centerY" id="SOe-9H-3dp"/>
-                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -210,6 +195,12 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Groups" id="pdi-M0-GB4">
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="Kyd-l5-9vq">
+                            <color key="tintColor" systemColor="systemRedColor"/>
+                            <connections>
+                                <segue destination="Cao-ym-Ykn" kind="unwind" unwindAction="toLoginScreenWithUnwindSegue:" id="gZG-6l-l8p"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="XWj-SD-KiM">
                             <connections>
                                 <segue destination="hoO-ge-Rkh" kind="show" id="3ux-kl-AWK"/>
@@ -290,21 +281,6 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="M2b-J8-XHq" id="Izr-u9-ioI">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8GF-46-Coa">
-                                                    <rect key="frame" x="163.66666666666666" y="7" width="48" height="30"/>
-                                                    <state key="normal" title="Logout">
-                                                        <color key="titleColor" systemColor="systemRedColor"/>
-                                                    </state>
-                                                    <connections>
-                                                        <segue destination="YkI-lj-ldv" kind="unwind" unwindAction="toLoginScreenWithUnwindSegue:" id="RyO-Jp-CPg"/>
-                                                    </connections>
-                                                </button>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="8GF-46-Coa" firstAttribute="centerY" secondItem="Izr-u9-ioI" secondAttribute="centerY" id="6kP-FB-6b1"/>
-                                                <constraint firstItem="8GF-46-Coa" firstAttribute="centerX" secondItem="Izr-u9-ioI" secondAttribute="centerX" id="wOv-zu-5ut"/>
-                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -315,7 +291,14 @@
                             <outlet property="delegate" destination="vho-IS-RJl" id="DNM-Y7-aoJ"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Friends" id="4X7-np-WOh"/>
+                    <navigationItem key="navigationItem" title="Friends" id="4X7-np-WOh">
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="DU3-Bj-6dS">
+                            <color key="tintColor" systemColor="systemRedColor"/>
+                            <connections>
+                                <segue destination="YkI-lj-ldv" kind="unwind" unwindAction="toLoginScreenWithUnwindSegue:" id="RH5-5a-G91"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jvi-FX-Vg0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="YkI-lj-ldv" userLabel="Exit" sceneMemberID="exit"/>
