@@ -23,7 +23,7 @@ struct User {
         if let tempImage = image {
             self.image = tempImage
         } else {
-            self.image = UIImage(contentsOfFile: "default")
+            self.image = UIImage(named: "default")
         }
     }
 }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-var users = [
+let friends = [
     User(
         "Egor",
         "Androniev",
@@ -17,28 +17,27 @@ var users = [
         "Petro",
         "Makarenko",
         "proto4Ka",
-        UIImage(contentsOfFile: "dog")),
+        UIImage(named: "dog")),
     User(
         "Сергей",
         "Петров",
         "борщ",
-        UIImage(contentsOfFile: "soup"))
+        UIImage(named: "soup"))
     ]
 
-var groups = [
-    Group(
-        23,
+let groups: [Int:Group] = [
+    23:Group(
         "Коллаборация",
         "Мы за объединение всех объединений!",
-        UIImage(contentsOfFile: "union")),
-    Group(
-        56,
+        UIImage(named: "union")),
+    56:Group(
         "Прокрастинация",
         "Вливайся!",
-        UIImage(contentsOfFile: "fine")),
-    Group(
-        143,
+        UIImage(named: "fine")),
+    143:Group(
         "Bash.org",
         "Цитаты из мира интернета",
-        UIImage(contentsOfFile: "bashorg"))
+        UIImage(named: "bashorg"))
 ]
+
+var myGroupsID = [23, 56]
