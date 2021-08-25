@@ -14,11 +14,12 @@ class AllGroupsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         groupKeys = Array(groups.keys.map {Int($0)})
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        tableView.register(
+            UINib(
+                nibName: "AllGroupsViewCell",
+                bundle: nil),
+            forCellReuseIdentifier: "customGroupCell")
     }
 
     // MARK: - Table view data source
@@ -34,16 +35,24 @@ class AllGroupsTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "allGroupsCell", for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "customGroupCell", for: indexPath) as? AllGroupsViewCell else { return UITableViewCell() }
         let group = groups[groupKeys[indexPath.row]]!
+        let isGroupMy = myGroupsID.contains(groupKeys[indexPath.row])
         
-        cell.textLabel?.text = group.name
-        cell.detailTextLabel?.text = group.details
-        cell.imageView?.image = group.image
+        cell.configure(group: group, isMy: isGroupMy)
+//        cell.textLabel?.text = group.name
+//        cell.detailTextLabel?.text = group.details
+//        cell.imageView?.image = group.image
         
         return cell
     }
 
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        defer { tableView.deselectRow(
+            at: indexPath,
+            animated: true) }
+    }
+    
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60.0
     }

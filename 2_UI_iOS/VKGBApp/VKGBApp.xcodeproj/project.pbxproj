@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7842973226D6EC0600AC3545 /* AllGroupsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7842973026D6EC0600AC3545 /* AllGroupsViewCell.swift */; };
+		7842973326D6EC0600AC3545 /* AllGroupsViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7842973126D6EC0600AC3545 /* AllGroupsViewCell.xib */; };
 		784973EA26C5B7860048E855 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784973E926C5B7860048E855 /* AppDelegate.swift */; };
 		784973EC26C5B7860048E855 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784973EB26C5B7860048E855 /* SceneDelegate.swift */; };
 		784973EE26C5B7860048E855 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784973ED26C5B7860048E855 /* LoginViewController.swift */; };
@@ -23,6 +25,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7842973026D6EC0600AC3545 /* AllGroupsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllGroupsViewCell.swift; sourceTree = "<group>"; };
+		7842973126D6EC0600AC3545 /* AllGroupsViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AllGroupsViewCell.xib; sourceTree = "<group>"; };
 		784973E626C5B7860048E855 /* VKGBApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VKGBApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		784973E926C5B7860048E855 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		784973EB26C5B7860048E855 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -51,6 +55,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7842972F26D6EBBD00AC3545 /* Reuse */ = {
+			isa = PBXGroup;
+			children = (
+				7842973026D6EC0600AC3545 /* AllGroupsViewCell.swift */,
+				7842973126D6EC0600AC3545 /* AllGroupsViewCell.xib */,
+			);
+			path = Reuse;
+			sourceTree = "<group>";
+		};
 		784973DD26C5B7860048E855 = {
 			isa = PBXGroup;
 			children = (
@@ -70,6 +83,7 @@
 		784973E826C5B7860048E855 /* VKGBApp */ = {
 			isa = PBXGroup;
 			children = (
+				7842972F26D6EBBD00AC3545 /* Reuse */,
 				785BC1F126D51BE000F0A28F /* DemonstrationData */,
 				785BC1EB26D51AFB00F0A28F /* Models */,
 				784973E926C5B7860048E855 /* AppDelegate.swift */,
@@ -179,6 +193,7 @@
 			files = (
 				784973F626C5B78A0048E855 /* LaunchScreen.storyboard in Resources */,
 				784973F326C5B78A0048E855 /* Assets.xcassets in Resources */,
+				7842973326D6EC0600AC3545 /* AllGroupsViewCell.xib in Resources */,
 				784973F126C5B7860048E855 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -192,6 +207,7 @@
 			files = (
 				785BC1F326D51BF900F0A28F /* DemoData.swift in Sources */,
 				785BC20526D5822B00F0A28F /* MyGroupsTableViewController.swift in Sources */,
+				7842973226D6EC0600AC3545 /* AllGroupsViewCell.swift in Sources */,
 				785BC1ED26D51B0B00F0A28F /* User.swift in Sources */,
 				785BC20326D5820B00F0A28F /* FriendCollectionViewController.swift in Sources */,
 				784973EE26C5B7860048E855 /* LoginViewController.swift in Sources */,
