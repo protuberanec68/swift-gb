@@ -31,15 +31,13 @@ class AllGroupsTableViewController: UITableViewController {
         return groups.count
     }
 
-    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "allGroupsCell", for: indexPath)
 
-        // Configure the cell...
-
+        cell.textLabel?.text = "321"
+        
         return cell
     }
-    */
 
     /*
     // Override to support conditional editing of the table view.

@@ -31,15 +31,22 @@ class FriendsTableViewController: UITableViewController {
         return friends.count
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
+        let cell = tableView.dequeueReusableCell(withIdentifier: "friendsCell", for: indexPath)
+        let friend = friends[indexPath.row]
+        cell.textLabel?.text = friend.firstName + " " + friend.lastName
+        cell.textLabel?.adjustsFontSizeToFitWidth = true
+        cell.detailTextLabel?.text = friend.nickName
+        cell.imageView?.image = friend.image
+        cell.accessoryType = .disclosureIndicator
 
         return cell
     }
-    */
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60.0
+    }
 
     /*
     // Override to support conditional editing of the table view.
