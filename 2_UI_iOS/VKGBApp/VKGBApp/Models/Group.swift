@@ -9,14 +9,14 @@ import UIKit
 
 struct Group {
     let name: String
-    let description: String?
+    let details: String?
     let image: UIImage?
     
     init(_ name: String,
-         _ description: String?,
+         _ details: String?,
          _ image: UIImage?) {
         self.name = name
-        self.description = description
+        self.details = details
         if let tempImage = image {
             self.image = tempImage
         } else {

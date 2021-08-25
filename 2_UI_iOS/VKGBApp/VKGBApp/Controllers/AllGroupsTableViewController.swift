@@ -9,9 +9,11 @@ import UIKit
 
 class AllGroupsTableViewController: UITableViewController {
 
+    private var groupKeys: [Int] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        groupKeys = Array(groups.keys.map {Int($0)})
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -33,12 +35,19 @@ class AllGroupsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "allGroupsCell", for: indexPath)
-
-        cell.textLabel?.text = "321"
+        let group = groups[groupKeys[indexPath.row]]!
+        
+        cell.textLabel?.text = group.name
+        cell.detailTextLabel?.text = group.details
+        cell.imageView?.image = group.image
         
         return cell
     }
 
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60.0
+    }
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

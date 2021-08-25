@@ -33,10 +33,18 @@ class MyGroupsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "myGroupsCell", for: indexPath)
+        let group = groups[myGroupsID[indexPath.row]]!
 
-        cell.textLabel?.text = "123"
+        cell.textLabel?.text = group.name
+        cell.detailTextLabel?.text = group.details
+        cell.imageView?.image = group.image
+        //cell.accessoryType = .disclosureIndicator
 
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60.0
     }
     
     /*

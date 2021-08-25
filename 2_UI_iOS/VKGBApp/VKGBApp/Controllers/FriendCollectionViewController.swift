@@ -8,7 +8,7 @@
 import UIKit
 
 class FriendCollectionViewController: UICollectionViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -16,7 +16,7 @@ class FriendCollectionViewController: UICollectionViewController {
         // self.clearsSelectionOnViewWillAppear = false
 
         // Register cell classes
-        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "friendCell")
+//        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "friendCell")
 
         // Do any additional setup after loading the view.
     }
@@ -33,10 +33,10 @@ class FriendCollectionViewController: UICollectionViewController {
 
     // MARK: UICollectionViewDataSource
 
-//    override func numberOfSections(in collectionView: UICollectionView) -> Int {
-//        // #warning Incomplete implementation, return the number of sections
-//        return 0
-//    }
+    override func numberOfSections(in collectionView: UICollectionView) -> Int {
+        // #warning Incomplete implementation, return the number of sections
+        return 1
+    }
 
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -45,9 +45,9 @@ class FriendCollectionViewController: UICollectionViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "friendCell", for: indexPath)
-    
-    
+        let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: "friendCell",
+                for: indexPath)
         return cell
     }
 
