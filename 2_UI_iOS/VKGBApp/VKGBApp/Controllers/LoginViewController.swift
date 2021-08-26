@@ -7,8 +7,8 @@
 
 import UIKit
 
-let globalLogin = "123"
-let globalPassword = "123"
+let globalLogin = ""
+let globalPassword = ""
 
 class LoginViewController: UIViewController {
     @IBOutlet var loginLabel: UILabel!
@@ -43,7 +43,7 @@ class LoginViewController: UIViewController {
     func alertWrongLogin() {
         let alertController = UIAlertController(
             title: "Ошибка",
-            message: "Пара логин/пароль неверна",
+            message: "Пара логин/пароль - ПУСТЫЕ СТРОКИ",
             preferredStyle: .alert)
         let alertAction = UIAlertAction(
             title: "Ясно",
