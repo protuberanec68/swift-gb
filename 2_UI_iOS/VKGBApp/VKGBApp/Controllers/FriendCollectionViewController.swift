@@ -9,6 +9,8 @@ import UIKit
 
 class FriendCollectionViewController: UICollectionViewController {
     
+    var currentFoto = UIImage(named: "default")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -45,9 +47,10 @@ class FriendCollectionViewController: UICollectionViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(
+        guard let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: "friendCell",
-                for: indexPath)
+                for: indexPath) as? FriendCell else { return UICollectionViewCell() }
+        cell.friendFotoImage.image = currentFoto
         return cell
     }
 

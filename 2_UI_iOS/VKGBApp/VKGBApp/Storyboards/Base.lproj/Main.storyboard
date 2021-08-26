@@ -250,14 +250,28 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="friendCell" id="Wzn-No-UvQ" customClass="FriendCollectionViewCell" customModule="VKGBApp" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="friendCell" id="Wzn-No-UvQ" customClass="FriendCell" customModule="VKGBApp" customModuleProvider="target">
                                 <rect key="frame" x="37.666666666666664" y="0.0" width="300" height="300"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="BfK-69-rkU">
                                     <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GK6-oF-12U">
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
+                                        </imageView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="GK6-oF-12U" firstAttribute="centerY" secondItem="BfK-69-rkU" secondAttribute="centerY" id="9Yr-ya-tOE"/>
+                                        <constraint firstItem="GK6-oF-12U" firstAttribute="top" secondItem="BfK-69-rkU" secondAttribute="top" id="DB2-zp-SWF"/>
+                                        <constraint firstItem="GK6-oF-12U" firstAttribute="centerX" secondItem="BfK-69-rkU" secondAttribute="centerX" id="Fva-hI-PKR"/>
+                                        <constraint firstItem="GK6-oF-12U" firstAttribute="leading" secondItem="BfK-69-rkU" secondAttribute="leading" id="c33-en-Kxt"/>
+                                    </constraints>
                                 </collectionViewCellContentView>
                                 <size key="customSize" width="300" height="300"/>
+                                <connections>
+                                    <outlet property="friendFotoImage" destination="GK6-oF-12U" id="Ft3-nM-FT9"/>
+                                </connections>
                             </collectionViewCell>
                         </cells>
                         <connections>

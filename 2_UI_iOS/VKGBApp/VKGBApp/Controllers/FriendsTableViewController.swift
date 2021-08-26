@@ -8,7 +8,9 @@
 import UIKit
 
 class FriendsTableViewController: UITableViewController {
-
+    
+    private var friendIndex: IndexPath = .init(row: 0, section: 1)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -45,6 +47,7 @@ class FriendsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        friendIndex = indexPath
         performSegue(withIdentifier: "showFriend", sender: nil)
     }
     
@@ -90,8 +93,9 @@ class FriendsTableViewController: UITableViewController {
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//
-//    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let friendCVC = segue.destination as? FriendCollectionViewController else { return }
+        friendCVC.currentFoto = friends[friendIndex.row].image
+    }
 
 }

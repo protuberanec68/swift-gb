@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		7842973226D6EC0600AC3545 /* AllGroupsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7842973026D6EC0600AC3545 /* AllGroupsViewCell.swift */; };
 		7842973326D6EC0600AC3545 /* AllGroupsViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7842973126D6EC0600AC3545 /* AllGroupsViewCell.xib */; };
+		7842973726D773B900AC3545 /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7842973626D773B900AC3545 /* FriendCell.swift */; };
 		784973EA26C5B7860048E855 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784973E926C5B7860048E855 /* AppDelegate.swift */; };
 		784973EC26C5B7860048E855 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784973EB26C5B7860048E855 /* SceneDelegate.swift */; };
 		784973EE26C5B7860048E855 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784973ED26C5B7860048E855 /* LoginViewController.swift */; };
@@ -27,6 +28,7 @@
 /* Begin PBXFileReference section */
 		7842973026D6EC0600AC3545 /* AllGroupsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllGroupsViewCell.swift; sourceTree = "<group>"; };
 		7842973126D6EC0600AC3545 /* AllGroupsViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AllGroupsViewCell.xib; sourceTree = "<group>"; };
+		7842973626D773B900AC3545 /* FriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
 		784973E626C5B7860048E855 /* VKGBApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VKGBApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		784973E926C5B7860048E855 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		784973EB26C5B7860048E855 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -60,6 +62,7 @@
 			children = (
 				7842973026D6EC0600AC3545 /* AllGroupsViewCell.swift */,
 				7842973126D6EC0600AC3545 /* AllGroupsViewCell.xib */,
+				7842973626D773B900AC3545 /* FriendCell.swift */,
 			);
 			path = Reuse;
 			sourceTree = "<group>";
@@ -212,6 +215,7 @@
 				785BC20326D5820B00F0A28F /* FriendCollectionViewController.swift in Sources */,
 				784973EE26C5B7860048E855 /* LoginViewController.swift in Sources */,
 				784973EA26C5B7860048E855 /* AppDelegate.swift in Sources */,
+				7842973726D773B900AC3545 /* FriendCell.swift in Sources */,
 				785BC1F026D51B2B00F0A28F /* Group.swift in Sources */,
 				785BC20726D5824400F0A28F /* AllGroupsTableViewController.swift in Sources */,
 				785BC20126D581E600F0A28F /* FriendsTableViewController.swift in Sources */,
