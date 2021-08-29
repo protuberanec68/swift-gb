@@ -12,6 +12,8 @@ class AllGroupsViewCell: UITableViewCell {
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var detailLabel: UILabel!
     @IBOutlet var actionGroupButton: UIButton!
+    private var groupID: Int = 0
+    private var isGroupMy: Bool = false
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,17 +26,41 @@ class AllGroupsViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func configure(group: Group, isMy: Bool) {
+    
+    
+    //addTarget(self, action: #selector(didPress), for: .touchUpInside) {}
+    func configure(groupID: Int, group: Group, isGroupMy: Bool) {
         self.groupImage.image = group.image
         self.nameLabel.text = group.name
         self.detailLabel.text = group.details
-        if isMy {
+        self.groupID = groupID
+        self.isGroupMy = isGroupMy
+        if self.isGroupMy {
             self.actionGroupButton.setTitle("Delete", for: .normal)
             self.actionGroupButton.setTitleColor(.systemRed, for: .normal)
         } else {
             self.actionGroupButton.setTitle("Add", for: .normal)
             self.actionGroupButton.setTitleColor(.systemGreen, for: .normal)
         }
+        actionGroupButton.addTarget(
+            self,
+            action: #selector(didPressed),
+            for: .touchUpInside)
+    }
+    
+    @objc private func didPressed() {
+        if self.isGroupMy {
+            self.actionGroupButton.setTitle("Add", for: .normal)
+            self.actionGroupButton.setTitleColor(.systemGreen, for: .normal)
+            myGroupsID = myGroupsID.filter { $0 != groupID }
+        } else {
+            self.actionGroupButton.setTitle("Delete", for: .normal)
+            self.actionGroupButton.setTitleColor(.systemRed, for: .normal)
+            myGroupsID.append(groupID)
+            
+        }
+        self.isGroupMy.toggle()
+        
     }
     
 }

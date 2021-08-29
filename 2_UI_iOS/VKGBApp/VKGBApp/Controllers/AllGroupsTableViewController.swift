@@ -38,8 +38,9 @@ class AllGroupsTableViewController: UITableViewController {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "customGroupCell", for: indexPath) as? AllGroupsViewCell else { return UITableViewCell() }
         let group = groups[groupKeys[indexPath.row]]!
         let isGroupMy = myGroupsID.contains(groupKeys[indexPath.row])
+        let groupID = groupKeys[indexPath.row]
         
-        cell.configure(group: group, isMy: isGroupMy)
+        cell.configure(groupID: groupID ,group: group, isGroupMy: isGroupMy)
 //        cell.textLabel?.text = group.name
 //        cell.detailTextLabel?.text = group.details
 //        cell.imageView?.image = group.image
