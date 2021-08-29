@@ -49,7 +49,7 @@ class FriendCollectionViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: "friendCell",
-                for: indexPath) as? FriendCell else { return UICollectionViewCell() }
+                for: indexPath) as? FriendImageCell else { return UICollectionViewCell() }
         cell.friendFotoImage.image = currentFoto
         return cell
     }

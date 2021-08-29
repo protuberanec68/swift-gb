@@ -36,10 +36,10 @@ class AllGroupsViewCell: UITableViewCell {
         self.groupID = groupID
         self.isGroupMy = isGroupMy
         if self.isGroupMy {
-            self.actionGroupButton.setTitle("Delete", for: .normal)
+            self.actionGroupButton.setTitle("Leave", for: .normal)
             self.actionGroupButton.setTitleColor(.systemRed, for: .normal)
         } else {
-            self.actionGroupButton.setTitle("Add", for: .normal)
+            self.actionGroupButton.setTitle("Join", for: .normal)
             self.actionGroupButton.setTitleColor(.systemGreen, for: .normal)
         }
         actionGroupButton.addTarget(
@@ -50,11 +50,11 @@ class AllGroupsViewCell: UITableViewCell {
     
     @objc private func didPressed() {
         if self.isGroupMy {
-            self.actionGroupButton.setTitle("Add", for: .normal)
+            self.actionGroupButton.setTitle("Join", for: .normal)
             self.actionGroupButton.setTitleColor(.systemGreen, for: .normal)
             myGroupsID = myGroupsID.filter { $0 != groupID }
         } else {
-            self.actionGroupButton.setTitle("Delete", for: .normal)
+            self.actionGroupButton.setTitle("Leave", for: .normal)
             self.actionGroupButton.setTitleColor(.systemRed, for: .normal)
             myGroupsID.append(groupID)
             
