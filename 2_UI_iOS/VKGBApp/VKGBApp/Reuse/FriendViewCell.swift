@@ -10,15 +10,16 @@ import UIKit
 class AvatarView: UIView {
     
     var logoView = UIImageView()
-    let shadowView = UIView()
+    private let shadowView = UIView()
+    //private var friendImage = UIImage(named: "default")
     
-    @IBInspectable var shadowRadius: CGFloat = 125.0
+    @IBInspectable var shadowRadius: CGFloat = 30.0
     
     @IBInspectable var shadowBlur: CGFloat = 6.0
     
-    @IBInspectable var logoHeight: CGFloat = 250.0
+    @IBInspectable var logoHeight: CGFloat = 60.0
     
-    @IBInspectable var logoWigth: CGFloat = 250.0
+    @IBInspectable var logoWigth: CGFloat = 60.0
     
     @IBInspectable var shadowOpacity: Float = 0.3
     
@@ -30,12 +31,12 @@ class AvatarView: UIView {
     override func draw(_ rect: CGRect) {
         super.draw(rect)
         
-        logoView.frame = CGRect(x: 0.0, y: 0.0, width: logoWigth, height: logoHeight)
+        logoView.frame = CGRect(x: 5.0, y: 0.0, width: logoWigth, height: logoHeight)
         //logoView.backgroundColor = .systemRed
         logoView.layer.cornerRadius =  shadowRadius
         logoView.clipsToBounds = true
         logoView.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
-        logoView.image = UIImage(named: "default")
+        //logoView.image = friendImage
         
         shadowView.frame = rect
         shadowView.clipsToBounds = false
@@ -56,9 +57,9 @@ class AvatarView: UIView {
 
 class FriendViewCell: UITableViewCell {
 
-    @IBOutlet var friendAvatarImage: UIImageView!
     @IBOutlet var friendNameLabel: UILabel!
     @IBOutlet var friendNickNameLabel: UILabel!
+    @IBOutlet var friendAvatarView: AvatarView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -74,8 +75,7 @@ class FriendViewCell: UITableViewCell {
     func configure(friend: User) {
         self.friendNameLabel.text = friend.firstName + " " + friend.lastName
         self.friendNickNameLabel.text = friend.nickName
-        self.friendAvatarImage.image = friend.image
-
+        self.friendAvatarView.logoView.image = friend.image
     }
     
 }
