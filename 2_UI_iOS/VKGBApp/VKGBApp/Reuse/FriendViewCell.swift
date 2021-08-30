@@ -7,36 +7,72 @@
 
 import UIKit
 
+//@IBDesignable
 class AvatarView: UIView {
     
-    var logoView = UIImageView()
+    var imageView = UIImageView()
     private let shadowView = UIView()
-    //private var friendImage = UIImage(named: "default")
     
-    @IBInspectable var shadowRadius: CGFloat = 30.0
+    @IBInspectable var shadowRadius: CGFloat = 29.0 {
+        didSet {
+            setNeedsDisplay()
+        }
+    }
     
-    @IBInspectable var shadowBlur: CGFloat = 6.0
+    @IBInspectable var cornerRadius: CGFloat = 29.0 {
+        didSet {
+            setNeedsDisplay()
+        }
+    }
     
-    @IBInspectable var logoHeight: CGFloat = 60.0
+    @IBInspectable var shadowBlur: CGFloat = 3.0 {
+        didSet {
+            setNeedsDisplay()
+        }
+    }
     
-    @IBInspectable var logoWigth: CGFloat = 60.0
+    @IBInspectable var logoHeight: CGFloat = 58.0 {
+        didSet {
+            setNeedsDisplay()
+        }
+    }
     
-    @IBInspectable var shadowOpacity: Float = 0.3
+    @IBInspectable var logoWigth: CGFloat = 58.0 {
+        didSet {
+            setNeedsDisplay()
+        }
+    }
     
-    @IBInspectable var shadowOffset: CGSize = CGSize(width: 0, height: 5)
+    @IBInspectable var shadowOpacity: Float = 0.3 {
+        didSet {
+            setNeedsDisplay()
+        }
+    }
     
-    @IBInspectable var shadowColor: UIColor = UIColor.black
+    @IBInspectable var shadowOffset: CGSize = CGSize(width: -2, height: 3) {
+        didSet {
+            setNeedsDisplay()
+        }
+    }
+    
+    @IBInspectable var shadowColor: UIColor = UIColor.black {
+        didSet {
+            setNeedsDisplay()
+        }
+    }
     
     
     override func draw(_ rect: CGRect) {
         super.draw(rect)
         
-        logoView.frame = CGRect(x: 5.0, y: 0.0, width: logoWigth, height: logoHeight)
-        //logoView.backgroundColor = .systemRed
-        logoView.layer.cornerRadius =  shadowRadius
-        logoView.clipsToBounds = true
-        logoView.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
-        //logoView.image = friendImage
+        imageView.frame = CGRect(
+            x: 5.0,
+            y: 0.0,
+            width: logoWigth,
+            height: logoHeight)
+        imageView.layer.cornerRadius = cornerRadius
+        imageView.clipsToBounds = true
+        imageView.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
         
         shadowView.frame = rect
         shadowView.clipsToBounds = false
@@ -47,8 +83,9 @@ class AvatarView: UIView {
         shadowView.layer.shadowPath = UIBezierPath(
             roundedRect: shadowView.bounds,
             cornerRadius: shadowRadius).cgPath
+        shadowView.backgroundColor = .clear
         
-        shadowView.addSubview(logoView)
+        shadowView.addSubview(imageView)
         self.addSubview(shadowView)
     }
     
@@ -75,7 +112,7 @@ class FriendViewCell: UITableViewCell {
     func configure(friend: User) {
         self.friendNameLabel.text = friend.firstName + " " + friend.lastName
         self.friendNickNameLabel.text = friend.nickName
-        self.friendAvatarView.logoView.image = friend.image
+        self.friendAvatarView.imageView.image = friend.image
     }
     
 }
