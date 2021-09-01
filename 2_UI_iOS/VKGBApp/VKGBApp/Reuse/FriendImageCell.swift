@@ -7,7 +7,7 @@
 
 import UIKit
 
-class FriendCell: UICollectionViewCell {
+class FriendImageCell: UICollectionViewCell {
     @IBOutlet var friendFotoImage: UIImageView!
     
 }

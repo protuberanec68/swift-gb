@@ -18,6 +18,11 @@ class MyGroupsTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        self.tableView.reloadData()
+    }
 
     // MARK: - Table view data source
 
@@ -51,6 +56,10 @@ class MyGroupsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60.0
+    }
+    
+    open func reloadMyGroupsTable() {
+        self.tableView.reloadData()
     }
     
     /*

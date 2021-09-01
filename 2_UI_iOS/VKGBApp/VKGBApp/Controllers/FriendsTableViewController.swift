@@ -14,11 +14,11 @@ class FriendsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        tableView.register(
+            UINib(
+                nibName: "FriendViewCell",
+                bundle: nil),
+            forCellReuseIdentifier: "customFriendCell")
     }
 
     // MARK: - Table view data source
@@ -35,13 +35,16 @@ class FriendsTableViewController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "friendsCell", for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "customFriendCell", for: indexPath) as? FriendViewCell else { return UITableViewCell() }
         let friend = friends[indexPath.row]
-        cell.textLabel?.text = friend.firstName + " " + friend.lastName
-        cell.textLabel?.adjustsFontSizeToFitWidth = true
-        cell.detailTextLabel?.text = friend.nickName
-        cell.imageView?.image = friend.image
-        cell.accessoryType = .disclosureIndicator
+        
+        cell.configure(friend: friend)
+        
+//        cell.textLabel?.text = friend.firstName + " " + friend.lastName
+//        cell.textLabel?.adjustsFontSizeToFitWidth = true
+//        cell.detailTextLabel?.text = friend.nickName
+//        cell.imageView?.image = friend.image
+//        cell.accessoryType = .disclosureIndicator
 
         return cell
     }

@@ -9,7 +9,9 @@
 /* Begin PBXBuildFile section */
 		7842973226D6EC0600AC3545 /* AllGroupsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7842973026D6EC0600AC3545 /* AllGroupsViewCell.swift */; };
 		7842973326D6EC0600AC3545 /* AllGroupsViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7842973126D6EC0600AC3545 /* AllGroupsViewCell.xib */; };
-		7842973726D773B900AC3545 /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7842973626D773B900AC3545 /* FriendCell.swift */; };
+		7842973726D773B900AC3545 /* FriendImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7842973626D773B900AC3545 /* FriendImageCell.swift */; };
+		7842974226DC227300AC3545 /* FriendViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7842974026DC227300AC3545 /* FriendViewCell.swift */; };
+		7842974326DC227300AC3545 /* FriendViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7842974126DC227300AC3545 /* FriendViewCell.xib */; };
 		784973EA26C5B7860048E855 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784973E926C5B7860048E855 /* AppDelegate.swift */; };
 		784973EC26C5B7860048E855 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784973EB26C5B7860048E855 /* SceneDelegate.swift */; };
 		784973EE26C5B7860048E855 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784973ED26C5B7860048E855 /* LoginViewController.swift */; };
@@ -28,7 +30,9 @@
 /* Begin PBXFileReference section */
 		7842973026D6EC0600AC3545 /* AllGroupsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllGroupsViewCell.swift; sourceTree = "<group>"; };
 		7842973126D6EC0600AC3545 /* AllGroupsViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AllGroupsViewCell.xib; sourceTree = "<group>"; };
-		7842973626D773B900AC3545 /* FriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
+		7842973626D773B900AC3545 /* FriendImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendImageCell.swift; sourceTree = "<group>"; };
+		7842974026DC227300AC3545 /* FriendViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendViewCell.swift; sourceTree = "<group>"; };
+		7842974126DC227300AC3545 /* FriendViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendViewCell.xib; sourceTree = "<group>"; };
 		784973E626C5B7860048E855 /* VKGBApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VKGBApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		784973E926C5B7860048E855 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		784973EB26C5B7860048E855 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -62,7 +66,9 @@
 			children = (
 				7842973026D6EC0600AC3545 /* AllGroupsViewCell.swift */,
 				7842973126D6EC0600AC3545 /* AllGroupsViewCell.xib */,
-				7842973626D773B900AC3545 /* FriendCell.swift */,
+				7842973626D773B900AC3545 /* FriendImageCell.swift */,
+				7842974026DC227300AC3545 /* FriendViewCell.swift */,
+				7842974126DC227300AC3545 /* FriendViewCell.xib */,
 			);
 			path = Reuse;
 			sourceTree = "<group>";
@@ -198,6 +204,7 @@
 				784973F326C5B78A0048E855 /* Assets.xcassets in Resources */,
 				7842973326D6EC0600AC3545 /* AllGroupsViewCell.xib in Resources */,
 				784973F126C5B7860048E855 /* Main.storyboard in Resources */,
+				7842974326DC227300AC3545 /* FriendViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -215,7 +222,8 @@
 				785BC20326D5820B00F0A28F /* FriendCollectionViewController.swift in Sources */,
 				784973EE26C5B7860048E855 /* LoginViewController.swift in Sources */,
 				784973EA26C5B7860048E855 /* AppDelegate.swift in Sources */,
-				7842973726D773B900AC3545 /* FriendCell.swift in Sources */,
+				7842974226DC227300AC3545 /* FriendViewCell.swift in Sources */,
+				7842973726D773B900AC3545 /* FriendImageCell.swift in Sources */,
 				785BC1F026D51B2B00F0A28F /* Group.swift in Sources */,
 				785BC20726D5824400F0A28F /* AllGroupsTableViewController.swift in Sources */,
 				785BC20126D581E600F0A28F /* FriendsTableViewController.swift in Sources */,
