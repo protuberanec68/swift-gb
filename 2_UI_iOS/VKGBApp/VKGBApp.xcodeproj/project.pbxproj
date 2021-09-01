@@ -13,7 +13,7 @@
 		7842974226DC227300AC3545 /* FriendViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7842974026DC227300AC3545 /* FriendViewCell.swift */; };
 		7842974326DC227300AC3545 /* FriendViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7842974126DC227300AC3545 /* FriendViewCell.xib */; };
 		7842974726DF49D600AC3545 /* MeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7842974626DF49D600AC3545 /* MeViewController.swift */; };
-		7842974926DF4A6200AC3545 /* LikeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7842974826DF4A6200AC3545 /* LikeView.swift */; };
+		7842974926DF4A6200AC3545 /* LikeControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7842974826DF4A6200AC3545 /* LikeControl.swift */; };
 		784973EA26C5B7860048E855 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784973E926C5B7860048E855 /* AppDelegate.swift */; };
 		784973EC26C5B7860048E855 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784973EB26C5B7860048E855 /* SceneDelegate.swift */; };
 		784973EE26C5B7860048E855 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784973ED26C5B7860048E855 /* LoginViewController.swift */; };
@@ -36,7 +36,7 @@
 		7842974026DC227300AC3545 /* FriendViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendViewCell.swift; sourceTree = "<group>"; };
 		7842974126DC227300AC3545 /* FriendViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendViewCell.xib; sourceTree = "<group>"; };
 		7842974626DF49D600AC3545 /* MeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeViewController.swift; sourceTree = "<group>"; };
-		7842974826DF4A6200AC3545 /* LikeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeView.swift; sourceTree = "<group>"; };
+		7842974826DF4A6200AC3545 /* LikeControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeControl.swift; sourceTree = "<group>"; };
 		784973E626C5B7860048E855 /* VKGBApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VKGBApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		784973E926C5B7860048E855 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		784973EB26C5B7860048E855 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -73,7 +73,7 @@
 				7842973626D773B900AC3545 /* FriendImageCell.swift */,
 				7842974026DC227300AC3545 /* FriendViewCell.swift */,
 				7842974126DC227300AC3545 /* FriendViewCell.xib */,
-				7842974826DF4A6200AC3545 /* LikeView.swift */,
+				7842974826DF4A6200AC3545 /* LikeControl.swift */,
 			);
 			path = Reuse;
 			sourceTree = "<group>";
@@ -233,7 +233,7 @@
 				7842973726D773B900AC3545 /* FriendImageCell.swift in Sources */,
 				785BC1F026D51B2B00F0A28F /* Group.swift in Sources */,
 				785BC20726D5824400F0A28F /* AllGroupsTableViewController.swift in Sources */,
-				7842974926DF4A6200AC3545 /* LikeView.swift in Sources */,
+				7842974926DF4A6200AC3545 /* LikeControl.swift in Sources */,
 				785BC20126D581E600F0A28F /* FriendsTableViewController.swift in Sources */,
 				784973EC26C5B7860048E855 /* SceneDelegate.swift in Sources */,
 			);

@@ -9,16 +9,23 @@ import UIKit
 
 class MeViewController: UIViewController {
 
-    var likeView: LikeView!
+    var likeView: LikeControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        likeView = LikeView(frame: CGRect(x: 0, y: 0, width: 100, height: 20))
+        likeView = LikeControl(frame: CGRect(x: 0, y: 0, width: 100, height: 20))
         likeView.backgroundColor = UIColor.clear
-        likeView.layer.borderWidth = 1.0
-        likeView.layer.borderColor = UIColor.black.cgColor
         likeView.center = view.center
         likeView.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
         view.addSubview(likeView)
+        
+//        likeView.addTarget(
+//            self,
+//            action: #selector(presss),
+//            for: .valueChanged)
     }
+    
+//    @objc func presss() {
+//        print(321)
+//    }
 }
