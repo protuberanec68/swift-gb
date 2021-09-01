@@ -41,3 +41,6 @@ let groups: [Int:Group] = [
 ]
 
 var myGroupsID = [23, 56]
+
+var isPostLiked = false
+var likesPostCount = 236
