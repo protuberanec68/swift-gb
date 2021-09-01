@@ -111,7 +111,6 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="eC0-Mi-6Nr" kind="relationship" relationship="viewControllers" id="88y-Ow-Om3"/>
                         <segue destination="us1-Te-iPD" kind="relationship" relationship="viewControllers" id="waY-rD-j1h"/>
                         <segue destination="0Um-4r-ADW" kind="relationship" relationship="viewControllers" id="GNf-1a-7Ub"/>
                     </connections>
@@ -270,22 +269,6 @@
             </objects>
             <point key="canvasLocation" x="2886" y="550"/>
         </scene>
-        <!--Me-->
-        <scene sceneID="DeG-LJ-80P">
-            <objects>
-                <viewController id="eC0-Mi-6Nr" customClass="MeViewController" customModule="VKGBApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Hue-Zd-icG">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="mLl-RP-ISj"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Me" image="person.fill" catalog="system" id="iXy-MJ-xKu"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="7om-Tw-eA7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1030" y="1292"/>
-        </scene>
         <!--FriendsNavController-->
         <scene sceneID="2Z7-yb-apr">
             <objects>
@@ -370,7 +353,6 @@
         <image name="back" width="1125" height="2436"/>
         <image name="book.fill" catalog="system" width="128" height="102"/>
         <image name="person.2.fill" catalog="system" width="128" height="80"/>
-        <image name="person.fill" catalog="system" width="128" height="120"/>
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
