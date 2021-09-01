@@ -11,9 +11,13 @@ class LikeControl: UIControl {
 
     private var countLikesLabel = UILabel()
     var likeButton = UIButton()
+    var likeImage = UIImage()
+    var unlikeImage = UIImage()
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        prepareImages()
         placeLabel()
         setupButton()
     }
@@ -35,7 +39,7 @@ class LikeControl: UIControl {
                 equalTo: self.centerYAnchor),
             countLikesLabel.centerXAnchor.constraint(
                 equalTo: self.leftAnchor,
-                constant: 25.0),
+                constant: 27.0),
             countLikesLabel.widthAnchor.constraint(
                 equalTo: self.widthAnchor,
                 multiplier: 0.5),
@@ -46,8 +50,12 @@ class LikeControl: UIControl {
     
     func setupButton(){
         likeButton.layer.frame = CGRect(x: 0, y: 0, width: 20.0, height: 20.0)
-        likeButton.setImage(UIImage(named: "unlike"), for: .normal)
-        likeButton.setImage(UIImage(named: "like"), for: .selected)
+        likeButton.setImage(
+            UIImage(cgImage: unlikeImage.cgImage!),
+            for: .normal)
+        likeButton.setImage(
+            UIImage(cgImage: likeImage.cgImage!),
+            for: .selected)
         likeButton.isSelected = isPostLiked
         likeButton.clipsToBounds = false
         likeButton.addTarget(
@@ -63,7 +71,7 @@ class LikeControl: UIControl {
                 constant: 0.0),
             likeButton.centerXAnchor.constraint(
                 equalTo: self.leftAnchor,
-                constant: 0.0),
+                constant: 2.0),
             likeButton.widthAnchor.constraint(
                 equalTo: likeButton.heightAnchor,
                 multiplier: 1.0),
@@ -83,37 +91,52 @@ class LikeControl: UIControl {
         sendActions(for: .valueChanged)
     }
     
-//    func changeColorHeart(isLiked: Bool, context: CAShapeLayer) {
-//        if isLiked {
-//            context.fillColor = UIColor.systemRed.cgColor
-//            context.strokeColor = UIColor.systemRed.cgColor
-//        } else {
-//            context.fillColor = UIColor.clear.cgColor
-//            context.strokeColor = UIColor.systemBlue.cgColor
-//        }
-//    }
-//
-//    func heartBezier() -> UIBezierPath {
-//        let heart = UIBezierPath()
-//        heart.move(to: CGPoint(x: 16.0, y: 7.0))
-//        heart.addLine(to: CGPoint(x: 8.0, y: 16.0))
-//        heart.addLine(to: CGPoint(x: 0.0, y: 7.0))
-//
-//        heart.addArc(
-//            withCenter: CGPoint(x: 4.0, y: 7.0),
-//            radius: 4,
-//            startAngle: .pi,
-//            endAngle: 0,
-//            clockwise: true)
-//        heart.addArc(
-//            withCenter: CGPoint(x: 12.0, y: 7.0),
-//            radius: 4,
-//            startAngle: .pi,
-//            endAngle: 0,
-//            clockwise: true)
-//        heart.close()
-//        return heart
-//    }
+
+    private func prepareImages() {
+        likeImage = heartBezier(
+            fillColor: UIColor.systemRed,
+            strokeColor: UIColor.systemRed)
+        unlikeImage = heartBezier(
+            fillColor: UIColor.white,
+            strokeColor: UIColor.systemBlue)
+    }
     
-    
+    private func heartBezier(fillColor: UIColor, strokeColor: UIColor) -> UIImage {
+        let size = CGSize(width: 20.0, height: 20.0)
+        UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
+        guard let context = UIGraphicsGetCurrentContext() else { return UIImage() }
+        
+        let heart = UIBezierPath()
+        heart.lineWidth = 4.0
+        heart.move(to: CGPoint(x: 18.0, y: 7.0))
+        heart.addLine(to: CGPoint(x: 10.0, y: 16.0))
+        heart.addLine(to: CGPoint(x: 2.0, y: 7.0))
+
+        heart.addArc(
+            withCenter: CGPoint(x: 6.0, y: 7.0),
+            radius: 4,
+            startAngle: .pi,
+            endAngle: 0,
+            clockwise: true)
+        heart.addArc(
+            withCenter: CGPoint(x: 14.0, y: 7.0),
+            radius: 4,
+            startAngle: .pi,
+            endAngle: 0,
+            clockwise: true)
+        heart.close()
+        strokeColor.setStroke()
+        heart.stroke()
+        fillColor.setFill()
+        heart.fill()
+        
+        context.fillPath()
+
+        context.addPath(heart.cgPath)
+        
+        guard let img = UIGraphicsGetImageFromCurrentImageContext()
+        else { return UIImage() }
+        UIGraphicsEndImageContext()
+        return img
+    }
 }
