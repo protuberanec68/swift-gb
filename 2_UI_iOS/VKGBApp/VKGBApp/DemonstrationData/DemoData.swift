@@ -47,7 +47,11 @@ let groups: [Group] = [
     Group(
         "Bash.org",
         "Цитаты из мира интернета",
-        UIImage(named: "bashorg"))
+        UIImage(named: "bashorg")),
+    Group(
+        "Что-то",
+        nil,
+        nil)
 ]
 
 var myGroups = [groups[0], groups[2]]
