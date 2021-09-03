@@ -9,9 +9,19 @@ import UIKit
 
 let friends = [
     User(
+        "Андрей",
+        "Павлов",
+        nil,
+        nil),
+    User(
         "Egor",
         "Androniev",
         nil,
+        nil),
+    User(
+        "Андрей",
+        "Атаманенко",
+        "раз-раз",
         nil),
     User(
         "Petro",
