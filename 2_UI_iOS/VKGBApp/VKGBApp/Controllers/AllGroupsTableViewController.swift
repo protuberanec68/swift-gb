@@ -9,11 +9,16 @@ import UIKit
 
 class AllGroupsTableViewController: UITableViewController {
 
-    private var groupKeys: [Int] = []
+    @IBOutlet var groupSearchBar: UISearchBar!
+    private var searchedGroups = [Group]() {
+        didSet {
+            tableView.reloadData()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        groupKeys = Array(groups.keys.map {Int($0)})
+
         
         tableView.register(
             UINib(
@@ -36,14 +41,9 @@ class AllGroupsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "customGroupCell", for: indexPath) as? AllGroupsViewCell else { return UITableViewCell() }
-        let group = groups[groupKeys[indexPath.row]]!
-        let isGroupMy = myGroupsID.contains(groupKeys[indexPath.row])
-        let groupID = groupKeys[indexPath.row]
+        let group = groups[indexPath.row]
         
-        cell.configure(groupID: groupID ,group: group, isGroupMy: isGroupMy)
-//        cell.textLabel?.text = group.name
-//        cell.detailTextLabel?.text = group.details
-//        cell.imageView?.image = group.image
+        cell.configure(group: group)
         
         return cell
     }

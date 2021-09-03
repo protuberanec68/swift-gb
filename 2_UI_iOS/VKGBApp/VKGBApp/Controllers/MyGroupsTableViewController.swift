@@ -8,20 +8,14 @@
 import UIKit
 
 class MyGroupsTableViewController: UITableViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        self.tableView.reloadData()
+        tableView.reloadData()
     }
 
     // MARK: - Table view data source
@@ -33,12 +27,12 @@ class MyGroupsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return myGroupsID.count
+        return myGroups.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "myGroupsCell", for: indexPath)
-        let group = groups[myGroupsID[indexPath.row]]!
+        let group = myGroups[indexPath.row]
 
         cell.textLabel?.text = group.name
         cell.detailTextLabel?.text = group.details
@@ -57,10 +51,10 @@ class MyGroupsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60.0
     }
-    
-    open func reloadMyGroupsTable() {
-        self.tableView.reloadData()
-    }
+// MARK: УДАЛИТЬ ДО КОММИТА
+//    open func reloadMyGroupsTable() {
+//        self.tableView.reloadData()
+//    }
     
     /*
     // Override to support conditional editing of the table view.

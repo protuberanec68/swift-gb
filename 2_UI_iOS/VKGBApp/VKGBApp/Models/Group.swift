@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct Group {
+struct Group{
     let name: String
     let details: String?
     let image: UIImage?
@@ -22,5 +22,11 @@ struct Group {
         } else {
             self.image = UIImage(named: "default")
         }
+    }
+}
+
+extension Group: Equatable {
+    static func ==(_ lhr: Group, _ rhr: Group) -> Bool{
+        return lhr.name == rhr.name
     }
 }
