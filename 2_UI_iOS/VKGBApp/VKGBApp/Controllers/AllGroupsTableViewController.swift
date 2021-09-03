@@ -19,7 +19,7 @@ class AllGroupsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         searchedGroups = groups
-        groupSearchBar.delegate = self1
+        groupSearchBar.delegate = self
         
         tableView.register(
             UINib(
