@@ -53,15 +53,21 @@ class FriendsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "customFriendCell", for: indexPath) as? FriendViewCell else { return UITableViewCell() }
         
-        let friend = dictOfFriends[firstCharsFriendsName[indexPath.section]]![indexPath.row]
-        
-        cell.configure(friend: friend)
-
-        return cell
+        if let friend = dictOfFriends[firstCharsFriendsName[indexPath.section]]?[indexPath.row] {
+            cell.configure(friend: friend)
+            return cell
+        } else {
+            return UITableViewCell()
+        }
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedFriendFoto = dictOfFriends[firstCharsFriendsName[ indexPath.section]]![indexPath.row].image
+        if let tempFoto = dictOfFriends[firstCharsFriendsName[ indexPath.section]]?[indexPath.row].image {
+            selectedFriendFoto = tempFoto
+        } else {
+            selectedFriendFoto = UIImage(named: "default")!
+        }
+        
         performSegue(withIdentifier: "showFriend", sender: nil)
     }
     
