@@ -9,10 +9,21 @@ import UIKit
 
 class FriendsTableViewController: UITableViewController {
     
-    private var friendIndex: IndexPath = .init(row: 0, section: 1)
+    private var selectedFriendFoto = UIImage()
+    private var dictOfFriends: [String:[User]] = [:]
+    private var firstCharsFriendsName: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        for user in friends {
+            let char = String(user.lastName.first!.uppercased())
+            if dictOfFriends[char] == nil {
+                dictOfFriends[char] = []
+            }
+            dictOfFriends[char]!.append(user)
+        }
+        firstCharsFriendsName = dictOfFriends.keys.sorted().map() {$0.uppercased()}
 
         tableView.register(
             UINib(
@@ -23,34 +34,40 @@ class FriendsTableViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-//    override func numberOfSections(in tableView: UITableView) -> Int {
-//        // #warning Incomplete implementation, return the number of sections
-//        return 0
-//    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return friends.count
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return firstCharsFriendsName.count
     }
 
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return dictOfFriends[firstCharsFriendsName[section]]!.count
+    }
+
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return firstCharsFriendsName[section]
+    }
+    
+    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        view.tintColor = UIColor(white: 1.0, alpha: 0.7)
+    }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "customFriendCell", for: indexPath) as? FriendViewCell else { return UITableViewCell() }
-        let friend = friends[indexPath.row]
         
-        cell.configure(friend: friend)
-        
-//        cell.textLabel?.text = friend.firstName + " " + friend.lastName
-//        cell.textLabel?.adjustsFontSizeToFitWidth = true
-//        cell.detailTextLabel?.text = friend.nickName
-//        cell.imageView?.image = friend.image
-//        cell.accessoryType = .disclosureIndicator
-
-        return cell
+        if let friend = dictOfFriends[firstCharsFriendsName[indexPath.section]]?[indexPath.row] {
+            cell.configure(friend: friend)
+            return cell
+        } else {
+            return UITableViewCell()
+        }
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        friendIndex = indexPath
+        if let tempFoto = dictOfFriends[firstCharsFriendsName[ indexPath.section]]?[indexPath.row].image {
+            selectedFriendFoto = tempFoto
+        } else {
+            selectedFriendFoto = UIImage(named: "default")!
+        }
+        
         performSegue(withIdentifier: "showFriend", sender: nil)
     }
     
@@ -98,7 +115,7 @@ class FriendsTableViewController: UITableViewController {
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let friendCVC = segue.destination as? FriendCollectionViewController else { return }
-        friendCVC.currentFoto = friends[friendIndex.row].image
+        friendCVC.currentFoto = selectedFriendFoto
     }
 
 }

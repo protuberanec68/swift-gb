@@ -110,7 +110,7 @@ class FriendViewCell: UITableViewCell {
     }
     
     func configure(friend: User) {
-        self.friendNameLabel.text = friend.firstName + " " + friend.lastName
+        self.friendNameLabel.text = friend.lastName + " " + friend.firstName
         self.friendNickNameLabel.text = friend.nickName
         self.friendAvatarView.imageView.image = friend.image
     }

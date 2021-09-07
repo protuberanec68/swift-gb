@@ -111,6 +111,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
+                        <segue destination="eC0-Mi-6Nr" kind="relationship" relationship="viewControllers" id="88y-Ow-Om3"/>
                         <segue destination="us1-Te-iPD" kind="relationship" relationship="viewControllers" id="waY-rD-j1h"/>
                         <segue destination="0Um-4r-ADW" kind="relationship" relationship="viewControllers" id="GNf-1a-7Ub"/>
                     </connections>
@@ -269,6 +270,22 @@
             </objects>
             <point key="canvasLocation" x="2886" y="550"/>
         </scene>
+        <!--Me-->
+        <scene sceneID="DeG-LJ-80P">
+            <objects>
+                <viewController id="eC0-Mi-6Nr" customClass="MeViewController" customModule="VKGBApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Hue-Zd-icG">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="mLl-RP-ISj"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Me" image="person.fill" catalog="system" id="iXy-MJ-xKu"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7om-Tw-eA7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1030" y="1292"/>
+        </scene>
         <!--FriendsNavController-->
         <scene sceneID="2Z7-yb-apr">
             <objects>
@@ -311,9 +328,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="SXR-z4-N36">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="AkK-Ux-C4A" id="z7j-Un-Jfc"/>
+                            </connections>
+                        </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="allGroupsCell" textLabel="Ns6-tq-0eM" detailTextLabel="fMi-VV-UnP" rowHeight="60" style="IBUITableViewCellStyleSubtitle" id="e4H-mM-EYO">
-                                <rect key="frame" x="0.0" y="24.333333969116211" width="375" height="60"/>
+                                <rect key="frame" x="0.0" y="68.333333969116211" width="375" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="e4H-mM-EYO" id="Nhy-Dk-iJ8">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
@@ -343,6 +368,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Add group" id="i7n-Bw-mMc"/>
+                    <connections>
+                        <outlet property="groupSearchBar" destination="SXR-z4-N36" id="pUP-u2-rH7"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VXg-wD-v9X" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -353,6 +381,7 @@
         <image name="back" width="1125" height="2436"/>
         <image name="book.fill" catalog="system" width="128" height="102"/>
         <image name="person.2.fill" catalog="system" width="128" height="80"/>
+        <image name="person.fill" catalog="system" width="128" height="120"/>
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

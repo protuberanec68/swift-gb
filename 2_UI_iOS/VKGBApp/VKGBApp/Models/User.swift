@@ -8,10 +8,11 @@
 import UIKit
 
 struct User {
+    
     let firstName: String
     let lastName: String
     let nickName: String?
-    let image: UIImage?
+    let image: UIImage
     
     init(_ firstName: String,
          _ lastName: String,
@@ -23,7 +24,7 @@ struct User {
         if let tempImage = image {
             self.image = tempImage
         } else {
-            self.image = UIImage(named: "default")
+            self.image = UIImage(named: "default")!
         }
     }
 }

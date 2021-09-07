@@ -9,9 +9,19 @@ import UIKit
 
 let friends = [
     User(
+        "Андрей",
+        "Павлов",
+        nil,
+        nil),
+    User(
         "Egor",
         "Androniev",
         nil,
+        nil),
+    User(
+        "Андрей",
+        "Атаманенко",
+        "раз-раз",
         nil),
     User(
         "Petro",
@@ -25,19 +35,26 @@ let friends = [
         UIImage(named: "soup"))
     ]
 
-let groups: [Int:Group] = [
-    23:Group(
+let groups: [Group] = [
+    Group(
         "Коллаборация",
         "Мы за объединение всех объединений!",
         UIImage(named: "union")),
-    56:Group(
+    Group(
         "Прокрастинация",
         "Вливайся!",
         UIImage(named: "fine")),
-    143:Group(
+    Group(
         "Bash.org",
         "Цитаты из мира интернета",
-        UIImage(named: "bashorg"))
+        UIImage(named: "bashorg")),
+    Group(
+        "Что-то",
+        nil,
+        nil)
 ]
 
-var myGroupsID = [23, 56]
+var myGroups = [groups[0], groups[2]]
+
+var isPostLiked = false
+var likesPostCount = 236

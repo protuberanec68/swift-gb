@@ -9,11 +9,17 @@ import UIKit
 
 class AllGroupsTableViewController: UITableViewController {
 
-    private var groupKeys: [Int] = []
+    @IBOutlet var groupSearchBar: UISearchBar!
+    private var searchedGroups = [Group]() {
+        didSet {
+            tableView.reloadData()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        groupKeys = Array(groups.keys.map {Int($0)})
+        searchedGroups = groups
+        groupSearchBar.delegate = self
         
         tableView.register(
             UINib(
@@ -31,19 +37,14 @@ class AllGroupsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return groups.count
+        return searchedGroups.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "customGroupCell", for: indexPath) as? AllGroupsViewCell else { return UITableViewCell() }
-        let group = groups[groupKeys[indexPath.row]]!
-        let isGroupMy = myGroupsID.contains(groupKeys[indexPath.row])
-        let groupID = groupKeys[indexPath.row]
+        let group = searchedGroups[indexPath.row]
         
-        cell.configure(groupID: groupID ,group: group, isGroupMy: isGroupMy)
-//        cell.textLabel?.text = group.name
-//        cell.detailTextLabel?.text = group.details
-//        cell.imageView?.image = group.image
+        cell.configure(group: group)
         
         return cell
     }
@@ -77,30 +78,20 @@ class AllGroupsTableViewController: UITableViewController {
         }    
     }
     */
+}
 
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
+extension AllGroupsTableViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        filterGroups(text: searchText)
     }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
+    
+    private func filterGroups(text: String) {
+        guard !text.isEmpty else {
+            searchedGroups = groups
+            tableView.reloadData()
+            return
+        }
+        
+        searchedGroups = groups.filter { $0.name.lowercased().contains(text.lowercased()) }
     }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
