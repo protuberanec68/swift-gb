@@ -30,25 +30,26 @@ class MeViewController: UIViewController {
         }
         
         view.addSubview(progressBar)
-        
-        var delay = 0.1
-        let delayBetweenDots = 0.4
-        for dot in progressDots {
-            animateDots(dot: dot, delay: delay)
-            delay += delayBetweenDots
-        }
-        
-        
+    
 //        likeView.addTarget(
 //            self,
 //            action: #selector(presss),
 //            for: .valueChanged)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        var delay = 0.1
+        let delayBetweenDots = 0.4
+        for dot in progressDots {
+            animateDots(dot: dot, delay: delay)
+            delay += delayBetweenDots
+        }
+    }
+    
+    
 //    @objc func presss() {
 //        print(321)
 //    }
-    
-    
     
 }
