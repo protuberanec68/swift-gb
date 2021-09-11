@@ -59,5 +59,5 @@ var myGroups = [groups[0], groups[2]]
 var isPostLiked = false
 var likesPostCount = 236
 
-var isPostLiked2 = true
+var isPostLiked2 = false
 var likesPostCount2 = 112
