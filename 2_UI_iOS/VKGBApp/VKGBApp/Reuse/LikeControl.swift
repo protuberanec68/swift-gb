@@ -106,32 +106,13 @@ class LikeControl: UIControl {
         UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
         guard let context = UIGraphicsGetCurrentContext() else { return UIImage() }
         
-        let heart = UIBezierPath()
-        heart.lineWidth = 4.0
-        heart.move(to: CGPoint(x: 18.0, y: 7.0))
-        heart.addLine(to: CGPoint(x: 10.0, y: 16.0))
-        heart.addLine(to: CGPoint(x: 2.0, y: 7.0))
-
-        heart.addArc(
-            withCenter: CGPoint(x: 6.0, y: 7.0),
-            radius: 4,
-            startAngle: .pi,
-            endAngle: 0,
-            clockwise: true)
-        heart.addArc(
-            withCenter: CGPoint(x: 14.0, y: 7.0),
-            radius: 4,
-            startAngle: .pi,
-            endAngle: 0,
-            clockwise: true)
-        heart.close()
+        let heart = heart()
         strokeColor.setStroke()
         heart.stroke()
         fillColor.setFill()
         heart.fill()
         
         context.fillPath()
-
         context.addPath(heart.cgPath)
         
         guard let img = UIGraphicsGetImageFromCurrentImageContext()

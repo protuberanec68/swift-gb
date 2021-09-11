@@ -9,17 +9,22 @@ import UIKit
 
 class MeViewController: UIViewController {
 
-    var likeView: LikeControl!
+    var likeControl: LikeControl!
+    var likeView: LikeView!
     var progressBar: UIView!
     var progressDots: [UIView] = []
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        likeView = LikeControl(frame: CGRect(x: 0, y: 0, width: 100, height: 20))
+        likeControl = LikeControl(frame: CGRect(x: 100, y: 150, width: 100, height: 20))
+        likeControl.backgroundColor = UIColor.clear
+        likeControl.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+        view.addSubview(likeControl)
+        
+        likeView = LikeView(frame: CGRect(x: 100, y: 150, width: 100, height: 20))
         likeView.backgroundColor = UIColor.clear
         likeView.center = view.center
-        likeView.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
         view.addSubview(likeView)
         
         progressBar = configureBar(x: 100.0, y: 100.0)
@@ -47,9 +52,10 @@ class MeViewController: UIViewController {
         }
     }
     
-    
 //    @objc func presss() {
 //        print(321)
 //    }
+    
+    
     
 }
