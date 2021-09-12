@@ -28,14 +28,23 @@ class LikeView: UIView {
     }
     private var isLiked = true
     
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        likeCount = likesPostCount2
-        isLiked = isPostLiked2
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func configure(isLiked: Bool, likeCount: Int){
+        self.likeCount = likeCount
+        self.isLiked = isLiked
         if !isLiked {
             fillColor = unlikeFillColor
             strokeColor = unlikeStrokeColor
+        } else {
+            fillColor = likeFillColor
+            strokeColor = likeStrokeColor
         }
         placeLabel(count: likeCount)
         makeHeart()
@@ -57,10 +66,6 @@ class LikeView: UIView {
             heartAnimation(set: isLiked)
             countLikesLabel.text = String(likeCount)
         }
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
     func placeLabel(count: Int) {

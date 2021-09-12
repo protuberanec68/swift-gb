@@ -17,12 +17,25 @@ class MeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        likeControl = LikeControl(frame: CGRect(x: 100, y: 150, width: 100, height: 20))
+        likeControl = LikeControl(frame: CGRect(
+                                    x: 100,
+                                    y: 150,
+                                    width: 100,
+                                    height: 20))
         likeControl.backgroundColor = UIColor.clear
-        likeControl.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+        likeControl.transform = CGAffineTransform(
+            scaleX: 1.5,
+            y: 1.5)
         view.addSubview(likeControl)
         
-        likeView = LikeView(frame: CGRect(x: 100, y: 150, width: 100, height: 20))
+        likeView = LikeView(frame: CGRect(
+                                x: 100,
+                                y: 150,
+                                width: 100,
+                                height: 20))
+        likeView.configure(
+            isLiked: isPostLiked2,
+            likeCount: likesPostCount2)
         likeView.backgroundColor = UIColor.clear
         likeView.center = view.center
         view.addSubview(likeView)

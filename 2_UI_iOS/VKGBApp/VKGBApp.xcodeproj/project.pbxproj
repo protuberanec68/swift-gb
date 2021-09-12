@@ -18,6 +18,8 @@
 		7842977026EA715D00AC3545 /* AvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7842976F26EA715D00AC3545 /* AvatarView.swift */; };
 		7842977226ECE59700AC3545 /* LikeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7842977126ECE59700AC3545 /* LikeView.swift */; };
 		7842977426ECEA9E00AC3545 /* HeartBezier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7842977326ECEA9E00AC3545 /* HeartBezier.swift */; };
+		7842977626ED425D00AC3545 /* FotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7842977526ED425D00AC3545 /* FotosViewController.swift */; };
+		7842977826EE863A00AC3545 /* Foto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7842977726EE863A00AC3545 /* Foto.swift */; };
 		784973EA26C5B7860048E855 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784973E926C5B7860048E855 /* AppDelegate.swift */; };
 		784973EC26C5B7860048E855 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784973EB26C5B7860048E855 /* SceneDelegate.swift */; };
 		784973EE26C5B7860048E855 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784973ED26C5B7860048E855 /* LoginViewController.swift */; };
@@ -45,6 +47,8 @@
 		7842976F26EA715D00AC3545 /* AvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarView.swift; sourceTree = "<group>"; };
 		7842977126ECE59700AC3545 /* LikeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeView.swift; sourceTree = "<group>"; };
 		7842977326ECEA9E00AC3545 /* HeartBezier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartBezier.swift; sourceTree = "<group>"; };
+		7842977526ED425D00AC3545 /* FotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FotosViewController.swift; sourceTree = "<group>"; };
+		7842977726EE863A00AC3545 /* Foto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Foto.swift; sourceTree = "<group>"; };
 		784973E626C5B7860048E855 /* VKGBApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VKGBApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		784973E926C5B7860048E855 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		784973EB26C5B7860048E855 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -137,6 +141,7 @@
 				784973ED26C5B7860048E855 /* LoginViewController.swift */,
 				785BC20026D581E600F0A28F /* FriendsTableViewController.swift */,
 				785BC20226D5820B00F0A28F /* FriendCollectionViewController.swift */,
+				7842977526ED425D00AC3545 /* FotosViewController.swift */,
 				785BC20426D5822B00F0A28F /* MyGroupsTableViewController.swift */,
 				785BC20626D5824400F0A28F /* AllGroupsTableViewController.swift */,
 				7842974626DF49D600AC3545 /* MeViewController.swift */,
@@ -148,6 +153,7 @@
 			isa = PBXGroup;
 			children = (
 				785BC1EC26D51B0B00F0A28F /* User.swift */,
+				7842977726EE863A00AC3545 /* Foto.swift */,
 				785BC1EF26D51B2B00F0A28F /* Group.swift */,
 			);
 			path = Models;
@@ -244,9 +250,11 @@
 				7842976E26E91A3A00AC3545 /* Progress.swift in Sources */,
 				7842977226ECE59700AC3545 /* LikeView.swift in Sources */,
 				7842974726DF49D600AC3545 /* MeViewController.swift in Sources */,
+				7842977826EE863A00AC3545 /* Foto.swift in Sources */,
 				7842973726D773B900AC3545 /* FriendImageCell.swift in Sources */,
 				785BC1F026D51B2B00F0A28F /* Group.swift in Sources */,
 				785BC20726D5824400F0A28F /* AllGroupsTableViewController.swift in Sources */,
+				7842977626ED425D00AC3545 /* FotosViewController.swift in Sources */,
 				7842974926DF4A6200AC3545 /* LikeControl.swift in Sources */,
 				7842977426ECEA9E00AC3545 /* HeartBezier.swift in Sources */,
 				785BC20126D581E600F0A28F /* FriendsTableViewController.swift in Sources */,
