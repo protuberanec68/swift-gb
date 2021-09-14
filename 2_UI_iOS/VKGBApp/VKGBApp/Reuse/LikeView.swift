@@ -21,12 +21,7 @@ class LikeView: UIView {
     private var strokeColor: UIColor!
     private var heartLayer: CAShapeLayer!
     
-    private var likeCount = 0 {
-        didSet {
-            likesPostCount2 = likeCount
-        }
-    }
-    private var isLiked = true
+    private var like: Like!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -36,17 +31,16 @@ class LikeView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(isLiked: Bool, likeCount: Int){
-        self.likeCount = likeCount
-        self.isLiked = isLiked
-        if !isLiked {
+    func configure(_ currentLike: Like){
+        self.like = currentLike
+        if !like.isLiked {
             fillColor = unlikeFillColor
             strokeColor = unlikeStrokeColor
         } else {
             fillColor = likeFillColor
             strokeColor = likeStrokeColor
         }
-        placeLabel(count: likeCount)
+        placeLabel(count: like.countLikes)
         makeHeart()
         
         let tap = UITapGestureRecognizer(
@@ -57,14 +51,14 @@ class LikeView: UIView {
     
     @objc func didTap(_ gesture: UITapGestureRecognizer) {
         if gesture.state == .ended {
-            if isLiked {
-                likeCount -= 1
+            if like.isLiked {
+                like.countLikes -= 1
             } else {
-                likeCount += 1
+                like.countLikes += 1
             }
-            isLiked.toggle()
-            heartAnimation(set: isLiked)
-            countLikesLabel.text = String(likeCount)
+            like.isLiked.toggle()
+            heartAnimation(set: like.isLiked)
+            countLikesLabel.text = String(like.countLikes)
         }
     }
     

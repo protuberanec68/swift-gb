@@ -9,10 +9,15 @@ import UIKit
 
 class FriendCollectionViewController: UICollectionViewController {
     
-    var currentFoto = UIImage(named: "default")
+    var currentFoto = defaultFoto
+    var fotoSet: [Foto] = []
+    var currentFotoIndex: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        fotoSet.append(Foto(currentFoto, false, 0))
+        fotoSet += friendFotos
+
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -43,17 +48,23 @@ class FriendCollectionViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 1
+        return fotoSet.count
     }
-
+    
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: "friendCell",
                 for: indexPath) as? FriendImageCell else { return UICollectionViewCell() }
-        cell.friendFotoImage.image = currentFoto
+        cell.friendFotoImage.image = fotoSet[indexPath.row].foto
+        cell.friendFotoImage.translatesAutoresizingMaskIntoConstraints = true
         return cell
     }
 
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        currentFotoIndex = indexPath.row
+        performSegue(withIdentifier: "showFoto", sender: nil)
+    }
+    
     // MARK: UICollectionViewDelegate
 
     /*
@@ -84,5 +95,11 @@ class FriendCollectionViewController: UICollectionViewController {
     
     }
     */
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let fotosView = segue.destination as? FotosViewController else { return }
+        fotosView.fotoSet = fotoSet
+        fotosView.currentFotoIndex = currentFotoIndex
+    }
 
 }

@@ -7,17 +7,15 @@
 
 import UIKit
 
-struct Foto {
+class Foto {
     
     let foto: UIImage
-    let isLiked: Bool
-    let countLikes: Int
+    var like: Like
     
     init(_ foto: UIImage,
          _ isLiked: Bool,
          _ countLikes: Int) {
         self.foto = foto
-        self.isLiked = isLiked
-        self.countLikes = countLikes
+        self.like = Like(isLiked, countLikes)
     }
 }

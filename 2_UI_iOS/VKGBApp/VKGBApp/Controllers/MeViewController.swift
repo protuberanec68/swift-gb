@@ -33,9 +33,7 @@ class MeViewController: UIViewController {
                                 y: 150,
                                 width: 100,
                                 height: 20))
-        likeView.configure(
-            isLiked: isPostLiked2,
-            likeCount: likesPostCount2)
+        likeView.configure(Like(isPostLiked2, likesPostCount2))
         likeView.backgroundColor = UIColor.clear
         likeView.center = view.center
         view.addSubview(likeView)

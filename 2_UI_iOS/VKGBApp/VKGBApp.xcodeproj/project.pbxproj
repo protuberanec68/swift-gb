@@ -33,6 +33,8 @@
 		785BC20326D5820B00F0A28F /* FriendCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785BC20226D5820B00F0A28F /* FriendCollectionViewController.swift */; };
 		785BC20526D5822B00F0A28F /* MyGroupsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785BC20426D5822B00F0A28F /* MyGroupsTableViewController.swift */; };
 		785BC20726D5824400F0A28F /* AllGroupsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785BC20626D5824400F0A28F /* AllGroupsTableViewController.swift */; };
+		7872990C26EE964600B4FE77 /* FotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7872990B26EE964600B4FE77 /* FotoView.swift */; };
+		7872990E26F11F3100B4FE77 /* Like.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7872990D26F11F3100B4FE77 /* Like.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +66,8 @@
 		785BC20226D5820B00F0A28F /* FriendCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCollectionViewController.swift; sourceTree = "<group>"; };
 		785BC20426D5822B00F0A28F /* MyGroupsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGroupsTableViewController.swift; sourceTree = "<group>"; };
 		785BC20626D5824400F0A28F /* AllGroupsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllGroupsTableViewController.swift; sourceTree = "<group>"; };
+		7872990B26EE964600B4FE77 /* FotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FotoView.swift; sourceTree = "<group>"; };
+		7872990D26F11F3100B4FE77 /* Like.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Like.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +94,7 @@
 				7842977326ECEA9E00AC3545 /* HeartBezier.swift */,
 				7842977126ECE59700AC3545 /* LikeView.swift */,
 				7842976D26E91A3A00AC3545 /* Progress.swift */,
+				7872990B26EE964600B4FE77 /* FotoView.swift */,
 			);
 			path = Reuse;
 			sourceTree = "<group>";
@@ -155,6 +160,7 @@
 				785BC1EC26D51B0B00F0A28F /* User.swift */,
 				7842977726EE863A00AC3545 /* Foto.swift */,
 				785BC1EF26D51B2B00F0A28F /* Group.swift */,
+				7872990D26F11F3100B4FE77 /* Like.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -252,9 +258,11 @@
 				7842974726DF49D600AC3545 /* MeViewController.swift in Sources */,
 				7842977826EE863A00AC3545 /* Foto.swift in Sources */,
 				7842973726D773B900AC3545 /* FriendImageCell.swift in Sources */,
+				7872990E26F11F3100B4FE77 /* Like.swift in Sources */,
 				785BC1F026D51B2B00F0A28F /* Group.swift in Sources */,
 				785BC20726D5824400F0A28F /* AllGroupsTableViewController.swift in Sources */,
 				7842977626ED425D00AC3545 /* FotosViewController.swift in Sources */,
+				7872990C26EE964600B4FE77 /* FotoView.swift in Sources */,
 				7842974926DF4A6200AC3545 /* LikeControl.swift in Sources */,
 				7842977426ECEA9E00AC3545 /* HeartBezier.swift in Sources */,
 				785BC20126D581E600F0A28F /* FriendsTableViewController.swift in Sources */,

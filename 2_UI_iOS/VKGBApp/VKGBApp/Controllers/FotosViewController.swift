@@ -9,29 +9,27 @@ import UIKit
 
 class FotosViewController: UIViewController {
 
-    private var fotoView: UIView!
-    private var fotoImageView: UIImageView!
-    private var likeView: LikeView!
-    
-    var fotoSet: [Foto] = friendFotos
-    var currentFoto: Foto!
+    private var fotoView: FotoView!
+    private var nextFotoView: FotoView!
+
+    var fotoSet: [Foto] = [Foto(defaultFoto, false, 0)]
+    var currentFotoIndex: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        currentFoto = fotoSet.randomElement()
         
-        setFotoView()
-        setFotoImageView()
-        setLike()
-
-    }
-
-    private func setFotoView(){
-        fotoView = UIView()
-        fotoView.translatesAutoresizingMaskIntoConstraints = false
-        fotoView.backgroundColor = .lightGray
+        let value = UIInterfaceOrientation.portrait.rawValue
+        UIDevice.current.setValue(value, forKey: "orientation")
         
+        fotoView = FotoView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+        nextFotoView = FotoView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+        
+        fotoView.configure(foto: fotoSet[currentFotoIndex])
+        nextFotoView.configure(foto: fotoSet[0])
+        
+        self.view.addSubview(nextFotoView)
         self.view.addSubview(fotoView)
+        
         
         NSLayoutConstraint.activate([
             fotoView.centerYAnchor.constraint(
@@ -45,57 +43,27 @@ class FotosViewController: UIViewController {
                 multiplier: 1.0),
             fotoView.heightAnchor.constraint(
                 equalTo: self.view.safeAreaLayoutGuide.heightAnchor,
+                multiplier: 1.0),
+            nextFotoView.centerYAnchor.constraint(
+                equalTo: self.view.centerYAnchor,
+                constant: 0.0),
+            nextFotoView.leadingAnchor.constraint(
+                equalTo: self.view.trailingAnchor,
+                constant: 0.0),
+            nextFotoView.widthAnchor.constraint(
+                equalTo: self.view.safeAreaLayoutGuide.widthAnchor,
+                multiplier: 1.0),
+            nextFotoView.heightAnchor.constraint(
+                equalTo: self.view.safeAreaLayoutGuide.heightAnchor,
                 multiplier: 1.0)
         ])
     }
     
-    private func setFotoImageView(){
-        fotoImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
-        fotoImageView.image = currentFoto.foto
-        fotoImageView.translatesAutoresizingMaskIntoConstraints = false
-        //fotoImageView.bounds = fotoImageView.frame
-        fotoImageView.clipsToBounds = true
-        fotoImageView.contentMode = .scaleAspectFit
-        //fotoImageView.autoresizingMask = .flexibleWidth
-        fotoView.addSubview(fotoImageView)
-
-        
-        NSLayoutConstraint.activate([
-            fotoImageView.topAnchor.constraint(
-                equalTo: fotoView.topAnchor,
-                constant: -5.0),
-            fotoImageView.centerXAnchor.constraint(
-                equalTo: fotoView.centerXAnchor,
-                constant: 0.0),
-            fotoImageView.widthAnchor.constraint(
-                equalTo: fotoView.widthAnchor,
-                multiplier: 0.9),
-            fotoImageView.heightAnchor.constraint(
-                equalTo: fotoView.heightAnchor,
-                multiplier: 0.9)
-        ])
-        
-        
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .portrait
     }
-    
-    private func setLike(){
-        likeView = LikeView(frame: CGRect(x: 0, y: 0, width: 100, height: 20))
-        likeView.configure(isLiked: currentFoto.isLiked, likeCount: currentFoto.countLikes)
-        likeView.backgroundColor = UIColor.clear
-        likeView.translatesAutoresizingMaskIntoConstraints = false
-        likeView.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
-        fotoView.addSubview(likeView)
-        
-        NSLayoutConstraint.activate([
-            likeView.topAnchor.constraint(
-                equalTo: fotoImageView.bottomAnchor,
-                constant: 10.0),
-            likeView.centerXAnchor.constraint(
-                equalTo: fotoView.centerXAnchor,
-                constant: 0.0),
-        ])
 
-        
+    override var shouldAutorotate: Bool {
+        return true
     }
-    
 }

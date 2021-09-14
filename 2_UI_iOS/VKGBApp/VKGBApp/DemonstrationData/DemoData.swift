@@ -54,6 +54,8 @@ let groups: [Group] = [
         nil)
 ]
 
+let defaultFoto = UIImage(named: "default")!
+
 var myGroups = [groups[0], groups[2]]
 
 var isPostLiked = false
