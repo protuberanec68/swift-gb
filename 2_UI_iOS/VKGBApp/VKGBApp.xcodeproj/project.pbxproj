@@ -35,7 +35,6 @@
 		785BC20726D5824400F0A28F /* AllGroupsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785BC20626D5824400F0A28F /* AllGroupsTableViewController.swift */; };
 		7872990C26EE964600B4FE77 /* FotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7872990B26EE964600B4FE77 /* FotoView.swift */; };
 		7872990E26F11F3100B4FE77 /* Like.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7872990D26F11F3100B4FE77 /* Like.swift */; };
-		7872991026F24E3300B4FE77 /* SDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7872990F26F24E3300B4FE77 /* SDirection.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,7 +68,6 @@
 		785BC20626D5824400F0A28F /* AllGroupsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllGroupsTableViewController.swift; sourceTree = "<group>"; };
 		7872990B26EE964600B4FE77 /* FotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FotoView.swift; sourceTree = "<group>"; };
 		7872990D26F11F3100B4FE77 /* Like.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Like.swift; sourceTree = "<group>"; };
-		7872990F26F24E3300B4FE77 /* SDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SDirection.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,7 +161,6 @@
 				7842977726EE863A00AC3545 /* Foto.swift */,
 				785BC1EF26D51B2B00F0A28F /* Group.swift */,
 				7872990D26F11F3100B4FE77 /* Like.swift */,
-				7872990F26F24E3300B4FE77 /* SDirection.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -263,7 +260,6 @@
 				7842973726D773B900AC3545 /* FriendImageCell.swift in Sources */,
 				7872990E26F11F3100B4FE77 /* Like.swift in Sources */,
 				785BC1F026D51B2B00F0A28F /* Group.swift in Sources */,
-				7872991026F24E3300B4FE77 /* SDirection.swift in Sources */,
 				785BC20726D5824400F0A28F /* AllGroupsTableViewController.swift in Sources */,
 				7842977626ED425D00AC3545 /* FotosViewController.swift in Sources */,
 				7872990C26EE964600B4FE77 /* FotoView.swift in Sources */,
