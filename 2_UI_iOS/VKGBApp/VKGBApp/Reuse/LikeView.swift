@@ -31,7 +31,7 @@ class LikeView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(_ currentLike: Like){
+    func configure(firstLike currentLike: Like){
         self.like = currentLike
         if !like.isLiked {
             fillColor = unlikeFillColor
@@ -47,6 +47,12 @@ class LikeView: UIView {
             target: self,
             action: #selector(didTap(_: )))
         likeHeartView.addGestureRecognizer(tap)
+    }
+    
+    func configure(nextLike newLike: Like){
+        self.like = newLike
+        self.countLikesLabel.text = String(newLike.countLikes)
+        heartAnimation(set: newLike.isLiked)
     }
     
     @objc func didTap(_ gesture: UITapGestureRecognizer) {

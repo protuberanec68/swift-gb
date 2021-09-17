@@ -22,12 +22,18 @@ class FotoView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(foto: Foto){
+    func configure(firstFoto foto: Foto){
         self.translatesAutoresizingMaskIntoConstraints = false
         currentFoto = foto
         setFotoImageView(currentFoto)
         setLike(currentFoto)
 
+    }
+    
+    func configure(nextFoto newFoto: Foto){
+        currentFoto = newFoto
+        fotoImageView.image = currentFoto.foto
+        likeView.configure(nextLike: currentFoto.like)
     }
     
     private func setFotoImageView(_ currentFoto: Foto){
@@ -60,7 +66,7 @@ class FotoView: UIView {
     
     private func setLike(_ currentFoto: Foto){
         likeView = LikeView(frame: CGRect(x: 0, y: 0, width: 100, height: 20))
-        likeView.configure(currentFoto.like)
+        likeView.configure(firstLike: currentFoto.like)
         likeView.backgroundColor = UIColor.clear
         likeView.translatesAutoresizingMaskIntoConstraints = false
         likeView.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
