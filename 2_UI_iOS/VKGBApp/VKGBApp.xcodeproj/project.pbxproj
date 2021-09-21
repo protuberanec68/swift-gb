@@ -35,6 +35,9 @@
 		785BC20726D5824400F0A28F /* AllGroupsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785BC20626D5824400F0A28F /* AllGroupsTableViewController.swift */; };
 		7872990C26EE964600B4FE77 /* FotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7872990B26EE964600B4FE77 /* FotoView.swift */; };
 		7872990E26F11F3100B4FE77 /* Like.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7872990D26F11F3100B4FE77 /* Like.swift */; };
+		7872991326F9297000B4FE77 /* PushPopAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7872991226F9297000B4FE77 /* PushPopAnimation.swift */; };
+		7872991526F92D1A00B4FE77 /* CustomAnimatedNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7872991426F92D1A00B4FE77 /* CustomAnimatedNavigationController.swift */; };
+		7872991726F92F0400B4FE77 /* InteractiveBack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7872991626F92F0400B4FE77 /* InteractiveBack.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +71,9 @@
 		785BC20626D5824400F0A28F /* AllGroupsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllGroupsTableViewController.swift; sourceTree = "<group>"; };
 		7872990B26EE964600B4FE77 /* FotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FotoView.swift; sourceTree = "<group>"; };
 		7872990D26F11F3100B4FE77 /* Like.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Like.swift; sourceTree = "<group>"; };
+		7872991226F9297000B4FE77 /* PushPopAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushPopAnimation.swift; sourceTree = "<group>"; };
+		7872991426F92D1A00B4FE77 /* CustomAnimatedNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnimatedNavigationController.swift; sourceTree = "<group>"; };
+		7872991626F92F0400B4FE77 /* InteractiveBack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveBack.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +124,7 @@
 		784973E826C5B7860048E855 /* VKGBApp */ = {
 			isa = PBXGroup;
 			children = (
+				7872991126F9294B00B4FE77 /* Animation */,
 				7842972F26D6EBBD00AC3545 /* Reuse */,
 				785BC1F126D51BE000F0A28F /* DemonstrationData */,
 				785BC1EB26D51AFB00F0A28F /* Models */,
@@ -171,6 +178,16 @@
 				785BC1F226D51BF900F0A28F /* DemoData.swift */,
 			);
 			path = DemonstrationData;
+			sourceTree = "<group>";
+		};
+		7872991126F9294B00B4FE77 /* Animation */ = {
+			isa = PBXGroup;
+			children = (
+				7872991226F9297000B4FE77 /* PushPopAnimation.swift */,
+				7872991426F92D1A00B4FE77 /* CustomAnimatedNavigationController.swift */,
+				7872991626F92F0400B4FE77 /* InteractiveBack.swift */,
+			);
+			path = Animation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -253,8 +270,10 @@
 				784973EE26C5B7860048E855 /* LoginViewController.swift in Sources */,
 				784973EA26C5B7860048E855 /* AppDelegate.swift in Sources */,
 				7842974226DC227300AC3545 /* FriendViewCell.swift in Sources */,
+				7872991326F9297000B4FE77 /* PushPopAnimation.swift in Sources */,
 				7842976E26E91A3A00AC3545 /* Progress.swift in Sources */,
 				7842977226ECE59700AC3545 /* LikeView.swift in Sources */,
+				7872991526F92D1A00B4FE77 /* CustomAnimatedNavigationController.swift in Sources */,
 				7842974726DF49D600AC3545 /* MeViewController.swift in Sources */,
 				7842977826EE863A00AC3545 /* Foto.swift in Sources */,
 				7842973726D773B900AC3545 /* FriendImageCell.swift in Sources */,
@@ -266,6 +285,7 @@
 				7842974926DF4A6200AC3545 /* LikeControl.swift in Sources */,
 				7842977426ECEA9E00AC3545 /* HeartBezier.swift in Sources */,
 				785BC20126D581E600F0A28F /* FriendsTableViewController.swift in Sources */,
+				7872991726F92F0400B4FE77 /* InteractiveBack.swift in Sources */,
 				7842977026EA715D00AC3545 /* AvatarView.swift in Sources */,
 				784973EC26C5B7860048E855 /* SceneDelegate.swift in Sources */,
 			);

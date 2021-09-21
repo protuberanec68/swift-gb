@@ -325,7 +325,7 @@
         <!--GroupsNavController-->
         <scene sceneID="CXu-vx-BkG">
             <objects>
-                <navigationController title="GroupsNavController" toolbarHidden="NO" id="us1-Te-iPD" sceneMemberID="viewController">
+                <navigationController title="GroupsNavController" toolbarHidden="NO" id="us1-Te-iPD" customClass="CustomNavigationController" customModule="VKGBApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Groups" image="book.fill" catalog="system" id="L8Y-Pl-Rid"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="j6G-bX-kzE">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
