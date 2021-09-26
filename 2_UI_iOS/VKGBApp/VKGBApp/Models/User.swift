@@ -24,7 +24,7 @@ struct User {
         if let tempImage = image {
             self.image = tempImage
         } else {
-            self.image = UIImage(named: "default")!
+            self.image = defaultFoto
         }
     }
 }
