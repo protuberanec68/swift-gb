@@ -38,6 +38,7 @@
 		7872991326F9297000B4FE77 /* PushPopAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7872991226F9297000B4FE77 /* PushPopAnimation.swift */; };
 		7872991526F92D1A00B4FE77 /* CustomAnimatedNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7872991426F92D1A00B4FE77 /* CustomAnimatedNavigationController.swift */; };
 		7872991726F92F0400B4FE77 /* InteractiveBack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7872991626F92F0400B4FE77 /* InteractiveBack.swift */; };
+		78BDD41F2703A68D00E14EEE /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BDD41E2703A68D00E14EEE /* Session.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +75,7 @@
 		7872991226F9297000B4FE77 /* PushPopAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushPopAnimation.swift; sourceTree = "<group>"; };
 		7872991426F92D1A00B4FE77 /* CustomAnimatedNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnimatedNavigationController.swift; sourceTree = "<group>"; };
 		7872991626F92F0400B4FE77 /* InteractiveBack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveBack.swift; sourceTree = "<group>"; };
+		78BDD41E2703A68D00E14EEE /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +170,7 @@
 				7842977726EE863A00AC3545 /* Foto.swift */,
 				785BC1EF26D51B2B00F0A28F /* Group.swift */,
 				7872990D26F11F3100B4FE77 /* Like.swift */,
+				78BDD41E2703A68D00E14EEE /* Session.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -279,6 +282,7 @@
 				7842973726D773B900AC3545 /* FriendImageCell.swift in Sources */,
 				7872990E26F11F3100B4FE77 /* Like.swift in Sources */,
 				785BC1F026D51B2B00F0A28F /* Group.swift in Sources */,
+				78BDD41F2703A68D00E14EEE /* Session.swift in Sources */,
 				785BC20726D5824400F0A28F /* AllGroupsTableViewController.swift in Sources */,
 				7842977626ED425D00AC3545 /* FotosViewController.swift in Sources */,
 				7872990C26EE964600B4FE77 /* FotoView.swift in Sources */,
