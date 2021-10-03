@@ -13,6 +13,7 @@ class MeViewController: UIViewController {
     var likeView: LikeView!
     var progressBar: UIView!
     var progressDots: [UIView] = []
+    private var networkRequester = Network()
 
     
     override func viewDidLoad() {
@@ -46,11 +47,14 @@ class MeViewController: UIViewController {
         }
         
         view.addSubview(progressBar)
+        sendRequests()
+    }
     
-//        likeView.addTarget(
-//            self,
-//            action: #selector(presss),
-//            for: .valueChanged)
+    func sendRequests() {
+        networkRequester.sendRequest(requestType: "groups.get")
+        networkRequester.sendRequest(requestType: "friends.get")
+        networkRequester.sendRequest(requestType: "groups.search")
+        networkRequester.sendRequest(requestType: "photos.getAll")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -62,11 +66,5 @@ class MeViewController: UIViewController {
             delay += delayBetweenDots
         }
     }
-    
-//    @objc func presss() {
-//        print(321)
-//    }
-    
-    
     
 }
