@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="awS-e3-rrZ">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -10,6 +10,41 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Login View Controller-->
+        <scene sceneID="7un-tu-vRn">
+            <objects>
+                <viewController id="awS-e3-rrZ" customClass="VKLoginViewController" customModule="VKGBApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="lQY-Pe-rTN">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bbb-1X-JPM">
+                                <rect key="frame" x="0.0" y="44" width="375" height="734"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="py3-r3-Vbx"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="py3-r3-Vbx" firstAttribute="trailing" secondItem="Bbb-1X-JPM" secondAttribute="trailing" id="0pd-z1-Sm2"/>
+                            <constraint firstItem="Bbb-1X-JPM" firstAttribute="leading" secondItem="py3-r3-Vbx" secondAttribute="leading" id="1nU-jc-uyj"/>
+                            <constraint firstItem="py3-r3-Vbx" firstAttribute="bottom" secondItem="Bbb-1X-JPM" secondAttribute="bottom" id="3sJ-iJ-xpK"/>
+                            <constraint firstItem="Bbb-1X-JPM" firstAttribute="top" secondItem="py3-r3-Vbx" secondAttribute="top" id="arP-DJ-Scx"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="webView" destination="Bbb-1X-JPM" id="JaP-WS-t3O"/>
+                        <segue destination="9o0-ba-3yy" kind="presentation" identifier="meView" modalPresentationStyle="fullScreen" id="Bvh-tn-PTK"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eKj-o4-oXV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-743" y="550"/>
+        </scene>
         <!--LoginViewController-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -99,7 +134,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-638" y="126"/>
+            <point key="canvasLocation" x="-742" y="-171"/>
         </scene>
         <!--MainTabBarController-->
         <scene sceneID="j7v-cp-WAd">
@@ -397,6 +432,9 @@
             <point key="canvasLocation" x="2886" y="-171"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="Bvh-tn-PTK"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="back" width="1125" height="2436"/>
         <image name="book.fill" catalog="system" width="128" height="95"/>
