@@ -19,7 +19,29 @@ final class Network {
         return constructor
     }()
     
-    func sendRequest(requestType: String) {
+    func sendRequest() {
+        guard let url = urlConstructor.url else { return }
+        var request = URLRequest(url: url)
+        request.timeoutInterval = 10.0
+        request.setValue(
+            "",
+            forHTTPHeaderField: "Token")
+        
+        session.dataTask(with: request) { responseData, urlResponse, error in
+            guard
+                error == nil,
+                let responseData = responseData
+            else { return }
+            let json = try? JSONSerialization.jsonObject(
+                with: responseData,
+                options: .fragmentsAllowed)
+            print(json)
+        }
+        .resume()
+        
+    }
+    
+    func constructRequest(requestType: String, userID: Int = Session.instance.userID) {
         urlConstructor.path = "/method/" + requestType
         urlConstructor.queryItems = [
             URLQueryItem(
@@ -34,7 +56,7 @@ final class Network {
             urlConstructor.queryItems?.append(
                 URLQueryItem(
                     name: "user_id",
-                    value: String(Session.instance.userID))
+                    value: String(userID))
             )
             urlConstructor.queryItems?.append(
                 URLQueryItem(
@@ -49,13 +71,13 @@ final class Network {
             urlConstructor.queryItems?.append(
                 URLQueryItem(
                     name: "fields",
-                    value: "name")
+                    value: "name,description")
             )
         case "friends.get":
             urlConstructor.queryItems?.append(
                 URLQueryItem(
                     name: "user_id",
-                    value: String(Session.instance.userID))
+                    value: String(userID))
             )
             urlConstructor.queryItems?.append(
                 URLQueryItem(
@@ -79,12 +101,17 @@ final class Network {
             )
             urlConstructor.queryItems?.append(                       URLQueryItem(
                 name: "count",
-                value: "2")
+                value: "10")
             )
+            urlConstructor.queryItems?.append(                       URLQueryItem(
+                name: "fields",
+                value: "name,description")
+            )
+            
         case "photos.getAll":
             urlConstructor.queryItems?.append(                URLQueryItem(
                 name: "owner_id",
-                value: String(Session.instance.userID))
+                value: String(userID))
             )
             urlConstructor.queryItems?.append(                URLQueryItem(
                 name: "extended",
@@ -92,31 +119,11 @@ final class Network {
             )
             urlConstructor.queryItems?.append(                       URLQueryItem(
                 name: "count",
-                value: "3")
+                value: "10")
             )
         default:
             return
         }
-
-        
-        guard let url = urlConstructor.url else { return }
-        var request = URLRequest(url: url)
-        request.timeoutInterval = 10.0
-        request.setValue(
-            "",
-            forHTTPHeaderField: "Token")
-        
-        session.dataTask(with: request) { responseData, urlResponse, error in
-            guard
-                error == nil,
-                let responseData = responseData
-            else { return }
-            let json = try? JSONSerialization.jsonObject(
-                with: responseData,
-                options: .fragmentsAllowed)
-            print(json)
-        }
-        .resume()
-        
     }
+    
 }
