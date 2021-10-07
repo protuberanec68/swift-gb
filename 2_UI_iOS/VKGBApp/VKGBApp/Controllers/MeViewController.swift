@@ -51,10 +51,14 @@ class MeViewController: UIViewController {
     }
     
     func sendRequests() {
-        networkRequester.sendRequest(requestType: "groups.get")
-        networkRequester.sendRequest(requestType: "friends.get")
-        networkRequester.sendRequest(requestType: "groups.search")
-        networkRequester.sendRequest(requestType: "photos.getAll")
+        networkRequester.constructRequest(requestType: "groups.get")
+        networkRequester.sendRequest()
+        networkRequester.constructRequest(requestType: "friends.get")
+        networkRequester.sendRequest()
+        networkRequester.constructRequest(requestType: "groups.search")
+        networkRequester.sendRequest()
+        networkRequester.constructRequest(requestType: "photos.getAll")
+        networkRequester.sendRequest()
     }
     
     override func viewWillAppear(_ animated: Bool) {
