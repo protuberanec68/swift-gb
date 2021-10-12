@@ -7,7 +7,7 @@
 
 import UIKit
 
-let friends = [
+let friendsG = [
     User(
         "Андрей",
         "Павлов",

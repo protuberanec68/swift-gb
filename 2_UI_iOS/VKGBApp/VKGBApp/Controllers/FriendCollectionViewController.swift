@@ -6,26 +6,39 @@
 //
 
 import UIKit
+import Nuke
 
 class FriendCollectionViewController: UICollectionViewController {
     
-    var currentFoto = defaultFoto
-    var fotoSet: [Foto] = []
+    private var networkRequester = Network()
+    var currentUserID = 0
+    var fotoSet: [VKPhoto] = [] {
+        didSet {
+            self.collectionView.reloadData()
+        }
+    }
     var currentFotoIndex: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        fotoSet.append(Foto(currentFoto, false, 0))
-        fotoSet += friendFotos
-
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Register cell classes
-//        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "friendCell")
-
-        // Do any additional setup after loading the view.
+        fetchUserPhoto()
+    }
+    
+    func fetchUserPhoto() {
+        networkRequester.sendRequest(
+            endpoint: VKPhotos.init(items: []),
+            requestType: "photos.getAll",
+            userID: currentUserID) {
+                [weak self] result in
+                guard let self = self else { return }
+                switch result {
+                case .success(let photos):
+                    self.fotoSet = photos.items
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+                
+        }
     }
 
     /*
@@ -53,9 +66,16 @@ class FriendCollectionViewController: UICollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: "friendCell",
-                for: indexPath) as? FriendImageCell else { return UICollectionViewCell() }
-        cell.friendFotoImage.image = fotoSet[indexPath.row].foto
+            withReuseIdentifier: "friendCell",
+            for: indexPath) as? FriendImageCell else { return UICollectionViewCell() }
+        
+        if let url = fotoSet[indexPath.row].sizes.first(where: { $0.sizeType == "p" })?.url {
+            Nuke.loadImage(
+                with: url,
+                into: cell.friendFotoImage)
+        } else {
+            cell.friendFotoImage.image = UIImage(named: "default")
+        }
         cell.friendFotoImage.translatesAutoresizingMaskIntoConstraints = true
         return cell
     }
@@ -100,6 +120,7 @@ class FriendCollectionViewController: UICollectionViewController {
         guard let fotosView = segue.destination as? FotosViewController else { return }
         fotosView.fotoSet = fotoSet
         fotosView.currentFotoIndex = currentFotoIndex
+        fotosView.currentUserID = currentUserID
     }
 
 }

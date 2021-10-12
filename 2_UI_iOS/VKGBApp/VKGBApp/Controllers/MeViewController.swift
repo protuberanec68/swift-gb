@@ -18,16 +18,17 @@ class MeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        likeControl = LikeControl(frame: CGRect(
-                                    x: 100,
-                                    y: 150,
-                                    width: 100,
-                                    height: 20))
-        likeControl.backgroundColor = UIColor.clear
-        likeControl.transform = CGAffineTransform(
-            scaleX: 1.5,
-            y: 1.5)
-        view.addSubview(likeControl)
+//        likeControl = LikeControl(frame: CGRect(
+//                                    x: 100,
+//                                    y: 150,
+//                                    width: 100,
+//                                    height: 20))
+//        likeControl.backgroundColor = UIColor.clear
+//        likeControl.transform = CGAffineTransform(
+//            scaleX: 1.5,
+//            y: 1.5)
+//        view.addSubview(likeControl)
+        
         
         likeView = LikeView(frame: CGRect(
                                 x: 100,
@@ -51,14 +52,9 @@ class MeViewController: UIViewController {
     }
     
     func sendRequests() {
-        networkRequester.constructRequest(requestType: "groups.get")
-        networkRequester.sendRequest()
-        networkRequester.constructRequest(requestType: "friends.get")
-        networkRequester.sendRequest()
-        networkRequester.constructRequest(requestType: "groups.search")
-        networkRequester.sendRequest()
-        networkRequester.constructRequest(requestType: "photos.getAll")
-        networkRequester.sendRequest()
+
+
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {

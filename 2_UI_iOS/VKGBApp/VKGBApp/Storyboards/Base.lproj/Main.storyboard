@@ -165,7 +165,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="myGroupsCell" textLabel="5OU-vW-Yeo" detailTextLabel="uuT-Xz-wSN" rowHeight="60" style="IBUITableViewCellStyleSubtitle" id="AXb-2g-q7n">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="myGroupCell" textLabel="5OU-vW-Yeo" detailTextLabel="uuT-Xz-wSN" rowHeight="60" style="IBUITableViewCellStyleSubtitle" id="AXb-2g-q7n">
                                 <rect key="frame" x="0.0" y="44.666666030883789" width="375" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="AXb-2g-q7n" id="z0E-Fq-xOE">
@@ -433,7 +433,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Bvh-tn-PTK"/>
+        <segue reference="v4E-H3-jFW"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="back" width="1125" height="2436"/>

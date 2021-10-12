@@ -10,15 +10,15 @@ import UIKit
 class AllGroupsTableViewController: UITableViewController {
 
     @IBOutlet var groupSearchBar: UISearchBar!
-    private var searchedGroups = [Group]() {
+    private var networkRequester = Network()
+    private var searchedGroups: [VKGroup] = [] {
         didSet {
             tableView.reloadData()
         }
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        searchedGroups = groups
         groupSearchBar.delegate = self
         
         tableView.register(
@@ -82,16 +82,29 @@ class AllGroupsTableViewController: UITableViewController {
 
 extension AllGroupsTableViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        filterGroups(text: searchText)
+        searchGroups(text: searchText)
     }
     
-    private func filterGroups(text: String) {
+    private func searchGroups(text: String) {
         guard !text.isEmpty else {
-            searchedGroups = groups
+            searchedGroups = []
             tableView.reloadData()
             return
         }
         
-        searchedGroups = groups.filter { $0.name.lowercased().contains(text.lowercased()) }
+        networkRequester.sendRequest(
+            endpoint: VKGroups.init(items: []),
+            requestType: "groups.search",
+            queryString: text
+        ) {
+                [weak self] result in
+                guard let self = self else { return }
+                switch result {
+                case .success(let groups):
+                    self.searchedGroups = groups.items
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+        }
     }
 }

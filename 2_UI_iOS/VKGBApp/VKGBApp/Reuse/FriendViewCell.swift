@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Nuke
 
 class FriendViewCell: UITableViewCell {
 
@@ -24,10 +25,16 @@ class FriendViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func configure(friend: User) {
+    func configure(friend: VKUser) {
         self.friendNameLabel.text = friend.lastName + " " + friend.firstName
-        self.friendNickNameLabel.text = friend.nickName
-        self.friendAvatarView.imageView.image = friend.image
+        self.friendNickNameLabel.text = friend.nickname
+        guard let url = friend.photoURL else {
+            self.friendAvatarView.imageView.image = UIImage(named: "default")
+            return
+        }
+        Nuke.loadImage(
+            with: url,
+            into: self.friendAvatarView.imageView)
     }
     
 }

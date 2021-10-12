@@ -6,13 +6,14 @@
 //
 
 import UIKit
+import Nuke
 
 class FotoView: UIView {
 
     private var fotoImageView: UIImageView!
     private var likeView: LikeView!
     
-    private var currentFoto: Foto!
+    private var currentFoto: VKPhoto!
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -22,7 +23,7 @@ class FotoView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(firstFoto foto: Foto){
+    func configure(firstFoto foto: VKPhoto){
         self.translatesAutoresizingMaskIntoConstraints = false
         currentFoto = foto
         setFotoImageView(currentFoto)
@@ -30,15 +31,36 @@ class FotoView: UIView {
 
     }
     
-    func configure(nextFoto newFoto: Foto){
+    func configure(nextFoto newFoto: VKPhoto){
         currentFoto = newFoto
-        fotoImageView.image = currentFoto.foto
-        likeView.configure(nextLike: currentFoto.like)
+        
+        guard let url = currentFoto.sizes.first(where: { $0.sizeType == "y" })?.url else {
+            fotoImageView.image = UIImage(named: "default")
+            return
+        }
+        Nuke.loadImage(
+            with: url,
+            into: fotoImageView)
+        
+        likeView.configure(
+            nextLike: Like(
+                currentFoto.isLiked,
+                currentFoto.countLikes
+            )
+        )
     }
     
-    private func setFotoImageView(_ currentFoto: Foto){
+    private func setFotoImageView(_ currentFoto: VKPhoto){
         fotoImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
-        fotoImageView.image = currentFoto.foto
+        
+        guard let url = currentFoto.sizes.first(where: { $0.sizeType == "y" })?.url else {
+            fotoImageView.image = UIImage(named: "default")
+            return
+        }
+        Nuke.loadImage(
+            with: url,
+            into: fotoImageView)
+
         fotoImageView.translatesAutoresizingMaskIntoConstraints = false
         //fotoImageView.bounds = fotoImageView.frame
         fotoImageView.clipsToBounds = true
@@ -64,9 +86,14 @@ class FotoView: UIView {
         ])
     }
     
-    private func setLike(_ currentFoto: Foto){
+    private func setLike(_ currentFoto: VKPhoto){
         likeView = LikeView(frame: CGRect(x: 0, y: 0, width: 100, height: 20))
-        likeView.configure(firstLike: currentFoto.like)
+        likeView.configure(
+            firstLike: Like(
+                currentFoto.isLiked,
+                currentFoto.countLikes
+            )
+        )
         likeView.backgroundColor = UIColor.clear
         likeView.translatesAutoresizingMaskIntoConstraints = false
         likeView.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)

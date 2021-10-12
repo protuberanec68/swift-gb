@@ -9,22 +9,22 @@ import UIKit
 
 class FriendsTableViewController: UITableViewController {
     
-    private var selectedFriendFoto = UIImage()
-    private var dictOfFriends: [String:[User]] = [:]
+    private var selectedUserID = 0
+    private var dictOfFriends: [String:[VKUser]] = [:]
     private var firstCharsFriendsName: [String] = []
+    
+    private var networkRequester = Network()
+    private var friends: [VKUser] = [] {
+        didSet {
+            setDictOfFriends()
+            tableView.reloadData()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        for user in friends {
-            let char = String(user.lastName.first!.uppercased())
-            if dictOfFriends[char] == nil {
-                dictOfFriends[char] = []
-            }
-            dictOfFriends[char]!.append(user)
-        }
-        firstCharsFriendsName = dictOfFriends.keys.sorted().map() {$0.uppercased()}
-
+        fetchFriends()
+        
         tableView.register(
             UINib(
                 nibName: "FriendViewCell",
@@ -62,12 +62,10 @@ class FriendsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let tempFoto = dictOfFriends[firstCharsFriendsName[ indexPath.section]]?[indexPath.row].image {
-            selectedFriendFoto = tempFoto
-        } else {
-            selectedFriendFoto = UIImage(named: "default")!
-        }
-        
+        //MARK: make
+        guard let friend = dictOfFriends[firstCharsFriendsName[indexPath.section]]?[indexPath.row]
+        else { return }
+        self.selectedUserID = friend.id
         performSegue(withIdentifier: "showFriend", sender: nil)
     }
     
@@ -75,6 +73,31 @@ class FriendsTableViewController: UITableViewController {
         return 60.0
     }
 
+    func fetchFriends() {
+        networkRequester.sendRequest(
+            endpoint: VKUsers.init(items: []),
+            requestType: "friends.get") {
+                [weak self] result in
+                guard let self = self else { return }
+                switch result {
+                case .success(let users):
+                    self.friends = users.items
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+        }
+    }
+    
+    func setDictOfFriends() {
+        for user in friends {
+            let char = String(user.lastName.first!.uppercased())
+            if dictOfFriends[char] == nil {
+                dictOfFriends[char] = []
+            }
+            dictOfFriends[char]!.append(user)
+        }
+        firstCharsFriendsName = dictOfFriends.keys.sorted().map() {$0.uppercased()}
+    }
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -115,7 +138,7 @@ class FriendsTableViewController: UITableViewController {
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let friendCVC = segue.destination as? FriendCollectionViewController else { return }
-        friendCVC.currentFoto = selectedFriendFoto
+        friendCVC.currentUserID = selectedUserID
     }
 
 }

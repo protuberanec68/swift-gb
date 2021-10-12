@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 final class Network {
     
@@ -19,29 +20,55 @@ final class Network {
         return constructor
     }()
     
-    func sendRequest() {
-        guard let url = urlConstructor.url else { return }
-        var request = URLRequest(url: url)
-        request.timeoutInterval = 10.0
-        request.setValue(
-            "",
-            forHTTPHeaderField: "Token")
-        
-        session.dataTask(with: request) { responseData, urlResponse, error in
-            guard
-                error == nil,
-                let responseData = responseData
-            else { return }
-            let json = try? JSONSerialization.jsonObject(
-                with: responseData,
-                options: .fragmentsAllowed)
-            print(json)
+    func sendRequest<T: Decodable>(
+        endpoint: T,
+        requestType: String,
+        userID: Int = Session.instance.userID,
+        queryString: String = "",
+        completion: (@escaping (Result<T,VKError>) -> Void )) {
+            constructRequest(
+                requestType: requestType,
+                userID: userID,
+                queryString: queryString)
+            guard let url = urlConstructor.url
+            else {
+                completion(.failure(.failUrlConstruct))
+                return
+            }
+            var request = URLRequest(url: url)
+            request.timeoutInterval = 10.0
+            request.setValue(
+                "",
+                forHTTPHeaderField: "Token")
+            session.dataTask(with: request) { responseData, urlResponse, error in
+                guard
+                    error == nil,
+                    let responseData = responseData
+                else {
+                    completion(.failure(.failResponseData))
+                    return
+                }
+                do {
+                    let response = try JSONDecoder().decode(
+                        VKResponse<T>.self,
+                        from: responseData)
+                    DispatchQueue.main.async {
+                        completion(.success(response.response))
+                    }
+                } catch {
+                    print(error)
+                    completion(.failure(.failJSONDecode))
+                    return
+                }
+            }
+            .resume()
         }
-        .resume()
-        
-    }
     
-    func constructRequest(requestType: String, userID: Int = Session.instance.userID) {
+    
+    func constructRequest(
+        requestType: String,
+        userID: Int,
+        queryString vkQuery: String) {
         urlConstructor.path = "/method/" + requestType
         urlConstructor.queryItems = [
             URLQueryItem(
@@ -92,38 +119,44 @@ final class Network {
             urlConstructor.queryItems?.append(
                 URLQueryItem(
                     name: "fields",
-                    value: "nickname")
+                    value: "nickname,photo_50")
             )
         case "groups.search":
-            urlConstructor.queryItems?.append(                URLQueryItem(
-                name: "q",
-                value: "спорт")
+            urlConstructor.queryItems?.append(
+                URLQueryItem(
+                    name: "q",
+                    value: vkQuery)
             )
-            urlConstructor.queryItems?.append(                       URLQueryItem(
-                name: "count",
-                value: "10")
+            urlConstructor.queryItems?.append(
+                URLQueryItem(
+                    name: "count",
+                    value: "10")
             )
-            urlConstructor.queryItems?.append(                       URLQueryItem(
-                name: "fields",
-                value: "name,description")
+            urlConstructor.queryItems?.append(
+                URLQueryItem(
+                    name: "fields",
+                    value: "name,description")
             )
             
         case "photos.getAll":
-            urlConstructor.queryItems?.append(                URLQueryItem(
-                name: "owner_id",
-                value: String(userID))
+            urlConstructor.queryItems?.append(
+                URLQueryItem(
+                    name: "owner_id",
+                    value: String(userID))
             )
-            urlConstructor.queryItems?.append(                URLQueryItem(
-                name: "extended",
-                value: "1")
+            urlConstructor.queryItems?.append(
+                URLQueryItem(
+                    name: "extended",
+                    value: "1")
             )
-            urlConstructor.queryItems?.append(                       URLQueryItem(
-                name: "count",
-                value: "10")
+            urlConstructor.queryItems?.append(
+                URLQueryItem(
+                    name: "count",
+                    value: "10")
             )
         default:
             return
         }
-    }
+        }
     
 }
