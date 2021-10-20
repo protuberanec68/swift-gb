@@ -6,20 +6,24 @@
 //
 
 import UIKit
+import RealmSwift
 
 class FriendsTableViewController: UITableViewController {
     
     private var selectedUserID = 0
-    private var dictOfFriends: [String:[VKUser]] = [:]
+    private var dictOfFriends: [String:[RealmUser]] = [:]
     private var firstCharsFriendsName: [String] = []
     
     private var networkRequester = Network()
-    private var friends: [VKUser] = [] {
-        didSet {
-            setDictOfFriends()
-            tableView.reloadData()
-        }
-    }
+//    private var friends: [VKUser] = [] {
+//        didSet {
+//            setDictOfFriends()
+//            tableView.reloadData()
+//        }
+//    }
+    
+    var friends: Results<RealmUser>?
+    var friendsNotification: NotificationToken?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +34,11 @@ class FriendsTableViewController: UITableViewController {
                 nibName: "FriendViewCell",
                 bundle: nil),
             forCellReuseIdentifier: "customFriendCell")
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        friendsNotification?.invalidate()
     }
 
     // MARK: - Table view data source
@@ -78,23 +87,32 @@ class FriendsTableViewController: UITableViewController {
             endpoint: VKUsers.init(items: []),
             requestType: "friends.get") {
                 [weak self] result in
-                guard let self = self else { return }
+//                guard let self = self else { return }
                 switch result {
                 case .success(let users):
-                    self.friends = users.items
+                    let realmFriends = users.items.map { RealmUser($0) }
+                    DispatchQueue.main.async {
+                        try? RealmService.save(items: realmFriends)
+                    }
                 case .failure(let error):
                     print(error.localizedDescription)
                 }
         }
+        self.friends = try? RealmService.load(typeOf: RealmUser.self)
+        self.friendsNotification = self.friends?.observe {
+            [weak self] _ in
+            self?.setDictOfFriends()
+            self?.tableView.reloadData()
+        }
     }
     
     func setDictOfFriends() {
-        for user in friends {
-            let char = String(user.lastName.first!.uppercased())
+        friends?.forEach { friend in
+            let char = String(friend.lastName.first!.uppercased())
             if dictOfFriends[char] == nil {
                 dictOfFriends[char] = []
             }
-            dictOfFriends[char]!.append(user)
+            dictOfFriends[char]!.append(friend)
         }
         firstCharsFriendsName = dictOfFriends.keys.sorted().map() {$0.uppercased()}
     }

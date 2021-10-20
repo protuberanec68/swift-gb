@@ -13,7 +13,7 @@ class FotoView: UIView {
     private var fotoImageView: UIImageView!
     private var likeView: LikeView!
     
-    private var currentFoto: VKPhoto!
+    private var currentFoto: RealmPhoto!
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -23,7 +23,7 @@ class FotoView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(firstFoto foto: VKPhoto){
+    func configure(firstFoto foto: RealmPhoto){
         self.translatesAutoresizingMaskIntoConstraints = false
         currentFoto = foto
         setFotoImageView(currentFoto)
@@ -31,10 +31,10 @@ class FotoView: UIView {
 
     }
     
-    func configure(nextFoto newFoto: VKPhoto){
+    func configure(nextFoto newFoto: RealmPhoto){
         currentFoto = newFoto
         
-        guard let url = currentFoto.sizes.first(where: { $0.sizeType == "y" })?.url else {
+        guard let url = URL(string: currentFoto.photoURL["y"] ?? "") else {
             fotoImageView.image = UIImage(named: "default")
             return
         }
@@ -50,10 +50,10 @@ class FotoView: UIView {
         )
     }
     
-    private func setFotoImageView(_ currentFoto: VKPhoto){
+    private func setFotoImageView(_ currentFoto: RealmPhoto){
         fotoImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
         
-        guard let url = currentFoto.sizes.first(where: { $0.sizeType == "y" })?.url else {
+        guard let url = URL(string: currentFoto.photoURL["y"] ?? "") else {
             fotoImageView.image = UIImage(named: "default")
             return
         }
@@ -86,7 +86,7 @@ class FotoView: UIView {
         ])
     }
     
-    private func setLike(_ currentFoto: VKPhoto){
+    private func setLike(_ currentFoto: RealmPhoto){
         likeView = LikeView(frame: CGRect(x: 0, y: 0, width: 100, height: 20))
         likeView.configure(
             firstLike: Like(

@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct VKGroups: Decodable{
+struct VKGroups: Decodable {
     let items: [VKGroup]
 }
 

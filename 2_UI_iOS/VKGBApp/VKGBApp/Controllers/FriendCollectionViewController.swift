@@ -7,16 +7,21 @@
 
 import UIKit
 import Nuke
+import RealmSwift
 
 class FriendCollectionViewController: UICollectionViewController {
     
     private var networkRequester = Network()
     var currentUserID = 0
-    var fotoSet: [VKPhoto] = [] {
-        didSet {
-            self.collectionView.reloadData()
-        }
-    }
+//    var fotoSet: [VKPhoto] = [] {
+//        didSet {
+//            self.collectionView.reloadData()
+//        }
+//    }
+    
+    var photoSet: Results<RealmPhoto>?
+    var photosNotification: NotificationToken?
+    
     var currentFotoIndex: Int = 0
     
     override func viewDidLoad() {
@@ -30,14 +35,24 @@ class FriendCollectionViewController: UICollectionViewController {
             requestType: "photos.getAll",
             userID: currentUserID) {
                 [weak self] result in
-                guard let self = self else { return }
+//                guard let self = self else { return }
                 switch result {
                 case .success(let photos):
-                    self.fotoSet = photos.items
+                    let realmPhotos = photos.items.map { RealmPhoto($0) }
+                    DispatchQueue.main.async {
+                        try? RealmService.save(items: realmPhotos)
+                    }
                 case .failure(let error):
                     print(error.localizedDescription)
                 }
-                
+        }
+        self.photoSet = try? RealmService.load(typeOf: RealmPhoto.self)
+            .filter(NSPredicate(
+                format: "ownerID = %i",
+                self.currentUserID))
+        self.photosNotification = self.photoSet?.observe {
+            [weak self] _ in
+            self?.collectionView.reloadData()
         }
     }
 
@@ -61,7 +76,7 @@ class FriendCollectionViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return fotoSet.count
+        return photoSet?.count ?? 0
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -69,7 +84,7 @@ class FriendCollectionViewController: UICollectionViewController {
             withReuseIdentifier: "friendCell",
             for: indexPath) as? FriendImageCell else { return UICollectionViewCell() }
         
-        if let url = fotoSet[indexPath.row].sizes.first(where: { $0.sizeType == "p" })?.url {
+        if let url = URL(string: photoSet?[indexPath.row].photoURL["p"] ?? "") {
             Nuke.loadImage(
                 with: url,
                 into: cell.friendFotoImage)
@@ -118,7 +133,7 @@ class FriendCollectionViewController: UICollectionViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let fotosView = segue.destination as? FotosViewController else { return }
-        fotosView.fotoSet = fotoSet
+        fotosView.fotoSet = photoSet
         fotosView.currentFotoIndex = currentFotoIndex
         fotosView.currentUserID = currentUserID
     }

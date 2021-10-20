@@ -17,6 +17,8 @@ struct VKPhoto {
     var sizes: [VKPhotoSize]
     var isLiked: Bool
     var countLikes: Int
+    var id: Int
+    var ownerID: Int
 }
 
 struct VKPhotoSize {
@@ -28,6 +30,8 @@ extension VKPhoto: Decodable {
     enum CodingKeys: String, CodingKey{
         case likes
         case sizes
+        case id
+        case ownerID = "owner_id"
         }
     
     enum LikesCodingKeys: String, CodingKey{
@@ -43,6 +47,13 @@ extension VKPhoto: Decodable {
     init(from decoder: Decoder) throws {
         let container = try decoder.container(
             keyedBy: CodingKeys.self)
+        self.id = try container.decode(
+            Int.self,
+            forKey: .id)
+        self.ownerID = try container.decode(
+            Int.self,
+            forKey: .ownerID)
+        
         let likesContainer = try container.nestedContainer(
             keyedBy: LikesCodingKeys.self,
             forKey: .likes)
@@ -55,6 +66,7 @@ extension VKPhoto: Decodable {
         self.isLiked = Bool(
             truncating: NSNumber(
                 value: tempIsLiked))
+        
         var sizesContainer = try container.nestedUnkeyedContainer(
             forKey: .sizes)
         self.sizes = []

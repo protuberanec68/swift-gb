@@ -25,10 +25,10 @@ class FriendViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func configure(friend: VKUser) {
+    func configure(friend: RealmUser) {
         self.friendNameLabel.text = friend.lastName + " " + friend.firstName
         self.friendNickNameLabel.text = friend.nickname
-        guard let url = friend.photoURL else {
+        guard let url = URL(string: friend.photoURL) else {
             self.friendAvatarView.imageView.image = UIImage(named: "default")
             return
         }

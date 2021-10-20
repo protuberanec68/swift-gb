@@ -13,7 +13,7 @@ class MyGroupsViewCell: UITableViewCell {
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var detailLabel: UILabel!
     
-    private var group = VKGroup()
+    private var group = RealmGroup()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -28,11 +28,11 @@ class MyGroupsViewCell: UITableViewCell {
     
     
     //addTarget(self, action: #selector(didPress), for: .touchUpInside) {}
-    func configure(group: VKGroup) {
+    func configure(group: RealmGroup) {
         self.group = group
         self.nameLabel.text = self.group.name
-        self.detailLabel.text = self.group.description
-        guard let url = self.group.photoURL else {
+        self.detailLabel.text = self.group.groupDescription
+        guard let url = URL(string: self.group.photoURL) else {
             self.groupImage.image = UIImage(named: "default")
             return
         }

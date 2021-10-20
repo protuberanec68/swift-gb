@@ -14,3 +14,4 @@ extension VKResponse: Decodable {
         case response
     }
 }
+
