@@ -38,9 +38,13 @@ extension VKUser: Decodable {
         self.lastName = try container.decode(
             String.self,
             forKey: .lastName)
-        self.nickname = try container.decode(
-            String.self,
-            forKey: .nickname)
+        if container.contains(.nickname) {
+            self.nickname = try container.decode(
+                String.self,
+                forKey: .nickname)
+        } else {
+            self.nickname = ""
+        }
         let url = try container.decode(
             String.self,
             forKey: .photo)

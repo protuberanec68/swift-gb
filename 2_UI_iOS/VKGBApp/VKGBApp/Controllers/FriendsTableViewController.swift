@@ -36,6 +36,10 @@ class FriendsTableViewController: UITableViewController {
             forCellReuseIdentifier: "customFriendCell")
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        friendsNotificationObserve()
+    }
+    
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         friendsNotification?.invalidate()
@@ -99,6 +103,9 @@ class FriendsTableViewController: UITableViewController {
                 }
         }
         self.friends = try? RealmService.load(typeOf: RealmUser.self)
+    }
+    
+    func friendsNotificationObserve() {
         self.friendsNotification = self.friends?.observe {
             [weak self] _ in
             self?.setDictOfFriends()
@@ -107,6 +114,7 @@ class FriendsTableViewController: UITableViewController {
     }
     
     func setDictOfFriends() {
+        dictOfFriends = [:]
         friends?.forEach { friend in
             let char = String(friend.lastName.first!.uppercased())
             if dictOfFriends[char] == nil {
