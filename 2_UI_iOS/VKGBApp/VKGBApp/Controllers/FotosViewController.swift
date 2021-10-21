@@ -17,8 +17,10 @@ class FotosViewController: UIViewController {
     private var finish2Animator: UIViewPropertyAnimator!
     private var viewVidth: CGFloat!
 
-    var fotoSet: [Foto] = [Foto(defaultFoto, false, 0)]
-    var currentFotoIndex: Int = 0
+    private var networkRequester = Network()
+    var fotoSet: [VKPhoto] = []
+    var currentUserID = 0
+    var currentFotoIndex = 0
     
     
     override func viewDidLoad() {

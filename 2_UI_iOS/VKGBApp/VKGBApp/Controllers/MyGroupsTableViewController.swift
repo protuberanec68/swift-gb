@@ -9,14 +9,29 @@ import UIKit
 
 class MyGroupsTableViewController: UITableViewController {
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    private var networkRequester = Network()
+    private var groups: [VKGroup] = [] {
+        didSet {
+            tableView.reloadData()
+        }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        tableView.reloadData()
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        fetchMyGroups()
+        
+        tableView.register(
+            UINib(
+                nibName: "MyGroupsViewCell",
+                bundle: nil),
+            forCellReuseIdentifier: "myGroupCell")
     }
+    
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(true)
+//
+//    }
 
     // MARK: - Table view data source
 
@@ -27,17 +42,17 @@ class MyGroupsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return myGroups.count
+        return groups.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "myGroupsCell", for: indexPath)
-        let group = myGroups[indexPath.row]
-
-        cell.textLabel?.text = group.name
-        cell.detailTextLabel?.text = group.details
-        cell.imageView?.image = group.image
-        //cell.accessoryType = .disclosureIndicator
+        guard let cell = tableView.dequeueReusableCell(
+            withIdentifier: "myGroupCell",
+            for: indexPath) as? MyGroupsViewCell
+        else { return UITableViewCell() }
+        let group = groups[indexPath.row]
+        
+        cell.configure(group: group)
 
         return cell
     }
@@ -51,10 +66,25 @@ class MyGroupsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60.0
     }
-// MARK: УДАЛИТЬ ДО КОММИТА
-//    open func reloadMyGroupsTable() {
-//        self.tableView.reloadData()
-//    }
+
+    func fetchMyGroups() {
+        networkRequester.sendRequest(
+            endpoint: VKGroups.init(items: []),
+            requestType: "groups.get") {
+                [weak self] result in
+                guard let self = self else { return }
+                switch result {
+                case .success(let groups):
+                    self.groups = groups.items
+                    for group in self.groups {
+                        Session.instance.myGroupsID.append(group.id)
+                    }
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+        }
+    }
+
     
     /*
     // Override to support conditional editing of the table view.

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Nuke
 
 class AllGroupsViewCell: UITableViewCell {
     @IBOutlet var groupImage: UIImageView!
@@ -13,7 +14,7 @@ class AllGroupsViewCell: UITableViewCell {
     @IBOutlet var detailLabel: UILabel!
     @IBOutlet var actionGroupButton: UIButton!
     private var isGroupMy: Bool = false
-    private var group = Group("", nil, nil)
+    private var group = VKGroup()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -29,12 +30,17 @@ class AllGroupsViewCell: UITableViewCell {
     
     
     //addTarget(self, action: #selector(didPress), for: .touchUpInside) {}
-    func configure(group: Group) {
+    func configure(group: VKGroup) {
         self.group = group
-        self.groupImage.image = group.image
-        self.nameLabel.text = group.name
-        self.detailLabel.text = group.details
-        self.isGroupMy = myGroups.contains(group)
+        self.nameLabel.text = self.group.name
+        self.detailLabel.text = self.group.description
+        self.isGroupMy = self.group.isMember
+        guard let url = self.group.photoURL else { return }
+        Nuke.loadImage(
+            with: url,
+            into: self.groupImage)
+        
+        
         if self.isGroupMy {
             self.actionGroupButton.setTitle("Leave", for: .normal)
             self.actionGroupButton.setTitleColor(.systemRed, for: .normal)
@@ -52,12 +58,9 @@ class AllGroupsViewCell: UITableViewCell {
         if self.isGroupMy {
             self.actionGroupButton.setTitle("Join", for: .normal)
             self.actionGroupButton.setTitleColor(.systemGreen, for: .normal)
-            myGroups = myGroups.filter { $0 != group }
         } else {
             self.actionGroupButton.setTitle("Leave", for: .normal)
             self.actionGroupButton.setTitleColor(.systemRed, for: .normal)
-            myGroups.append(group)
-            
         }
         self.isGroupMy.toggle()
         
