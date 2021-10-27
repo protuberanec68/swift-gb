@@ -52,6 +52,7 @@
 		78778A82271C32EF00C4355E /* RealmUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78778A81271C32EF00C4355E /* RealmUser.swift */; };
 		78778A84271C330B00C4355E /* RealmPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78778A83271C330B00C4355E /* RealmPhoto.swift */; };
 		78778A86271C332900C4355E /* RealmGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78778A85271C332900C4355E /* RealmGroup.swift */; };
+		78AF8F1D272728F70052A45B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78AF8F1C272728F70052A45B /* GoogleService-Info.plist */; };
 		78BDD41F2703A68D00E14EEE /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BDD41E2703A68D00E14EEE /* Session.swift */; };
 		9FA49CAF551013C2A0EE0472 /* Pods_VKGBApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D874F914BF6EC8394521B06F /* Pods_VKGBApp.framework */; };
 /* End PBXBuildFile section */
@@ -104,6 +105,7 @@
 		78778A81271C32EF00C4355E /* RealmUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmUser.swift; sourceTree = "<group>"; };
 		78778A83271C330B00C4355E /* RealmPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmPhoto.swift; sourceTree = "<group>"; };
 		78778A85271C332900C4355E /* RealmGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmGroup.swift; sourceTree = "<group>"; };
+		78AF8F1C272728F70052A45B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		78BDD41E2703A68D00E14EEE /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		D874F914BF6EC8394521B06F /* Pods_VKGBApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VKGBApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE78FA70140DC17D7DA9A2CC /* Pods-VKGBApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VKGBApp.debug.xcconfig"; path = "Target Support Files/Pods-VKGBApp/Pods-VKGBApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -199,6 +201,7 @@
 				784973FE26C5B7D90048E855 /* Controllers */,
 				784973FD26C5B7C70048E855 /* Storyboards */,
 				784973F226C5B78A0048E855 /* Assets.xcassets */,
+				78AF8F1C272728F70052A45B /* GoogleService-Info.plist */,
 				784973F726C5B78A0048E855 /* Info.plist */,
 			);
 			path = VKGBApp;
@@ -216,8 +219,8 @@
 		784973FE26C5B7D90048E855 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				780E23632708A89E00052ABE /* VKLoginViewController.swift */,
 				784973ED26C5B7860048E855 /* LoginViewController.swift */,
+				780E23632708A89E00052ABE /* VKLoginViewController.swift */,
 				785BC20026D581E600F0A28F /* FriendsTableViewController.swift */,
 				785BC20226D5820B00F0A28F /* FriendCollectionViewController.swift */,
 				7842977526ED425D00AC3545 /* FotosViewController.swift */,
@@ -361,6 +364,7 @@
 				7842973326D6EC0600AC3545 /* AllGroupsViewCell.xib in Resources */,
 				784973F126C5B7860048E855 /* Main.storyboard in Resources */,
 				7842974326DC227300AC3545 /* FriendViewCell.xib in Resources */,
+				78AF8F1D272728F70052A45B /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 let globalLogin = ""
 let globalPassword = ""
@@ -21,7 +22,9 @@ class LoginViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    @IBAction func toLoginScreen(unwindSegue: UIStoryboardSegue) { }
+    @IBAction func toLoginScreen(unwindSegue: UIStoryboardSegue) {
+        do { try Auth.auth().signOut() } catch { print(error) }
+    }
     
     @IBAction func loginButtonPressed(_ sender: Any) {
         if checkLoginPassword(
@@ -29,7 +32,10 @@ class LoginViewController: UIViewController {
             password: passwordField.text!) {
             loginField.text = ""
             passwordField.text = ""
-            performSegue(withIdentifier: "loginSegue", sender: nil)
+            let VKLoginVC = UIStoryboard(name: "Main", bundle: nil)
+                .instantiateViewController(withIdentifier: "VKLoginVC")
+            VKLoginVC.modalPresentationStyle = .fullScreen
+            self.present(VKLoginVC, animated: true)
         } else {
             alertWrongLogin()
             passwordField.text = ""

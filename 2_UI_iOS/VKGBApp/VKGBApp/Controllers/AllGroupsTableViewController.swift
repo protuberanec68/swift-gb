@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
 class AllGroupsTableViewController: UITableViewController {
 
@@ -16,6 +17,8 @@ class AllGroupsTableViewController: UITableViewController {
             tableView.reloadData()
         }
     }
+    private let ref = Database.database()
+        .reference(withPath: String(Session.instance.userID))
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,14 +29,12 @@ class AllGroupsTableViewController: UITableViewController {
                 nibName: "AllGroupsViewCell",
                 bundle: nil),
             forCellReuseIdentifier: "customGroupCell")
+        
     }
-
-    // MARK: - Table view data source
-
-//    override func numberOfSections(in tableView: UITableView) -> Int {
-//        // #warning Incomplete implementation, return the number of sections
-//        return 0
-//    }
+    
+    private func storeGroupsSearchQueryInBackend(query: String) {
+        self.ref.child("queries").updateChildValues([query.lowercased(): true])
+    }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
@@ -82,11 +83,20 @@ class AllGroupsTableViewController: UITableViewController {
 
 extension AllGroupsTableViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        searchGroups(text: searchText)
+        NSObject.cancelPreviousPerformRequests(
+            withTarget: self,
+            selector: #selector(searchGroups(_:)),
+            object: searchBar)
+        self.perform(
+            #selector(self.searchGroups(_:)),
+            with: searchBar,
+            afterDelay: 0.75)
     }
     
-    private func searchGroups(text: String) {
-        guard !text.isEmpty else {
+    @objc
+    private func searchGroups(_ searchBar: UISearchBar) {
+        guard let query = searchBar.text else {return}
+        guard !query.isEmpty else {
             searchedGroups = []
             tableView.reloadData()
             return
@@ -95,13 +105,14 @@ extension AllGroupsTableViewController: UISearchBarDelegate {
         networkRequester.sendRequest(
             endpoint: VKGroups.init(items: []),
             requestType: "groups.search",
-            queryString: text
+            queryString: query
         ) {
                 [weak self] result in
                 guard let self = self else { return }
                 switch result {
                 case .success(let groups):
                     self.searchedGroups = groups.items
+                    self.storeGroupsSearchQueryInBackend(query: query)
                 case .failure(let error):
                     print(error.localizedDescription)
                 }

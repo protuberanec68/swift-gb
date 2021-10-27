@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="awS-e3-rrZ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -13,7 +13,7 @@
         <!--Login View Controller-->
         <scene sceneID="7un-tu-vRn">
             <objects>
-                <viewController id="awS-e3-rrZ" customClass="VKLoginViewController" customModule="VKGBApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="VKLoginVC" id="awS-e3-rrZ" customClass="VKLoginViewController" customModule="VKGBApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lQY-Pe-rTN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -43,7 +43,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eKj-o4-oXV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-743" y="550"/>
+            <point key="canvasLocation" x="-831" y="126"/>
         </scene>
         <!--LoginViewController-->
         <scene sceneID="tne-QT-ifu">
@@ -129,12 +129,11 @@
                         <outlet property="loginLabel" destination="8Hh-5E-4D7" id="OmY-bu-gws"/>
                         <outlet property="passwordField" destination="oAY-tq-d6j" id="AmA-6m-mlI"/>
                         <outlet property="passwordLabel" destination="JvM-pz-8kx" id="6aF-2F-B0X"/>
-                        <segue destination="9o0-ba-3yy" kind="presentation" identifier="loginSegue" modalPresentationStyle="fullScreen" id="v4E-H3-jFW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-742" y="-171"/>
+            <point key="canvasLocation" x="-1858" y="126"/>
         </scene>
         <!--MainTabBarController-->
         <scene sceneID="j7v-cp-WAd">
@@ -332,12 +331,34 @@
                     <view key="view" contentMode="scaleToFill" id="Hue-Zd-icG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rHW-U9-z7L">
+                                <rect key="frame" x="137.66666666666666" y="589" width="100" height="40"/>
+                                <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="8bf-7u-eFO"/>
+                                    <constraint firstAttribute="width" constant="100" id="8cH-IL-UXy"/>
+                                </constraints>
+                                <color key="tintColor" systemColor="systemRedColor"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Logout"/>
+                                <connections>
+                                    <action selector="logoutButtonPressed:" destination="eC0-Mi-6Nr" eventType="touchUpInside" id="LOk-i9-ZCE"/>
+                                    <segue destination="pMC-cs-uBL" kind="unwind" unwindAction="toLoginScreenWithUnwindSegue:" id="rgA-c8-7T3"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="mLl-RP-ISj"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="mLl-RP-ISj" firstAttribute="bottom" secondItem="rHW-U9-z7L" secondAttribute="bottom" constant="100" id="Q4T-h8-0UY"/>
+                            <constraint firstItem="rHW-U9-z7L" firstAttribute="centerX" secondItem="Hue-Zd-icG" secondAttribute="centerX" id="fsk-6K-Sih"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Me" image="person.fill" catalog="system" id="iXy-MJ-xKu"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7om-Tw-eA7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="pMC-cs-uBL" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1030" y="1292"/>
         </scene>
@@ -432,9 +453,6 @@
             <point key="canvasLocation" x="2886" y="-171"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="v4E-H3-jFW"/>
-    </inferredMetricsTieBreakers>
     <resources>
         <image name="back" width="1125" height="2436"/>
         <image name="book.fill" catalog="system" width="128" height="95"/>
@@ -445,6 +463,9 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray6Color">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

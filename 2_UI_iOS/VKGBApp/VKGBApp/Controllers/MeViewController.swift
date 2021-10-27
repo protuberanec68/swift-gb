@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class MeViewController: UIViewController {
 
@@ -18,16 +19,16 @@ class MeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        likeControl = LikeControl(frame: CGRect(
-//                                    x: 100,
-//                                    y: 150,
-//                                    width: 100,
-//                                    height: 20))
-//        likeControl.backgroundColor = UIColor.clear
-//        likeControl.transform = CGAffineTransform(
-//            scaleX: 1.5,
-//            y: 1.5)
-//        view.addSubview(likeControl)
+
+        Auth.auth().signInAnonymously {
+            [weak self] resultAuth, errorAuth in
+            guard let self = self else {return}
+            if resultAuth != nil {
+                print("Authentification is OK")
+            } else {
+                print(errorAuth?.localizedDescription)
+            }
+        }
         
         
         likeView = LikeView(frame: CGRect(
@@ -48,14 +49,9 @@ class MeViewController: UIViewController {
         }
         
         view.addSubview(progressBar)
-        sendRequests()
     }
     
-    func sendRequests() {
-
-
-        
-    }
+    @IBAction func logoutButtonPressed(_ sender: Any) { }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
