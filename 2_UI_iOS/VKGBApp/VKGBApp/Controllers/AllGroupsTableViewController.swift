@@ -82,11 +82,21 @@ class AllGroupsTableViewController: UITableViewController {
 
 extension AllGroupsTableViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        searchGroups(text: searchText)
+        NSObject.cancelPreviousPerformRequests(
+            withTarget: self,
+            selector: #selector(searchGroups(_:)),
+            object: searchBar)
+        self.perform(
+            #selector(searchGroups(_:)),
+            with: searchBar,
+            afterDelay: 0.75)
+        
     }
     
-    private func searchGroups(text: String) {
-        guard !text.isEmpty else {
+    @objc
+    private func searchGroups(_ searchBar: UISearchBar) {
+        guard let query = searchBar.text else { return }
+        guard !query.isEmpty else {
             searchedGroups = []
             tableView.reloadData()
             return
@@ -95,7 +105,7 @@ extension AllGroupsTableViewController: UISearchBarDelegate {
         networkRequester.sendRequest(
             endpoint: VKGroups.init(items: []),
             requestType: "groups.search",
-            queryString: text
+            queryString: query
         ) {
                 [weak self] result in
                 guard let self = self else { return }

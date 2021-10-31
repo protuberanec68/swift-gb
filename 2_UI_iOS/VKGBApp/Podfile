@@ -7,5 +7,8 @@ target 'VKGBApp' do
 
   # Pods for VKGBApp
   pod 'RealmSwift'
- 
+  pod 'FirebaseCore'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Database'
+
 end

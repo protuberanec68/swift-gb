@@ -25,11 +25,13 @@ final class Network {
         requestType: String,
         userID: Int = Session.instance.userID,
         queryString: String = "",
+        nextListVKNewsID nextFrom: String = "\"\"",
         completion: (@escaping (Result<T,VKError>) -> Void )) {
             constructRequest(
                 requestType: requestType,
                 userID: userID,
-                queryString: queryString)
+                queryString: queryString,
+                nextFrom: nextFrom)
             guard let url = urlConstructor.url
             else {
                 completion(.failure(.failUrlConstruct))
@@ -65,98 +67,110 @@ final class Network {
         }
     
     
-    func constructRequest(
+    private func constructRequest(
         requestType: String,
         userID: Int,
-        queryString vkQuery: String) {
-        urlConstructor.path = "/method/" + requestType
-        urlConstructor.queryItems = [
-            URLQueryItem(
-                name: "access_token",
-                value: Session.instance.token),
-            URLQueryItem(
-                name: "v",
-                value: "5.131"),
-        ]
-        switch requestType {
-        case "groups.get":
-            urlConstructor.queryItems?.append(
+        queryString: String,
+        nextFrom: String) {
+            urlConstructor.path = "/method/" + requestType
+            urlConstructor.queryItems = [
                 URLQueryItem(
-                    name: "user_id",
-                    value: String(userID))
-            )
-            urlConstructor.queryItems?.append(
+                    name: "access_token",
+                    value: Session.instance.token),
                 URLQueryItem(
-                    name: "extended",
-                    value: "1")
-            )
-            urlConstructor.queryItems?.append(
-                URLQueryItem(
-                    name: "count",
-                    value: "5")
-            )
-            urlConstructor.queryItems?.append(
-                URLQueryItem(
-                    name: "fields",
-                    value: "name,description")
-            )
-        case "friends.get":
-            urlConstructor.queryItems?.append(
-                URLQueryItem(
-                    name: "user_id",
-                    value: String(userID))
-            )
-            urlConstructor.queryItems?.append(
-                URLQueryItem(
-                    name: "order",
-                    value: "name")
-            )
-            urlConstructor.queryItems?.append(
-                URLQueryItem(
-                    name: "name_case",
-                    value: "ins")
-            )
-            urlConstructor.queryItems?.append(
-                URLQueryItem(
-                    name: "fields",
-                    value: "nickname,photo_50")
-            )
-        case "groups.search":
-            urlConstructor.queryItems?.append(
-                URLQueryItem(
-                    name: "q",
-                    value: vkQuery)
-            )
-            urlConstructor.queryItems?.append(
-                URLQueryItem(
-                    name: "count",
-                    value: "10")
-            )
-            urlConstructor.queryItems?.append(
-                URLQueryItem(
-                    name: "fields",
-                    value: "name,description")
-            )
-            
-        case "photos.getAll":
-            urlConstructor.queryItems?.append(
-                URLQueryItem(
-                    name: "owner_id",
-                    value: String(userID))
-            )
-            urlConstructor.queryItems?.append(
-                URLQueryItem(
-                    name: "extended",
-                    value: "1")
-            )
-            urlConstructor.queryItems?.append(
-                URLQueryItem(
-                    name: "count",
-                    value: "10")
-            )
-        default:
-            return
-        }
+                    name: "v",
+                    value: "5.131"),
+            ]
+            switch requestType {
+            case "groups.get":
+                urlConstructor.queryItems?.append(
+                    URLQueryItem(
+                        name: "user_id",
+                        value: String(userID))
+                )
+                urlConstructor.queryItems?.append(
+                    URLQueryItem(
+                        name: "extended",
+                        value: "1")
+                )
+                urlConstructor.queryItems?.append(
+                    URLQueryItem(
+                        name: "count",
+                        value: "5")
+                )
+                urlConstructor.queryItems?.append(
+                    URLQueryItem(
+                        name: "fields",
+                        value: "name,description")
+                )
+            case "friends.get":
+                urlConstructor.queryItems?.append(
+                    URLQueryItem(
+                        name: "user_id",
+                        value: String(userID))
+                )
+                urlConstructor.queryItems?.append(
+                    URLQueryItem(
+                        name: "order",
+                        value: "name")
+                )
+                urlConstructor.queryItems?.append(
+                    URLQueryItem(
+                        name: "name_case",
+                        value: "ins")
+                )
+                urlConstructor.queryItems?.append(
+                    URLQueryItem(
+                        name: "fields",
+                        value: "nickname,photo_50")
+                )
+            case "groups.search":
+                urlConstructor.queryItems?.append(
+                    URLQueryItem(
+                        name: "q",
+                        value: queryString)
+                )
+                urlConstructor.queryItems?.append(
+                    URLQueryItem(
+                        name: "count",
+                        value: "10")
+                )
+                urlConstructor.queryItems?.append(
+                    URLQueryItem(
+                        name: "fields",
+                        value: "name,description")
+                )
+                
+            case "photos.getAll":
+                urlConstructor.queryItems?.append(
+                    URLQueryItem(
+                        name: "owner_id",
+                        value: String(userID))
+                )
+                urlConstructor.queryItems?.append(
+                    URLQueryItem(
+                        name: "extended",
+                        value: "1")
+                )
+                urlConstructor.queryItems?.append(
+                    URLQueryItem(
+                        name: "count",
+                        value: "10")
+                )
+            case "newsfeed.getRecommended":
+                urlConstructor.queryItems?.append(
+                    URLQueryItem(
+                        name: "count",
+                        value: "5")
+                )
+                urlConstructor.queryItems?.append(
+                    URLQueryItem(
+                        name: "start_from",
+                        value: nextFrom)
+                )
+            default:
+                return
+            }
         }
     
 }
