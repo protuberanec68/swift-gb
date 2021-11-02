@@ -48,7 +48,8 @@ class FooterNewsView: UITableViewHeaderFooterView {
         
         NSLayoutConstraint.activate([
             likeView.leadingAnchor.constraint(
-                equalTo: contentView.leadingAnchor),
+                equalTo: contentView.leadingAnchor,
+                constant: 20.0),
             likeView.topAnchor.constraint(
                 equalTo: contentView.topAnchor,
                 constant: 3.0),
@@ -56,7 +57,7 @@ class FooterNewsView: UITableViewHeaderFooterView {
             likeView.widthAnchor.constraint(equalToConstant: 100.0),
             repostView.leadingAnchor.constraint(
                 equalTo: contentView.leadingAnchor,
-                constant: 110.0),
+                constant: 120.0),
             repostView.topAnchor.constraint(
                 equalTo: contentView.topAnchor,
                 constant: 3.0),

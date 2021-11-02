@@ -10,25 +10,16 @@ import Nuke
 
 class FotoView: UIView {
 
-    private var fotoImageView: UIImageView!
-    private var likeView: LikeView!
+    private var fotoImageView = UIImageView()
+    private var likeView = LikeView()
     
     private var currentFoto: RealmPhoto!
-
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
     func configure(firstFoto foto: RealmPhoto){
         self.translatesAutoresizingMaskIntoConstraints = false
         currentFoto = foto
         setFotoImageView(currentFoto)
         setLike(currentFoto)
-
     }
     
     func configure(nextFoto newFoto: RealmPhoto){
@@ -51,24 +42,7 @@ class FotoView: UIView {
     }
     
     private func setFotoImageView(_ currentFoto: RealmPhoto){
-        fotoImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
-        
-        guard let url = URL(string: currentFoto.photoURL["y"] ?? "") else {
-            fotoImageView.image = UIImage(named: "default")
-            return
-        }
-        Nuke.loadImage(
-            with: url,
-            into: fotoImageView)
-
-        fotoImageView.translatesAutoresizingMaskIntoConstraints = false
-        //fotoImageView.bounds = fotoImageView.frame
-        fotoImageView.clipsToBounds = true
-        fotoImageView.contentMode = .scaleAspectFit
-        //fotoImageView.autoresizingMask = .flexibleWidth
         self.addSubview(fotoImageView)
-        
-
         
         NSLayoutConstraint.activate([
             fotoImageView.topAnchor.constraint(
@@ -84,19 +58,22 @@ class FotoView: UIView {
                 equalTo: self.heightAnchor,
                 multiplier: 0.9)
         ])
+
+        fotoImageView.translatesAutoresizingMaskIntoConstraints = false
+        fotoImageView.clipsToBounds = true
+        fotoImageView.contentMode = .scaleAspectFit
+        
+        guard let url = URL(string: currentFoto.photoURL["y"] ?? "") else {
+            fotoImageView.image = UIImage(named: "default")
+            return
+        }
+        Nuke.loadImage(
+            with: url,
+            into: fotoImageView)
     }
     
     private func setLike(_ currentFoto: RealmPhoto){
-        likeView = LikeView(frame: CGRect(x: 0, y: 0, width: 100, height: 20))
-        likeView.configure(
-            firstLike: Like(
-                currentFoto.isLiked,
-                currentFoto.countLikes
-            )
-        )
-        likeView.backgroundColor = UIColor.clear
         likeView.translatesAutoresizingMaskIntoConstraints = false
-        likeView.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
         self.addSubview(likeView)
         
         NSLayoutConstraint.activate([
@@ -106,7 +83,17 @@ class FotoView: UIView {
             likeView.centerXAnchor.constraint(
                 equalTo: self.centerXAnchor,
                 constant: 0.0),
+            likeView.heightAnchor.constraint(equalToConstant: 20.0),
+            likeView.widthAnchor.constraint(equalToConstant: 100.0),
         ])
+        
+        likeView.configure(
+            firstLike: Like(
+                currentFoto.isLiked,
+                currentFoto.countLikes
+            )
+        )
+        likeView.backgroundColor = UIColor.clear
     }
     
 }

@@ -61,7 +61,6 @@ class LikeView: UIView {
     }
     
     func placeLabel(count: Int) {
-        //countLikesLabel = UILabel(frame: CGRect(x: 20.0, y: 0.0, width: 80.0, height: 20.0))
         countLikesLabel.translatesAutoresizingMaskIntoConstraints = false
         
         addSubview(countLikesLabel)
@@ -72,7 +71,8 @@ class LikeView: UIView {
                 constant: 20.0),
             countLikesLabel.topAnchor.constraint(equalTo: self.topAnchor),
             countLikesLabel.heightAnchor.constraint(equalToConstant: 20.0),
-            countLikesLabel.widthAnchor.constraint(equalToConstant: 80.0) ])
+            countLikesLabel.widthAnchor.constraint(equalToConstant: 80.0),
+        ])
         
         countLikesLabel.text = String(count)
         countLikesLabel.backgroundColor = .clear
@@ -94,19 +94,11 @@ class LikeView: UIView {
         addSubview(likeHeartView)
         
         NSLayoutConstraint.activate([
-                    likeHeartView.centerYAnchor.constraint(
-                        equalTo: self.topAnchor,
-                        constant: 0.0),
-                    likeHeartView.centerXAnchor.constraint(
-                        equalTo: self.leftAnchor,
-                        constant: 2.0),
-                    likeHeartView.widthAnchor.constraint(
-                        equalTo: likeHeartView.heightAnchor,
-                        multiplier: 1.0),
-                    likeHeartView.heightAnchor.constraint(
-                        equalTo: self.heightAnchor,
-                        multiplier: 1.0) ])
-        
+            likeHeartView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            likeHeartView.topAnchor.constraint(equalTo: self.topAnchor),
+            likeHeartView.widthAnchor.constraint(equalToConstant: 20.0),
+            likeHeartView.heightAnchor.constraint(equalToConstant: 20.0),
+        ])
     }
     
     func heartAnimation(set isLiked: Bool){

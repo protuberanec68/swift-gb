@@ -10,7 +10,7 @@ import RealmSwift
 
 class FotosViewController: UIViewController {
 
-    private var fotoView: FotoView!
+    private var fotoView = FotoView()
     private var animatorRight: UIViewPropertyAnimator!
     private var animatorLeft: UIViewPropertyAnimator!
     private var returnAnimator: UIViewPropertyAnimator!
@@ -29,7 +29,6 @@ class FotosViewController: UIViewController {
         let value = UIInterfaceOrientation.portrait.rawValue
         UIDevice.current.setValue(value, forKey: "orientation")
         
-        fotoView = FotoView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
         fotoView.configure(firstFoto: fotoSet[currentFotoIndex])
         self.view.addSubview(fotoView)
         
