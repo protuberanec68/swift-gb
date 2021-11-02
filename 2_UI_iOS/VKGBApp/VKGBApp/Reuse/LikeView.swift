@@ -23,14 +23,6 @@ class LikeView: UIView {
     
     private var like: Like!
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     func configure(firstLike currentLike: Like){
         self.like = currentLike
         if !like.isLiked {
@@ -69,25 +61,22 @@ class LikeView: UIView {
     }
     
     func placeLabel(count: Int) {
-        countLikesLabel = UILabel(frame: CGRect(x: 20.0, y: 0.0, width: 80.0, height: 20.0))
-        countLikesLabel.text = String(count)
-        countLikesLabel.backgroundColor = .clear
-        countLikesLabel.textColor = .black
+        //countLikesLabel = UILabel(frame: CGRect(x: 20.0, y: 0.0, width: 80.0, height: 20.0))
+        countLikesLabel.translatesAutoresizingMaskIntoConstraints = false
         
         addSubview(countLikesLabel)
         
         NSLayoutConstraint.activate([
-                    countLikesLabel.centerYAnchor.constraint(
-                        equalTo: self.centerYAnchor),
-                    countLikesLabel.centerXAnchor.constraint(
-                        equalTo: self.leftAnchor,
-                        constant: 27.0),
-                    countLikesLabel.widthAnchor.constraint(
-                        equalTo: self.widthAnchor,
-                        multiplier: 0.5),
-                    countLikesLabel.heightAnchor.constraint(
-                        equalTo: self.heightAnchor,
-                        multiplier: 0.8) ])
+            countLikesLabel.leadingAnchor.constraint(
+                equalTo: self.leadingAnchor,
+                constant: 20.0),
+            countLikesLabel.topAnchor.constraint(equalTo: self.topAnchor),
+            countLikesLabel.heightAnchor.constraint(equalToConstant: 20.0),
+            countLikesLabel.widthAnchor.constraint(equalToConstant: 80.0) ])
+        
+        countLikesLabel.text = String(count)
+        countLikesLabel.backgroundColor = .clear
+        countLikesLabel.textColor = .black
     }
     
     private func makeHeart() {

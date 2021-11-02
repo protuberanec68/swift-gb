@@ -8,9 +8,9 @@
 import UIKit
 
 struct VKNews {
-    var items: [VKNew]
-    var profiles: [VKNewsProfile]
-    var groups: [VKNewsGroup]
+    private var items: [VKNew]
+    private var profiles: [VKNewsProfile]
+    private var groups: [VKNewsGroup]
     let nextFrom: String
     
     init?(){
@@ -19,21 +19,68 @@ struct VKNews {
         self.groups = []
         self.nextFrom = ""
     }
+    
+    func news() -> [VKNew]{
+        var news: [VKNew] = []
+        self.items.forEach{ new in
+            switch new.sourceType{
+            case .profile:
+                let profile = self.profiles.first{
+                    $0.id == new.sourceID
+                }
+                let tempName = (profile?.firstName ?? "") + " " + (profile?.lastName ?? "")
+                let tempURL = profile?.photoUrl
+                guard let tempNew = VKNew(new: new, sourceName: tempName, photoUrl: tempURL)
+                else {return}
+                news.append(tempNew)
+            case .group:
+                let group = self.groups.first{
+                    $0.id == new.sourceID
+                }
+                let tempName = group?.name ?? ""
+                let tempURL = group?.photoUrl
+                guard let tempNew = VKNew(new: new, sourceName: tempName, photoUrl: tempURL)
+                else {return}
+                news.append(tempNew)
+            }
+        }
+        return news
+    }
 }
 
 struct VKNew {
-    let text: String?
+    let text: String
     var photos: [VKNewsPhoto] = []
     var docs: [VKNewsDoc] = []
+    
+    let date: Double
 
     let sourceID: Int
     let sourceType: SourceType
+    
+    var sourceName = ""
+    var photoUrl: URL? = nil
     
     let likesCount: Int
     let isLiked: Bool
     let repostsCount: Int
     let isReposted: Bool
     let viewsCount: Int
+    
+    init?(new: VKNew, sourceName: String, photoUrl: URL?){
+        self = new
+        self.sourceName = sourceName
+        self.photoUrl = photoUrl
+    }
+    
+    func countOfBlocksInNew() -> Int{
+        var count = 0
+        if !self.text.isEmpty {count += 1}
+        if !self.photos.isEmpty {count += 1}
+        if !self.docs.isEmpty {count += 1}
+        
+        return count
+    }
 }
 
 struct VKNewsPhoto {
@@ -72,6 +119,7 @@ extension VKNew: Decodable{
     enum NewCodingKeys: String, CodingKey{
         case text
         case attachments
+        case date
         case sourceID = "source_id"
         case likes
         case reposts
@@ -129,46 +177,49 @@ extension VKNew: Decodable{
         let container = try decoder.container(keyedBy: NewCodingKeys.self)
         self.text = try container.decode(String.self, forKey: .text)
         
-        var attachmentsContainer = try container.nestedUnkeyedContainer(forKey: .attachments)
-        while(!attachmentsContainer.isAtEnd){
-            let attachmentContainer = try attachmentsContainer.nestedContainer(keyedBy: AttachmentsCodingKeys.self)
-            let type = try attachmentContainer.decode(String.self, forKey: .type)
-            switch type{
-            case "photo":
-                let photoContainer = try attachmentContainer.nestedContainer(keyedBy: PhotosCodingKeys.self, forKey: .photo)
-                
-                var sizesContainer = try photoContainer.nestedUnkeyedContainer(forKey: .sizes)
-                var tempSizes: [VKPhotoSize] = []
-                while(!sizesContainer.isAtEnd){
-                    let sizeContainer = try sizesContainer.nestedContainer(keyedBy: SizesCodingKeys.self)
-                    let tempUrlString = try sizeContainer.decode(
-                        String.self,
-                        forKey: .url)
-                    let url = URL(string: tempUrlString)
-                    let type = try sizeContainer.decode(String.self, forKey: .type)
-                    tempSizes.append(
-                        VKPhotoSize(
-                            url: url,
-                            sizeType: type))
+        if container.contains(.attachments) {
+            var attachmentsContainer = try container.nestedUnkeyedContainer(forKey: .attachments)
+            while(!attachmentsContainer.isAtEnd){
+                let attachmentContainer = try attachmentsContainer.nestedContainer(keyedBy: AttachmentsCodingKeys.self)
+                let type = try attachmentContainer.decode(String.self, forKey: .type)
+                switch type{
+                case "photo":
+                    let photoContainer = try attachmentContainer.nestedContainer(keyedBy: PhotosCodingKeys.self, forKey: .photo)
+                    
+                    var sizesContainer = try photoContainer.nestedUnkeyedContainer(forKey: .sizes)
+                    var tempSizes: [VKPhotoSize] = []
+                    while(!sizesContainer.isAtEnd){
+                        let sizeContainer = try sizesContainer.nestedContainer(keyedBy: SizesCodingKeys.self)
+                        let tempUrlString = try sizeContainer.decode(
+                            String.self,
+                            forKey: .url)
+                        let url = URL(string: tempUrlString)
+                        let type = try sizeContainer.decode(String.self, forKey: .type)
+                        tempSizes.append(
+                            VKPhotoSize(
+                                url: url,
+                                sizeType: type))
+                    }
+                    self.photos.append(VKNewsPhoto(sizes: tempSizes))
+                case "doc":
+                    let docContainer = try attachmentContainer.nestedContainer(keyedBy: DocsCodingKeys.self, forKey: .doc)
+                    let title = try docContainer.decode(String.self, forKey: .title)
+                    let size = try docContainer.decode(Int.self, forKey: .size)
+                    let tempUrl = try docContainer.decode(String.self, forKey: .url)
+                    let url = URL(string: tempUrl)
+                    let doc = VKNewsDoc(title: title, size: size, url: url)
+                    self.docs.append(doc)
+                default:
+                    continue
                 }
-                self.photos.append(VKNewsPhoto(sizes: tempSizes))
-            case "doc":
-                let docContainer = try attachmentContainer.nestedContainer(keyedBy: DocsCodingKeys.self, forKey: .doc)
-                let title = try docContainer.decode(String.self, forKey: .title)
-                let size = try docContainer.decode(Int.self, forKey: .size)
-                let tempUrl = try docContainer.decode(String.self, forKey: .url)
-                let url = URL(string: tempUrl)
-                let doc = VKNewsDoc(title: title, size: size, url: url)
-                self.docs.append(doc)
-            default:
-                continue
             }
         }
         
+        self.date = try container.decode(Double.self, forKey: .date)
         let tempSourceID = try container.decode(Int.self, forKey: .sourceID)
         self.sourceID = abs(tempSourceID)
         self.sourceType = (tempSourceID > 0) ? SourceType.profile : SourceType.group
-
+        
         
         
         let likesContainer = try container.nestedContainer(keyedBy: LikesCodingKeys.self, forKey: .likes)
@@ -184,7 +235,6 @@ extension VKNew: Decodable{
         let viewsContainer = try container.nestedContainer(keyedBy: ViewsCodingKeys.self, forKey: .views)
         self.viewsCount = try viewsContainer.decode(Int.self, forKey: .count)
     }
-    
 }
 
 extension VKNewsGroup: Decodable{

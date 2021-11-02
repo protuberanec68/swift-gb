@@ -161,7 +161,7 @@ final class Network {
                 urlConstructor.queryItems?.append(
                     URLQueryItem(
                         name: "count",
-                        value: "5")
+                        value: "10")
                 )
                 urlConstructor.queryItems?.append(
                     URLQueryItem(
