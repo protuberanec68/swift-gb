@@ -9,6 +9,8 @@ import UIKit
 
 class TextNewsCell: UITableViewCell {
 
+    @IBOutlet weak var textNewLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -20,4 +22,11 @@ class TextNewsCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    func configure(new: VKNew){
+        if new.isShortText == true {
+            textNewLabel.text = new.shortText
+        } else {
+            textNewLabel.text = new.text
+        }
+    }
 }

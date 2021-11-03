@@ -9,6 +9,9 @@ import UIKit
 
 class DocsNewsCell: UITableViewCell {
 
+    @IBOutlet weak var docImageView: UIImageView!
+    @IBOutlet weak var docNameLabel: UILabel!
+    @IBOutlet weak var docSizeLadel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -20,4 +23,10 @@ class DocsNewsCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    func configure(new: VKNew, row: Int){
+        let doc = new.docs[new.returnCellsCounter()[row].1]
+        docImageView.image = UIImage(systemName: "doc")
+        docNameLabel.text = doc.title
+        docSizeLadel.text = String(doc.size) + " bytes"
+    }
 }

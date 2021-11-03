@@ -20,6 +20,9 @@ class NewsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.estimatedRowHeight = 60
+        tableView.rowHeight = UITableView.automaticDimension
+        
         tableView.register(
             HeaderNewsView.self,
             forHeaderFooterViewReuseIdentifier: "headerView")
@@ -67,7 +70,7 @@ class NewsTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return news[section].countOfBlocksInNew()
+        return news[section].returnCellsCounter().count
     }
     
 
@@ -91,7 +94,7 @@ class NewsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 50.0
+        return 60.0
     }
     
     
@@ -105,10 +108,32 @@ class NewsTableViewController: UITableViewController {
 //    }
     
     //MARK: Cell
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-        let cell = UITableViewCell()
-        return cell
+        let new = news[indexPath.section]
+        switch new.returnCellsCounter()[indexPath.row].0{
+        case .text:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "textCell", for: indexPath) as? TextNewsCell else {return UITableViewCell()}
+            cell.configure(new: new)
+            return cell
+        case .photos:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "photosCell", for: indexPath) as? PhotosNewsCell else {return UITableViewCell()}
+            cell.configure(new: new)
+            cell.layoutIfNeeded()
+            return cell
+        case .docs:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "docsCell", for: indexPath) as? DocsNewsCell else {return UITableViewCell()}
+            cell.configure(new: new, row: indexPath.row)
+            return cell
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if news[indexPath.section].returnCellsCounter()[indexPath.row].0 == .photos {
+            return 400.0 }
+        else {
+            return UITableView.automaticDimension
+        }
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -117,5 +142,8 @@ class NewsTableViewController: UITableViewController {
                 at: indexPath,
                 animated: true)
         }
+        guard let _ = news[indexPath.section].isShortText else { return }
+        news[indexPath.section].isShortText?.toggle()
+        self.tableView.reloadRows(at: [indexPath], with: .none)
     }
 }

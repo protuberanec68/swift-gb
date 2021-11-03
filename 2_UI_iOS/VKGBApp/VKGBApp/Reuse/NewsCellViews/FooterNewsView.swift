@@ -56,8 +56,8 @@ class FooterNewsView: UITableViewHeaderFooterView {
             likeView.heightAnchor.constraint(equalToConstant: 20.0),
             likeView.widthAnchor.constraint(equalToConstant: 100.0),
             repostView.leadingAnchor.constraint(
-                equalTo: contentView.leadingAnchor,
-                constant: 120.0),
+                equalTo: likeView.trailingAnchor,
+                constant: 3.0),
             repostView.topAnchor.constraint(
                 equalTo: contentView.topAnchor,
                 constant: 3.0),

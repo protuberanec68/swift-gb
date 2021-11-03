@@ -30,8 +30,9 @@ struct VKNews {
                 }
                 let tempName = (profile?.firstName ?? "") + " " + (profile?.lastName ?? "")
                 let tempURL = profile?.photoUrl
-                guard let tempNew = VKNew(new: new, sourceName: tempName, photoUrl: tempURL)
+                guard var tempNew = VKNew(new: new, sourceName: tempName, photoUrl: tempURL)
                 else {return}
+                tempNew.buildCellsArray()
                 news.append(tempNew)
             case .group:
                 let group = self.groups.first{
@@ -39,8 +40,9 @@ struct VKNews {
                 }
                 let tempName = group?.name ?? ""
                 let tempURL = group?.photoUrl
-                guard let tempNew = VKNew(new: new, sourceName: tempName, photoUrl: tempURL)
+                guard var tempNew = VKNew(new: new, sourceName: tempName, photoUrl: tempURL)
                 else {return}
+                tempNew.buildCellsArray()
                 news.append(tempNew)
             }
         }
@@ -50,8 +52,12 @@ struct VKNews {
 
 struct VKNew {
     let text: String
+    var shortText: String?
+    var isShortText: Bool?
+    
     var photos: [VKNewsPhoto] = []
     var docs: [VKNewsDoc] = []
+    private var cellsCounter: [(VKBlocksType,Int)] = []
     
     let date: Double
 
@@ -71,16 +77,43 @@ struct VKNew {
         self = new
         self.sourceName = sourceName
         self.photoUrl = photoUrl
+        if self.text.count > 200 {
+            shortText = String(text.prefix(200)) + "..."
+            isShortText = true
+        }
     }
     
-    func countOfBlocksInNew() -> Int{
-        var count = 0
-        if !self.text.isEmpty {count += 1}
-        if !self.photos.isEmpty {count += 1}
-        if !self.docs.isEmpty {count += 1}
-        
-        return count
+    mutating func buildCellsArray(){
+        if !text.isEmpty{
+            cellsCounter.append((.text,0))
+        }
+        if !photos.isEmpty{
+            cellsCounter.append((.photos,0))
+        }
+        for i in (0..<docs.count){
+            cellsCounter.append((.docs,i))
+        }
     }
+    
+    func returnCellsCounter() -> [(VKBlocksType,Int)] {
+        return cellsCounter
+    }
+    
+    
+//    func countOfBlocksInNew() -> Int{
+//        var count = 0
+//        if !self.text.isEmpty {count += 1}
+//        if !self.photos.isEmpty {count += 1}
+//        count += self.docs.count
+//
+//        return count
+//    }
+}
+
+enum VKBlocksType{
+    case text
+    case photos
+    case docs
 }
 
 struct VKNewsPhoto {
