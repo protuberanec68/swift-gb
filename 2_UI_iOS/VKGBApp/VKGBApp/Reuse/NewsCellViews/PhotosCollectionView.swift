@@ -42,11 +42,9 @@ class PhotosCollectionView: UICollectionView, UICollectionViewDataSource, UIColl
         let fullCell = CGSize(width: screenWidth - 20.0, height: screenWidth - 20.0)
         let halfCell = CGSize(width: screenWidth/2 - 25.0, height: screenWidth/2 - 25.0)
         
-        if photos.count == 1 {
-            return fullCell
-        } else if photos.count/2 == 0 {
+        if photos.count % 2 == 0 {
             return halfCell
-        } else if indexPath.row == photos.count-1 {
+        } else if indexPath.row == 0 {
             return fullCell
         } else {
             return halfCell

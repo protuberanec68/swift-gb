@@ -4,6 +4,8 @@
 //
 //  Created by Игорь Андрианов on 30.10.2021.
 //
+//MARK: 1. Необходимо перенести код коллекшнвью фоток новостей в код самих ячеек
+//MARK: 2. Разобраться со сворачиваением/разворачиваением текстовых ячеек
 
 import UIKit
 
@@ -129,9 +131,16 @@ class NewsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if news[indexPath.section].returnCellsCounter()[indexPath.row].0 == .photos {
-            return 400.0 }
-        else {
+        let new = news[indexPath.section]
+        if new.returnCellsCounter()[indexPath.row].0 == .photos {
+            let countPhotos = new.photos.count
+            let halfCellHeight = UIScreen.main.bounds.width / 2
+            if countPhotos % 2 == 0 {
+                return (Double(countPhotos) * halfCellHeight) / 2
+            } else {
+                return ((Double(countPhotos) + 1) * halfCellHeight / 2) + halfCellHeight
+            }
+        } else {
             return UITableView.automaticDimension
         }
     }
