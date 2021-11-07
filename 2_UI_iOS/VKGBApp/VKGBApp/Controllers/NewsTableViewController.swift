@@ -4,8 +4,6 @@
 //
 //  Created by Игорь Андрианов on 30.10.2021.
 //
-//MARK: 1. Необходимо перенести код коллекшнвью фоток новостей в код самих ячеек
-//MARK: 2. Разобраться со сворачиваением/разворачиваением текстовых ячеек
 
 import UIKit
 
@@ -14,9 +12,10 @@ class NewsTableViewController: UITableViewController {
     private let networkRequester = Network()
     private var news: [VKNew] = [] {
         didSet {
-            tableView.reloadData()
+            self.tableView.reloadData()
         }
     }
+    
     private var nextListVKNewsID = ""
     
     override func viewDidLoad() {
@@ -99,15 +98,11 @@ class NewsTableViewController: UITableViewController {
         return 60.0
     }
     
-    
-//    плохо работает
-//    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-//        if let lastVisibleIndexPath = tableView.indexPathsForVisibleRows?.last {
-//            if indexPath == lastVisibleIndexPath {
-//                fetchNews(nextListVKNewsID: nextListVKNewsID)
-//            }
-//        }
-//    }
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.section == news.count - 2 {
+                fetchNews(nextListVKNewsID: nextListVKNewsID)
+        }
+    }
     
     //MARK: Cell
     
@@ -115,17 +110,31 @@ class NewsTableViewController: UITableViewController {
         let new = news[indexPath.section]
         switch new.returnCellsCounter()[indexPath.row].0{
         case .text:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "textCell", for: indexPath) as? TextNewsCell else {return UITableViewCell()}
+            guard let cell = tableView
+                    .dequeueReusableCell(
+                        withIdentifier: "textCell",
+                        for: indexPath)
+                    as? TextNewsCell else {return UITableViewCell()}
             cell.configure(new: new)
+            cell.selectionStyle = .none
             return cell
         case .photos:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "photosCell", for: indexPath) as? PhotosNewsCell else {return UITableViewCell()}
+            guard let cell = tableView
+                    .dequeueReusableCell(
+                        withIdentifier: "photosCell",
+                        for: indexPath)
+                    as? PhotosNewsCell else {return UITableViewCell()}
             cell.configure(new: new)
-            cell.layoutIfNeeded()
+            cell.selectionStyle = .none
             return cell
         case .docs:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "docsCell", for: indexPath) as? DocsNewsCell else {return UITableViewCell()}
+            guard let cell = tableView
+                    .dequeueReusableCell(
+                        withIdentifier: "docsCell",
+                        for: indexPath)
+                    as? DocsNewsCell else {return UITableViewCell()}
             cell.configure(new: new, row: indexPath.row)
+            cell.selectionStyle = .none
             return cell
         }
     }
@@ -153,6 +162,9 @@ class NewsTableViewController: UITableViewController {
         }
         guard let _ = news[indexPath.section].isShortText else { return }
         news[indexPath.section].isShortText?.toggle()
-        self.tableView.reloadRows(at: [indexPath], with: .none)
+        UIView.transition(with: tableView,
+                          duration: 0.35,
+                          options: .transitionCrossDissolve,
+                          animations: { self.tableView.reloadData() })
     }
 }
