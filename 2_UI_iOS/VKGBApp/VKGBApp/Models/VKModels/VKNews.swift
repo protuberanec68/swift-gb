@@ -9,8 +9,8 @@ import UIKit
 
 struct VKNews {
     private var items: [VKNew]
-    private var profiles: [VKNewsProfile]
-    private var groups: [VKNewsGroup]
+    private var profiles: [VKUser]
+    private var groups: [VKGroup]
     let nextFrom: String
     
     init?(){
@@ -28,8 +28,8 @@ struct VKNews {
                 let profile = self.profiles.first{
                     $0.id == new.sourceID
                 }
-                let tempName = (profile?.firstName ?? "") + " " + (profile?.lastName ?? "")
-                let tempURL = profile?.photoUrl
+                let tempName = profile?.name ?? ""
+                let tempURL = profile?.photoURL
                 guard var tempNew = VKNew(new: new, sourceName: tempName, photoUrl: tempURL)
                 else {return}
                 tempNew.buildCellsArray()
@@ -39,7 +39,7 @@ struct VKNews {
                     $0.id == new.sourceID
                 }
                 let tempName = group?.name ?? ""
-                let tempURL = group?.photoUrl
+                let tempURL = group?.photoURL
                 guard var tempNew = VKNew(new: new, sourceName: tempName, photoUrl: tempURL)
                 else {return}
                 tempNew.buildCellsArray()
@@ -98,16 +98,6 @@ struct VKNew {
     func returnCellsCounter() -> [(VKBlocksType,Int)] {
         return cellsCounter
     }
-    
-    
-//    func countOfBlocksInNew() -> Int{
-//        var count = 0
-//        if !self.text.isEmpty {count += 1}
-//        if !self.photos.isEmpty {count += 1}
-//        count += self.docs.count
-//
-//        return count
-//    }
 }
 
 enum VKBlocksType{
@@ -124,19 +114,6 @@ struct VKNewsDoc {
     let title: String
     let size: Int
     let url: URL?
-}
-
-struct VKNewsGroup {
-    let id: Int
-    let name: String
-    let photoUrl: URL?
-}
-
-struct VKNewsProfile {
-    let id: Int
-    let firstName: String
-    let lastName: String
-    let photoUrl: URL?
 }
 
 extension VKNews: Decodable {
@@ -265,43 +242,15 @@ extension VKNew: Decodable{
         let tempIsReposted = try repostsContainer.decode(Int.self, forKey: .userReposted)
         self.isReposted = Bool(truncating: NSNumber(value: tempIsReposted))
         
-        let viewsContainer = try container.nestedContainer(keyedBy: ViewsCodingKeys.self, forKey: .views)
-        self.viewsCount = try viewsContainer.decode(Int.self, forKey: .count)
+        if container.contains(.views){
+            let viewsContainer = try container.nestedContainer(keyedBy: ViewsCodingKeys.self, forKey: .views)
+            self.viewsCount = try viewsContainer.decode(Int.self, forKey: .count)
+        } else {
+            self.viewsCount = 0
+        }
     }
 }
 
-extension VKNewsGroup: Decodable{
-    enum GroupsCodingKeys: String, CodingKey{
-        case id
-        case name
-        case photoUrl = "photo_100"
-    }
-    
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: GroupsCodingKeys.self)
-        self.id = try container.decode(Int.self, forKey: .id)
-        self.name = try container.decode(String.self, forKey: .name)
-        let tempUrl = try container.decode(String.self, forKey: .photoUrl)
-        self.photoUrl = URL(string: tempUrl)
-    }
-}
-
-extension VKNewsProfile: Decodable{
-    enum ProfileCodingKeys: String, CodingKey{
-        case id
-        case firstName = "first_name"
-        case lastName = "last_name"
-        case photoUrl = "photo_100"
-    }
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: ProfileCodingKeys.self)
-        self.id = try container.decode(Int.self, forKey: .id)
-        self.firstName = try container.decode(String.self, forKey: .firstName)
-        self.lastName = try container.decode(String.self, forKey: .lastName)
-        let tempUrl = try container.decode(String.self, forKey: .photoUrl)
-        self.photoUrl = URL(string: tempUrl)
-    }
-}
 
 /*
  Структура ответа следующая:

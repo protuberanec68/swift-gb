@@ -56,7 +56,9 @@ class NewsTableViewController: UITableViewController {
                 guard let news = result?.news(),
                       let nextListVKNewsID = result?.nextFrom
                 else {return}
-                self.news += news
+                if news.last?.date != self.news.last?.date {
+                    self.news += news
+                }
                 self.nextListVKNewsID = nextListVKNewsID
             case .failure(let error):
                 print(error.localizedDescription)

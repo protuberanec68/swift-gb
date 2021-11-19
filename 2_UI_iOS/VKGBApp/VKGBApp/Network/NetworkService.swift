@@ -101,7 +101,7 @@ final class Network {
                 urlConstructor.queryItems?.append(
                     URLQueryItem(
                         name: "fields",
-                        value: "name,description")
+                        value: "name,description,photo_100")
                 )
             case "friends.get":
                 urlConstructor.queryItems?.append(
@@ -122,7 +122,7 @@ final class Network {
                 urlConstructor.queryItems?.append(
                     URLQueryItem(
                         name: "fields",
-                        value: "nickname,photo_50")
+                        value: "nickname,photo_100")
                 )
             case "groups.search":
                 urlConstructor.queryItems?.append(
@@ -138,7 +138,7 @@ final class Network {
                 urlConstructor.queryItems?.append(
                     URLQueryItem(
                         name: "fields",
-                        value: "name,description")
+                        value: "name,description,photo_100")
                 )
                 
             case "photos.getAll":

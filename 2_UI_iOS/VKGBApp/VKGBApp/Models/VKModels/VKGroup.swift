@@ -24,7 +24,7 @@ extension VKGroup: Decodable {
         case id
         case name
         case isMember = "is_member"
-        case photo = "photo_50"
+        case photo = "photo_100"
         case description
     }
     
@@ -46,10 +46,13 @@ extension VKGroup: Decodable {
             String.self,
             forKey: .photo)
         self.photoURL = URL(string: url)
-        self.description = try container.decode(
-            String.self,
-            forKey: .description)
-        
+        if container.contains(.description) {
+            self.description = try container.decode(
+                String.self,
+                forKey: .description)
+        } else {
+            self.description = ""
+        }
     }
     
     init() {
