@@ -53,13 +53,17 @@ class NewsTableViewController: UITableViewController {
             guard let self = self else {return}
             switch result {
             case .success(let result):
-                guard let news = result?.news(),
-                      let nextListVKNewsID = result?.nextFrom
-                else {return}
-                if news.last?.date != self.news.last?.date {
-                    self.news += news
+                DispatchQueue.global(qos: .userInteractive).async {
+                    guard let news = result?.news(),
+                          let nextListVKNewsID = result?.nextFrom
+                    else {return}
+                    DispatchQueue.main.async {
+                        if news.last?.date != self.news.last?.date {
+                            self.news += news
+                        }
+                        self.nextListVKNewsID = nextListVKNewsID
+                    }
                 }
-                self.nextListVKNewsID = nextListVKNewsID
             case .failure(let error):
                 print(error.localizedDescription)
             }
