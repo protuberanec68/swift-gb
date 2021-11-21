@@ -23,7 +23,7 @@ final class Network {
     func sendRequest<T: Decodable>(
         endpoint: T,
         requestType: String,
-        userID: Int = Session.instance.userID,
+        userID: Int = Singleton.instance.userID,
         queryString: String = "",
         nextListVKNewsID nextFrom: String = "\"\"",
         completion: (@escaping (Result<T,VKError>) -> Void )) {
@@ -76,7 +76,7 @@ final class Network {
             urlConstructor.queryItems = [
                 URLQueryItem(
                     name: "access_token",
-                    value: Session.instance.token),
+                    value: Singleton.instance.token),
                 URLQueryItem(
                     name: "v",
                     value: "5.131"),

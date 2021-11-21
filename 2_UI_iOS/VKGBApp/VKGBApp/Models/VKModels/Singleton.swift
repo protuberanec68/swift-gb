@@ -7,8 +7,8 @@
 
 import UIKit
 
-class Session {
-    static public let instance = Session()
+class Singleton {
+    static public let instance = Singleton()
     
     private init() {}
     

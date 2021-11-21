@@ -15,12 +15,6 @@ class FriendsTableViewController: UITableViewController {
     private var firstCharsFriendsName: [String] = []
     
     private var networkRequester = Network()
-//    private var friends: [VKUser] = [] {
-//        didSet {
-//            setDictOfFriends()
-//            tableView.reloadData()
-//        }
-//    }
     
     var friends: Results<RealmUser>?
     var friendsNotification: NotificationToken?
@@ -75,7 +69,6 @@ class FriendsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //MARK: make
         guard let friend = dictOfFriends[firstCharsFriendsName[indexPath.section]]?[indexPath.row]
         else { return }
         self.selectedUserID = friend.id
@@ -87,21 +80,41 @@ class FriendsTableViewController: UITableViewController {
     }
 
     func fetchFriends() {
-        networkRequester.sendRequest(
-            endpoint: VKUsers.init(items: []),
-            requestType: "friends.get") {
-                [weak self] result in
-//                guard let self = self else { return }
-                switch result {
-                case .success(let users):
-                    let realmFriends = users.items.map { RealmUser($0) }
-                    DispatchQueue.main.async {
-                        try? RealmService.save(items: realmFriends)
-                    }
-                case .failure(let error):
-                    print(error.localizedDescription)
-                }
+        //MARK: Alamofire + Operations code block
+        let fetchOperation = FetchJSONvkGroups()
+        let parsingOperation = ParsingJSONvkFriends()
+        let realmOperation = SaveRealmVKFriends()
+        
+        let operationQueue = OperationQueue()
+        operationQueue.maxConcurrentOperationCount = 10
+        
+        parsingOperation.addDependency(fetchOperation)
+        fetchOperation.addDependency(realmOperation)
+        
+        operationQueue.addOperation(fetchOperation)
+        operationQueue.addOperation(parsingOperation)
+        operationQueue.addOperation(realmOperation)
+
+        fetchOperation.completionBlock = {
+            self.friends = try? RealmService.load(typeOf: RealmUser.self)
         }
+        
+        //MARK: URLSession code block
+//        networkRequester.sendRequest(
+//            endpoint: VKUsers.init(items: []),
+//            requestType: "friends.get") {
+//                [weak self] result in
+////                guard let self = self else { return }
+//                switch result {
+//                case .success(let users):
+//                    let realmFriends = users.items.map { RealmUser($0) }
+//                    DispatchQueue.main.async {
+//                        try? RealmService.save(items: realmFriends)
+//                    }
+//                case .failure(let error):
+//                    print(error.localizedDescription)
+//                }
+//        }
         self.friends = try? RealmService.load(typeOf: RealmUser.self)
     }
     
@@ -124,40 +137,6 @@ class FriendsTableViewController: UITableViewController {
         }
         firstCharsFriendsName = dictOfFriends.keys.sorted().map() {$0.uppercased()}
     }
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
 
     // MARK: - Navigation
 
