@@ -69,8 +69,8 @@ extension VKLoginViewController: WKNavigationDelegate {
                 let userID = Int(userIDString)
             else { return decisionHandler(.allow) }
             
-            Session.instance.token = token
-            Session.instance.userID = userID
+            Singleton.instance.token = token
+            Singleton.instance.userID = userID
             
             performSegue(
                 withIdentifier: "meView",
