@@ -51,6 +51,7 @@ final class Network {
                     return
                 }
                 do {
+                    print(responseData)
                     let response = try JSONDecoder().decode(
                         VKResponse<T>.self,
                         from: responseData)

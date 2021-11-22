@@ -20,8 +20,8 @@ final class FetchJSONvkGroups: AsyncOperation {
             "order": "name",
             "name_case": "ins",
             "fields": "nickname,photo_100",
-            "token": Singleton.instance.token,
-            "v": "5.131"
+            "access_token": Singleton.instance.token,
+            "v": "5.131",
         ]
 
         AF.request(

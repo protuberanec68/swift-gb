@@ -15,6 +15,7 @@ final class ParsingJSONvkFriends: AsyncOperation {
         guard let fetchFriendsOperation = dependencies.first as? FetchJSONvkGroups,
               let data = fetchFriendsOperation.data else { return }
         do {
+            print(data)
             friends = try JSONDecoder().decode(VKResponse<VKUsers>.self, from: data).response.items
         } catch {
             print(error)

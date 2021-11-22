@@ -84,13 +84,13 @@ class FriendsTableViewController: UITableViewController {
         let fetchOperation = FetchJSONvkGroups()
         let parsingOperation = ParsingJSONvkFriends()
         let realmOperation = SaveRealmVKFriends()
-        
+
         let operationQueue = OperationQueue()
         operationQueue.maxConcurrentOperationCount = 10
-        
+
         parsingOperation.addDependency(fetchOperation)
-        fetchOperation.addDependency(realmOperation)
-        
+        realmOperation.addDependency(parsingOperation)
+
         operationQueue.addOperation(fetchOperation)
         operationQueue.addOperation(parsingOperation)
         operationQueue.addOperation(realmOperation)
