@@ -15,6 +15,7 @@ struct VKUser {
     let id: Int
     let firstName: String
     let lastName: String
+    let name: String
     let nickname: String
     let photoURL: URL?
 }
@@ -25,7 +26,7 @@ extension VKUser: Decodable {
         case firstName = "first_name"
         case lastName = "last_name"
         case nickname
-        case photo = "photo_50"
+        case photo = "photo_100"
     }
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -38,6 +39,7 @@ extension VKUser: Decodable {
         self.lastName = try container.decode(
             String.self,
             forKey: .lastName)
+        self.name = self.firstName + " " + self.lastName
         if container.contains(.nickname) {
             self.nickname = try container.decode(
                 String.self,
