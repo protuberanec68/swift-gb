@@ -21,6 +21,7 @@ class FooterNewsView: UITableViewHeaderFooterView {
     
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
+        setupFooter()
     }
     
     required init?(coder: NSCoder) {
@@ -28,6 +29,16 @@ class FooterNewsView: UITableViewHeaderFooterView {
     }
     
     func configure(new: VKNew) {
+        likeView.configure(firstLike: Like(new.isLiked, new.likesCount))
+        likeView.backgroundColor = UIColor.clear
+        repostImageView.image = UIImage(systemName: "arrowshape.turn.up.forward")
+        repostCountLabel.text = String(new.repostsCount)
+        viewsImageView.image = UIImage(systemName: "eye")
+        viewsCountLabel.text = String(new.viewsCount)
+        
+    }
+    
+    func setupFooter() {
         likeView.translatesAutoresizingMaskIntoConstraints = false
         repostView.translatesAutoresizingMaskIntoConstraints = false
         repostImageView.translatesAutoresizingMaskIntoConstraints = false
@@ -89,14 +100,6 @@ class FooterNewsView: UITableViewHeaderFooterView {
             viewsCountLabel.heightAnchor.constraint(equalToConstant: 20.0),
             viewsCountLabel.widthAnchor.constraint(equalToConstant: 80.0),
         ])
-        
-        likeView.configure(firstLike: Like(new.isLiked, new.likesCount))
-        likeView.backgroundColor = UIColor.clear
-        repostImageView.image = UIImage(systemName: "arrowshape.turn.up.forward")
-        repostCountLabel.text = String(new.repostsCount)
-        viewsImageView.image = UIImage(systemName: "eye")
-        viewsCountLabel.text = String(new.viewsCount)
-        
     }
     
 }
