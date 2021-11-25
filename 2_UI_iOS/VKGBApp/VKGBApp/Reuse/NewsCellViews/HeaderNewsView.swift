@@ -16,14 +16,26 @@ class HeaderNewsView: UITableViewHeaderFooterView {
     
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
+        setupHeader()
     }
+    
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     func configure(new: VKNew) {
-        
+        nameTitle.text = new.sourceName
+        dateTitle.text = new.date.date()
+        guard let url = new.photoUrl else {
+            return
+        }
+        Nuke.loadImage(
+            with: url,
+            into: sourceImage)
+    }
+    
+    func setupHeader() {
         sourceImage.translatesAutoresizingMaskIntoConstraints = false
         nameTitle.translatesAutoresizingMaskIntoConstraints = false
         dateTitle.translatesAutoresizingMaskIntoConstraints = false
@@ -61,15 +73,6 @@ class HeaderNewsView: UITableViewHeaderFooterView {
             dateTitle.heightAnchor.constraint(equalToConstant: 10.0),
             dateTitle.widthAnchor.constraint(equalToConstant: 100.0)
         ])
-        
-        nameTitle.text = new.sourceName
-        dateTitle.text = new.date.date()
-        guard let url = new.photoUrl else {
-            return
-        }
-        Nuke.loadImage(
-            with: url,
-            into: sourceImage)
     }
     
 }
