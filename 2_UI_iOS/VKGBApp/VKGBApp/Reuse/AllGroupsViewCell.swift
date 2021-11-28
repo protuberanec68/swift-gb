@@ -18,18 +18,12 @@ class AllGroupsViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
-    
-    
-    //addTarget(self, action: #selector(didPress), for: .touchUpInside) {}
     func configure(group: VKGroup) {
         self.group = group
         self.nameLabel.text = self.group.name

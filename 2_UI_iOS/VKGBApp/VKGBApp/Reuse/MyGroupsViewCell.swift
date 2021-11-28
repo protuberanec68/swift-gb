@@ -26,8 +26,6 @@ class MyGroupsViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    
-    //addTarget(self, action: #selector(didPress), for: .touchUpInside) {}
     func configure(group: RealmGroup) {
         self.group = group
         self.nameLabel.text = self.group.name
