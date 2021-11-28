@@ -25,6 +25,7 @@
 		4067344E274A96650075A9E8 /* FetchJSONvkFriends.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4067344D274A96650075A9E8 /* FetchJSONvkFriends.swift */; };
 		40673450274A967A0075A9E8 /* ParsingJSONvkFriends.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4067344F274A967A0075A9E8 /* ParsingJSONvkFriends.swift */; };
 		40673452274A96970075A9E8 /* SaveRealmVKFriends.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40673451274A96970075A9E8 /* SaveRealmVKFriends.swift */; };
+		406D74CA275406B500B28D8F /* PromiseKit in Frameworks */ = {isa = PBXBuildFile; productRef = 406D74C9275406B500B28D8F /* PromiseKit */; };
 		780E23642708A89E00052ABE /* VKLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780E23632708A89E00052ABE /* VKLoginViewController.swift */; };
 		780E23672708B8DA00052ABE /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780E23662708B8DA00052ABE /* NetworkService.swift */; };
 		780E236F270F9BE600052ABE /* VKResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780E236E270F9BE600052ABE /* VKResponse.swift */; };
@@ -150,6 +151,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4067344C274A92030075A9E8 /* Alamofire in Frameworks */,
+				406D74CA275406B500B28D8F /* PromiseKit in Frameworks */,
 				780E2380271348A900052ABE /* Nuke in Frameworks */,
 				9FA49CAF551013C2A0EE0472 /* Pods_VKGBApp.framework in Frameworks */,
 			);
@@ -388,6 +390,7 @@
 			packageProductDependencies = (
 				780E237F271348A900052ABE /* Nuke */,
 				4067344B274A92030075A9E8 /* Alamofire */,
+				406D74C9275406B500B28D8F /* PromiseKit */,
 			);
 			productName = VKGBApp;
 			productReference = 784973E626C5B7860048E855 /* VKGBApp.app */;
@@ -419,6 +422,7 @@
 			packageReferences = (
 				780E237E271348A800052ABE /* XCRemoteSwiftPackageReference "Nuke" */,
 				4067344A274A92030075A9E8 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				406D74C8275406B500B28D8F /* XCRemoteSwiftPackageReference "PromiseKit" */,
 			);
 			productRefGroup = 784973E726C5B7860048E855 /* Products */;
 			projectDirPath = "";
@@ -761,6 +765,14 @@
 				minimumVersion = 5.4.0;
 			};
 		};
+		406D74C8275406B500B28D8F /* XCRemoteSwiftPackageReference "PromiseKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mxcl/PromiseKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.8.4;
+			};
+		};
 		780E237E271348A800052ABE /* XCRemoteSwiftPackageReference "Nuke" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/kean/Nuke.git";
@@ -776,6 +788,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4067344A274A92030075A9E8 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		406D74C9275406B500B28D8F /* PromiseKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 406D74C8275406B500B28D8F /* XCRemoteSwiftPackageReference "PromiseKit" */;
+			productName = PromiseKit;
 		};
 		780E237F271348A900052ABE /* Nuke */ = {
 			isa = XCSwiftPackageProductDependency;
