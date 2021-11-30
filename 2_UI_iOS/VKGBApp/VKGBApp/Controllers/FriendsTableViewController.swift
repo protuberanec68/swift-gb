@@ -21,8 +21,8 @@ class FriendsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        friendsNotificationObserve()
         fetchFriends()
+        friendsNotificationObserve()
         setDictOfFriends()
         
         tableView.register(
@@ -110,14 +110,15 @@ class FriendsTableViewController: UITableViewController {
 //                    print(error.localizedDescription)
 //                }
 //        }
-        self.friends = try? RealmService.load(typeOf: RealmUser.self)
     }
     
     func friendsNotificationObserve() {
+        self.friends = try? RealmService.load(typeOf: RealmUser.self)
         self.friendsNotification = self.friends?.observe {
             [weak self] _ in
-            self?.setDictOfFriends()
-            self?.tableView.reloadData()
+            guard let self = self else {return}
+            self.setDictOfFriends()
+            self.tableView.reloadData()
         }
     }
     

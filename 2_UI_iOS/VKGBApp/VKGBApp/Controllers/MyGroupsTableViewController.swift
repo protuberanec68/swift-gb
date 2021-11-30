@@ -18,9 +18,9 @@ class MyGroupsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.groups = try? RealmService.load(typeOf: RealmGroup.self)
-        groupsNotificationObserve()
+        
         fetchMyGroups()
+        groupsNotificationObserve()
         
         tableView.register(
             UINib(
@@ -59,6 +59,7 @@ class MyGroupsTableViewController: UITableViewController {
     }
     
     func groupsNotificationObserve() {
+        self.groups = try? RealmService.load(typeOf: RealmGroup.self)
         self.groupsNotification = self.groups?.observe {
             [weak self] _ in self?.tableView.reloadData()
         }
