@@ -26,6 +26,7 @@
 		40673450274A967A0075A9E8 /* ParsingJSONvkFriends.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4067344F274A967A0075A9E8 /* ParsingJSONvkFriends.swift */; };
 		40673452274A96970075A9E8 /* SaveRealmVKFriends.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40673451274A96970075A9E8 /* SaveRealmVKFriends.swift */; };
 		406D74CA275406B500B28D8F /* PromiseKit in Frameworks */ = {isa = PBXBuildFile; productRef = 406D74C9275406B500B28D8F /* PromiseKit */; };
+		406D74CC27541B6A00B28D8F /* PromiseNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406D74CB27541B6A00B28D8F /* PromiseNetworkService.swift */; };
 		780E23642708A89E00052ABE /* VKLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780E23632708A89E00052ABE /* VKLoginViewController.swift */; };
 		780E23672708B8DA00052ABE /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780E23662708B8DA00052ABE /* NetworkService.swift */; };
 		780E236F270F9BE600052ABE /* VKResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780E236E270F9BE600052ABE /* VKResponse.swift */; };
@@ -94,6 +95,7 @@
 		4067344D274A96650075A9E8 /* FetchJSONvkFriends.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchJSONvkFriends.swift; sourceTree = "<group>"; };
 		4067344F274A967A0075A9E8 /* ParsingJSONvkFriends.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParsingJSONvkFriends.swift; sourceTree = "<group>"; };
 		40673451274A96970075A9E8 /* SaveRealmVKFriends.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveRealmVKFriends.swift; sourceTree = "<group>"; };
+		406D74CB27541B6A00B28D8F /* PromiseNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromiseNetworkService.swift; sourceTree = "<group>"; };
 		780E23632708A89E00052ABE /* VKLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKLoginViewController.swift; sourceTree = "<group>"; };
 		780E23662708B8DA00052ABE /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		780E236E270F9BE600052ABE /* VKResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKResponse.swift; sourceTree = "<group>"; };
@@ -218,6 +220,7 @@
 			children = (
 				780E23662708B8DA00052ABE /* NetworkService.swift */,
 				78778A7C271C30DB00C4355E /* RealmService.swift */,
+				406D74CB27541B6A00B28D8F /* PromiseNetworkService.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -551,6 +554,7 @@
 				780E237D271209E200052ABE /* VKError.swift in Sources */,
 				78778A86271C332900C4355E /* RealmGroup.swift in Sources */,
 				7842977026EA715D00AC3545 /* AvatarView.swift in Sources */,
+				406D74CC27541B6A00B28D8F /* PromiseNetworkService.swift in Sources */,
 				784973EC26C5B7860048E855 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
