@@ -26,7 +26,7 @@ class HeaderNewsView: UITableViewHeaderFooterView {
     
     func configure(new: VKNew) {
         nameTitle.text = new.sourceName
-        dateTitle.text = new.date.date()
+        dateTitle.text = new.stringDate
         guard let url = new.photoUrl else {
             return
         }
