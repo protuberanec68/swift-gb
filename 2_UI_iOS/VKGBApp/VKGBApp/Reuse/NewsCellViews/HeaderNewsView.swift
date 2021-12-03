@@ -45,6 +45,13 @@ class HeaderNewsView: UITableViewHeaderFooterView {
         
         dateTitle.font = dateTitle.font.withSize(12.0)
         
+        sourceImage.backgroundColor = .systemBackground
+        sourceImage.isOpaque = true
+        nameTitle.backgroundColor = .systemBackground
+        nameTitle.isOpaque = true
+        dateTitle.backgroundColor = .systemBackground
+        dateTitle.isOpaque = true
+        
         contentView.addSubview(sourceImage)
         contentView.addSubview(nameTitle)
         contentView.addSubview(dateTitle)

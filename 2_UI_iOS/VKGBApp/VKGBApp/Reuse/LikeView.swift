@@ -75,7 +75,8 @@ class LikeView: UIView {
         ])
         
         countLikesLabel.text = String(count)
-        countLikesLabel.backgroundColor = .clear
+        countLikesLabel.backgroundColor = .systemBackground
+        countLikesLabel.isOpaque = true
         countLikesLabel.textColor = .black
     }
     
