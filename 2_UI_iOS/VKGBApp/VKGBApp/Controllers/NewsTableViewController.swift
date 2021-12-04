@@ -28,6 +28,8 @@ class NewsTableViewController: UITableViewController {
         tableView.estimatedRowHeight = 60
         tableView.rowHeight = UITableView.automaticDimension
         
+        configureRefreshControl()
+        
         tableView.register(
             HeaderNewsView.self,
             forHeaderFooterViewReuseIdentifier: "headerView")
@@ -47,6 +49,27 @@ class NewsTableViewController: UITableViewController {
         fetchNews()
 
     }
+    
+    private func configureRefreshControl() {
+        tableView.refreshControl = UIRefreshControl()
+        tableView.refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
+    }
+    
+    @objc
+    private func refresh(){
+        tableView.refreshControl?.beginRefreshing()
+        self.news = []
+        let queue = DispatchQueue(
+            label: "refreshQueue",
+            qos: .userInteractive)
+        queue.sync {
+            fetchNews(nextListVKNewsID: nextListVKNewsID)
+        }
+        queue.sync {
+            self.tableView.refreshControl?.endRefreshing()
+        }
+    }
+    
 //MARK: FetchNews
     private func fetchNews(nextListVKNewsID: String = "\"\"") {
         networkRequester.sendRequest(
@@ -188,8 +211,8 @@ extension NewsTableViewController: TableDelegate {
         guard let indexPath = tableView.indexPath(for: cell) else { return }
         news[indexPath.section].isShortText?.toggle()
         
-//MARK: не понимаю - почему такой код не работает корректно, обновляется очень криво, вся таблица прыгает:
-//        tableView.reloadRows(at: [indexPath], with: .top)
+//MARK: не понимаю - почему такой код не работает корректно, обновляется очень криво, вся таблица прыгает и все съезжает когда пытаюсь обновить не первую ячейку:
+//        tableView.reloadRows(at: [indexPath], with: .automatic)
 //
         UIView.transition(with: tableView,
                           duration: 0.35,
