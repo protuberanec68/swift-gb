@@ -177,11 +177,13 @@ class NewsTableViewController: UITableViewController {
         let new = news[indexPath.section]
         if new.returnCellsCounter()[indexPath.row].0 == .photos {
             let countPhotos = new.photos.count
+            let correction = new.photos.first?.aspectRatio
+
             let halfCellHeight = UIScreen.main.bounds.width / 2
             if countPhotos % 2 == 0 {
-                return (Double(countPhotos) * halfCellHeight) / 2
+                return (Double(countPhotos) * halfCellHeight * (correction ?? 1.0)) / 2
             } else {
-                return ((Double(countPhotos) + 1) * halfCellHeight / 2) + halfCellHeight
+                return ((Double(countPhotos) + 1) * halfCellHeight * (correction ?? 1.0) / 2) + halfCellHeight
             }
         } else {
             return UITableView.automaticDimension
