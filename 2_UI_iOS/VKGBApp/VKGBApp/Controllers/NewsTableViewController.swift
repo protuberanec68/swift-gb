@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol TableDelegate: AnyObject {
+    func reloadTable(cell: UITableViewCell)
+}
+
 class NewsTableViewController: UITableViewController {
 
     private let networkRequester = Network()
@@ -122,6 +126,7 @@ class NewsTableViewController: UITableViewController {
                         for: indexPath)
                     as? TextNewsCell else {return UITableViewCell()}
             cell.configure(new: new)
+            cell.delegate = self
             cell.selectionStyle = .none
             return cell
         case .photos:
@@ -159,15 +164,33 @@ class NewsTableViewController: UITableViewController {
             return UITableView.automaticDimension
         }
     }
+
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        defer {
-            tableView.deselectRow(
-                at: indexPath,
-                animated: true)
-        }
-        guard let _ = news[indexPath.section].isShortText else { return }
+    //MARK: Old show more/less text
+//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        defer {
+//            tableView.deselectRow(
+//                at: indexPath,
+//                animated: true)
+//        }
+//        guard let _ = news[indexPath.section].isShortText else { return }
+//        news[indexPath.section].isShortText?.toggle()
+//        UIView.transition(with: tableView,
+//                          duration: 0.35,
+//                          options: .transitionCrossDissolve,
+//                          animations: { self.tableView.reloadData() })
+//    }
+}
+
+
+extension NewsTableViewController: TableDelegate {
+    func reloadTable(cell: UITableViewCell) {
+        guard let indexPath = tableView.indexPath(for: cell) else { return }
         news[indexPath.section].isShortText?.toggle()
+        
+//MARK: не понимаю - почему такой код не работает корректно, обновляется очень криво, вся таблица прыгает:
+//        tableView.reloadRows(at: [indexPath], with: .top)
+//
         UIView.transition(with: tableView,
                           duration: 0.35,
                           options: .transitionCrossDissolve,
