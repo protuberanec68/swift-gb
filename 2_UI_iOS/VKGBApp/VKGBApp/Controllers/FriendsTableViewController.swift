@@ -22,16 +22,14 @@ class FriendsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchFriends()
+        friendsNotificationObserve()
+        setDictOfFriends()
         
         tableView.register(
             UINib(
                 nibName: "FriendViewCell",
                 bundle: nil),
             forCellReuseIdentifier: "customFriendCell")
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        friendsNotificationObserve()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -95,9 +93,6 @@ class FriendsTableViewController: UITableViewController {
         operationQueue.addOperation(parsingOperation)
         operationQueue.addOperation(realmOperation)
 
-        fetchOperation.completionBlock = {
-            self.friends = try? RealmService.load(typeOf: RealmUser.self)
-        }
         
         //MARK: URLSession code block
 //        networkRequester.sendRequest(
@@ -115,14 +110,15 @@ class FriendsTableViewController: UITableViewController {
 //                    print(error.localizedDescription)
 //                }
 //        }
-        self.friends = try? RealmService.load(typeOf: RealmUser.self)
     }
     
     func friendsNotificationObserve() {
+        self.friends = try? RealmService.load(typeOf: RealmUser.self)
         self.friendsNotification = self.friends?.observe {
             [weak self] _ in
-            self?.setDictOfFriends()
-            self?.tableView.reloadData()
+            guard let self = self else {return}
+            self.setDictOfFriends()
+            self.tableView.reloadData()
         }
     }
     
