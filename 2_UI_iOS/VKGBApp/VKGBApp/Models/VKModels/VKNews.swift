@@ -60,6 +60,7 @@ struct VKNew {
     private var cellsCounter: [(VKBlocksType,Int)] = []
     
     let date: Double
+    let stringDate: String
 
     let sourceID: Int
     let sourceType: SourceType
@@ -226,6 +227,7 @@ extension VKNew: Decodable{
         }
         
         self.date = try container.decode(Double.self, forKey: .date)
+        self.stringDate = self.date.date()
         let tempSourceID = try container.decode(Int.self, forKey: .sourceID)
         self.sourceID = abs(tempSourceID)
         self.sourceType = (tempSourceID > 0) ? SourceType.profile : SourceType.group

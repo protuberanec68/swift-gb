@@ -215,6 +215,37 @@
 			path = Operations;
 			sourceTree = "<group>";
 		};
+		406D74CD275AB6D200B28D8F /* MetricViews */ = {
+			isa = PBXGroup;
+			children = (
+				7842974826DF4A6200AC3545 /* LikeControl.swift */,
+				7842977326ECEA9E00AC3545 /* HeartBezier.swift */,
+				7842977126ECE59700AC3545 /* LikeView.swift */,
+			);
+			path = MetricViews;
+			sourceTree = "<group>";
+		};
+		406D74CE275AB71D00B28D8F /* GroupsCellViews */ = {
+			isa = PBXGroup;
+			children = (
+				7842973026D6EC0600AC3545 /* AllGroupsViewCell.swift */,
+				7842973126D6EC0600AC3545 /* AllGroupsViewCell.xib */,
+				780E2381271353A800052ABE /* MyGroupsViewCell.swift */,
+				780E2382271353A800052ABE /* MyGroupsViewCell.xib */,
+			);
+			path = GroupsCellViews;
+			sourceTree = "<group>";
+		};
+		406D74CF275AB74100B28D8F /* FriendsCellViews */ = {
+			isa = PBXGroup;
+			children = (
+				7842976F26EA715D00AC3545 /* AvatarView.swift */,
+				7842974026DC227300AC3545 /* FriendViewCell.swift */,
+				7842974126DC227300AC3545 /* FriendViewCell.xib */,
+			);
+			path = FriendsCellViews;
+			sourceTree = "<group>";
+		};
 		780E23652708B8AF00052ABE /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -228,18 +259,11 @@
 		7842972F26D6EBBD00AC3545 /* Reuse */ = {
 			isa = PBXGroup;
 			children = (
+				406D74CF275AB74100B28D8F /* FriendsCellViews */,
+				406D74CE275AB71D00B28D8F /* GroupsCellViews */,
+				406D74CD275AB6D200B28D8F /* MetricViews */,
 				404C4960272D9D5200213C7A /* NewsCellViews */,
-				7842973026D6EC0600AC3545 /* AllGroupsViewCell.swift */,
-				7842973126D6EC0600AC3545 /* AllGroupsViewCell.xib */,
-				780E2381271353A800052ABE /* MyGroupsViewCell.swift */,
-				780E2382271353A800052ABE /* MyGroupsViewCell.xib */,
 				7842973626D773B900AC3545 /* FriendImageCell.swift */,
-				7842976F26EA715D00AC3545 /* AvatarView.swift */,
-				7842974026DC227300AC3545 /* FriendViewCell.swift */,
-				7842974126DC227300AC3545 /* FriendViewCell.xib */,
-				7842974826DF4A6200AC3545 /* LikeControl.swift */,
-				7842977326ECEA9E00AC3545 /* HeartBezier.swift */,
-				7842977126ECE59700AC3545 /* LikeView.swift */,
 				7842976D26E91A3A00AC3545 /* Progress.swift */,
 				7872990B26EE964600B4FE77 /* FotoView.swift */,
 			);

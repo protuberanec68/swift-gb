@@ -26,7 +26,7 @@ class HeaderNewsView: UITableViewHeaderFooterView {
     
     func configure(new: VKNew) {
         nameTitle.text = new.sourceName
-        dateTitle.text = new.date.date()
+        dateTitle.text = new.stringDate
         guard let url = new.photoUrl else {
             return
         }
@@ -44,6 +44,13 @@ class HeaderNewsView: UITableViewHeaderFooterView {
         sourceImage.clipsToBounds = true
         
         dateTitle.font = dateTitle.font.withSize(12.0)
+        
+        sourceImage.backgroundColor = .systemBackground
+        sourceImage.isOpaque = true
+        nameTitle.backgroundColor = .systemBackground
+        nameTitle.isOpaque = true
+        dateTitle.backgroundColor = .systemBackground
+        dateTitle.isOpaque = true
         
         contentView.addSubview(sourceImage)
         contentView.addSubview(nameTitle)

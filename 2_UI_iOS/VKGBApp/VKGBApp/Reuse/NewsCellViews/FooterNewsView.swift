@@ -30,7 +30,8 @@ class FooterNewsView: UITableViewHeaderFooterView {
     
     func configure(new: VKNew) {
         likeView.configure(firstLike: Like(new.isLiked, new.likesCount))
-        likeView.backgroundColor = UIColor.clear
+        likeView.backgroundColor = .systemBackground
+        likeView.isOpaque = true
         repostImageView.image = UIImage(systemName: "arrowshape.turn.up.forward")
         repostCountLabel.text = String(new.repostsCount)
         viewsImageView.image = UIImage(systemName: "eye")
@@ -47,12 +48,21 @@ class FooterNewsView: UITableViewHeaderFooterView {
         viewsImageView.translatesAutoresizingMaskIntoConstraints = false
         viewsCountLabel.translatesAutoresizingMaskIntoConstraints = false
         
+        repostImageView.backgroundColor = .systemBackground
+        repostImageView.isOpaque = true
+        repostCountLabel.backgroundColor = .systemBackground
+        repostCountLabel.isOpaque = true
+        viewsImageView.backgroundColor = .systemBackground
+        viewsImageView.isOpaque = true
+        viewsCountLabel.backgroundColor = .systemBackground
+        viewsCountLabel.isOpaque = true
+        
         repostView.addSubview(repostImageView)
         repostView.addSubview(repostCountLabel)
         
         viewsView.addSubview(viewsImageView)
         viewsView.addSubview(viewsCountLabel)
-        
+                
         contentView.addSubview(likeView)
         contentView.addSubview(repostView)
         contentView.addSubview(viewsView)
