@@ -17,13 +17,23 @@ struct VKPhoto {
     var sizes: [VKPhotoSize]
     var isLiked: Bool
     var countLikes: Int
-    var id: Int
-    var ownerID: Int
+    let id: Int
+    let ownerID: Int
+    var aspectRatio: Double? {
+        guard
+            let size = self.sizes.first,
+            let height = size.height,
+            let width = size.width
+        else { return nil }
+        return Double(height) / Double(width)
+    }
 }
 
 struct VKPhotoSize {
     let url: URL?
     let sizeType: String
+    let height: Int?
+    let width: Int?
 }
 
 extension VKPhoto: Decodable {
@@ -42,6 +52,8 @@ extension VKPhoto: Decodable {
     enum SizesCodingKeys: String, CodingKey{
         case url
         case sizeType = "type"
+        case height
+        case width
     }
     
     init(from decoder: Decoder) throws {
@@ -80,11 +92,24 @@ extension VKPhoto: Decodable {
             let tempSizeType = try sizeContainer.decode(
                 String.self,
                 forKey: .sizeType)
+            let tempHeight, tempWidth: Int?
+            if sizeContainer.contains(.height) {
+                tempHeight = try sizeContainer.decode(
+                    Int.self,
+                    forKey: .height)
+                tempWidth = try sizeContainer.decode(
+                    Int.self,
+                    forKey: .width)
+            } else {
+                tempHeight = nil
+                tempWidth = nil
+            }
             self.sizes.append(
                 VKPhotoSize(
                     url: tempUrl,
-                    sizeType: tempSizeType))
-            
+                    sizeType: tempSizeType,
+                    height: tempHeight,
+                    width: tempWidth))
         }
     }
     

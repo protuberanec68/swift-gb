@@ -36,6 +36,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="bottomTextLabelConstraint" destination="oeg-fn-9TM" id="Na4-KT-GoK"/>
                 <outlet property="textNewLabel" destination="6GM-LF-baH" id="yCX-hv-U0B"/>
             </connections>
             <point key="canvasLocation" x="139" y="53"/>

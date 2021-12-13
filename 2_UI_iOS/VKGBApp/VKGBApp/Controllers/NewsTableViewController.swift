@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol TableDelegate: AnyObject {
+    func reloadTable(cell: UITableViewCell)
+}
+
 class NewsTableViewController: UITableViewController {
 
     private let networkRequester = Network()
@@ -23,6 +27,8 @@ class NewsTableViewController: UITableViewController {
         
         tableView.estimatedRowHeight = 60
         tableView.rowHeight = UITableView.automaticDimension
+        
+        configureRefreshControl()
         
         tableView.register(
             HeaderNewsView.self,
@@ -43,6 +49,27 @@ class NewsTableViewController: UITableViewController {
         fetchNews()
 
     }
+    
+    private func configureRefreshControl() {
+        tableView.refreshControl = UIRefreshControl()
+        tableView.refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
+    }
+    
+    @objc
+    private func refresh(){
+        tableView.refreshControl?.beginRefreshing()
+        self.news = []
+        let queue = DispatchQueue(
+            label: "refreshQueue",
+            qos: .userInteractive)
+        queue.sync {
+            fetchNews(nextListVKNewsID: nextListVKNewsID)
+        }
+        queue.sync {
+            self.tableView.refreshControl?.endRefreshing()
+        }
+    }
+    
 //MARK: FetchNews
     private func fetchNews(nextListVKNewsID: String = "\"\"") {
         networkRequester.sendRequest(
@@ -122,6 +149,7 @@ class NewsTableViewController: UITableViewController {
                         for: indexPath)
                     as? TextNewsCell else {return UITableViewCell()}
             cell.configure(new: new)
+            cell.delegate = self
             cell.selectionStyle = .none
             return cell
         case .photos:
@@ -149,25 +177,45 @@ class NewsTableViewController: UITableViewController {
         let new = news[indexPath.section]
         if new.returnCellsCounter()[indexPath.row].0 == .photos {
             let countPhotos = new.photos.count
+            let correction = new.photos.first?.aspectRatio
+
             let halfCellHeight = UIScreen.main.bounds.width / 2
             if countPhotos % 2 == 0 {
-                return (Double(countPhotos) * halfCellHeight) / 2
+                return (Double(countPhotos) * halfCellHeight * (correction ?? 1.0)) / 2
             } else {
-                return ((Double(countPhotos) + 1) * halfCellHeight / 2) + halfCellHeight
+                return ((Double(countPhotos) + 1) * halfCellHeight * (correction ?? 1.0) / 2) + halfCellHeight
             }
         } else {
             return UITableView.automaticDimension
         }
     }
+
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        defer {
-            tableView.deselectRow(
-                at: indexPath,
-                animated: true)
-        }
-        guard let _ = news[indexPath.section].isShortText else { return }
+    //MARK: Old show more/less text
+//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        defer {
+//            tableView.deselectRow(
+//                at: indexPath,
+//                animated: true)
+//        }
+//        guard let _ = news[indexPath.section].isShortText else { return }
+//        news[indexPath.section].isShortText?.toggle()
+//        UIView.transition(with: tableView,
+//                          duration: 0.35,
+//                          options: .transitionCrossDissolve,
+//                          animations: { self.tableView.reloadData() })
+//    }
+}
+
+
+extension NewsTableViewController: TableDelegate {
+    func reloadTable(cell: UITableViewCell) {
+        guard let indexPath = tableView.indexPath(for: cell) else { return }
         news[indexPath.section].isShortText?.toggle()
+        
+//MARK: не понимаю - почему такой код не работает корректно, обновляется очень криво, вся таблица прыгает и все съезжает когда пытаюсь обновить не первую ячейку:
+//        tableView.reloadRows(at: [indexPath], with: .automatic)
+//
         UIView.transition(with: tableView,
                           duration: 0.35,
                           options: .transitionCrossDissolve,

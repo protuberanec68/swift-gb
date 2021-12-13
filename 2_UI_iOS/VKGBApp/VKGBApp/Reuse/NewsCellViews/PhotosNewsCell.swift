@@ -62,9 +62,15 @@ extension PhotosNewsCell: UICollectionViewDataSource, UICollectionViewDelegate, 
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let screenWidth = UIScreen.main.bounds.width
-        let fullCell = CGSize(width: screenWidth - 20.0, height: screenWidth - 20.0)
-        let halfCell = CGSize(width: screenWidth/2 - 25.0, height: screenWidth/2 - 25.0)
+        let screenWidth = UIScreen.main.bounds.width.rounded()
+        let correction = photos[indexPath.row].aspectRatio
+
+        let fullCell = CGSize(
+            width: screenWidth - 20.0,
+            height: screenWidth * (correction ?? 1.0) - 20.0)
+        let halfCell = CGSize(
+            width: (screenWidth/2).rounded() - 25.0,
+            height: (screenWidth/2).rounded() * (correction ?? 1.0) - 25.0)
         
         if photos.count % 2 == 0 {
             return halfCell

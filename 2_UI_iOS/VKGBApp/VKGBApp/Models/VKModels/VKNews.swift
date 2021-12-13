@@ -109,6 +109,14 @@ enum VKBlocksType{
 
 struct VKNewsPhoto {
     let sizes: [VKPhotoSize]
+    var aspectRatio: Double? {
+        guard
+            let size = self.sizes.first,
+            let height = size.height,
+            let width = size.width
+        else { return nil }
+        return Double(height) / Double(width)
+    }
 }
 
 struct VKNewsDoc {
@@ -167,6 +175,8 @@ extension VKNew: Decodable{
     enum SizesCodingKeys: String, CodingKey{
         case type
         case url
+        case height
+        case width
     }
     
     
@@ -206,10 +216,24 @@ extension VKNew: Decodable{
                             forKey: .url)
                         let url = URL(string: tempUrlString)
                         let type = try sizeContainer.decode(String.self, forKey: .type)
+                        let tempHeight, tempWidth: Int?
+                        if sizeContainer.contains(.height) {
+                            tempHeight = try sizeContainer.decode(
+                                Int.self,
+                                forKey: .height)
+                            tempWidth = try sizeContainer.decode(
+                                Int.self,
+                                forKey: .width)
+                        } else {
+                            tempHeight = nil
+                            tempWidth = nil
+                        }
                         tempSizes.append(
                             VKPhotoSize(
                                 url: url,
-                                sizeType: type))
+                                sizeType: type,
+                                height: tempHeight,
+                                width: tempWidth))
                     }
                     self.photos.append(VKNewsPhoto(sizes: tempSizes))
                 case "doc":
