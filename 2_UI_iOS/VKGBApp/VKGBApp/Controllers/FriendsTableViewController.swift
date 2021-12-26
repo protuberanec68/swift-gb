@@ -11,14 +11,14 @@ import RealmSwift
 class FriendsTableViewController: UITableViewController {
     
     private var selectedUserID = 0
-    private var dictOfFriends: [String:[RealmUser]] = [:]
-    private var firstCharsFriendsName: [String] = []
-    private let headerColor = UIColor(white: 1.0, alpha: 0.7)
-    
-    private var networkRequester = Network()
-    
+    private var friendsModel = FriendsModel()
     var friends: Results<RealmUser>?
     var friendsNotification: NotificationToken?
+    
+    private let headerColor = UIColor(white: 1.0, alpha: 0.7)
+    
+    private let friendsFactory = FriendsFactory()
+    private var networkRequester = Network()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,15 +41,15 @@ class FriendsTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return firstCharsFriendsName.count
+        return friendsModel.firstCharsFriendsName.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dictOfFriends[firstCharsFriendsName[section]]!.count
+        return friendsModel.dictOfFriends[friendsModel.firstCharsFriendsName[section]]!.count
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return firstCharsFriendsName[section]
+        return friendsModel.firstCharsFriendsName[section]
     }
     
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
@@ -59,7 +59,7 @@ class FriendsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "customFriendCell", for: indexPath) as? FriendViewCell else { return UITableViewCell() }
         
-        if let friend = dictOfFriends[firstCharsFriendsName[indexPath.section]]?[indexPath.row] {
+        if let friend = friendsModel.dictOfFriends[friendsModel.firstCharsFriendsName[indexPath.section]]?[indexPath.row] {
             cell.configure(friend: friend)
             return cell
         } else {
@@ -68,7 +68,7 @@ class FriendsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let friend = dictOfFriends[firstCharsFriendsName[indexPath.section]]?[indexPath.row]
+        guard let friend = friendsModel.dictOfFriends[friendsModel.firstCharsFriendsName[indexPath.section]]?[indexPath.row]
         else { return }
         self.selectedUserID = friend.id
         performSegue(withIdentifier: "showFriend", sender: nil)
@@ -124,15 +124,8 @@ class FriendsTableViewController: UITableViewController {
     }
     
     func setDictOfFriends() {
-        dictOfFriends = [:]
-        friends?.forEach { friend in
-            let char = String(friend.lastName.first!.uppercased())
-            if dictOfFriends[char] == nil {
-                dictOfFriends[char] = []
-            }
-            dictOfFriends[char]!.append(friend)
-        }
-        firstCharsFriendsName = dictOfFriends.keys.sorted().map() {$0.uppercased()}
+        guard let friends = friends else {return}
+        friendsModel = friendsFactory.prepareFriendsModel(from: friends)
     }
 
     // MARK: - Navigation

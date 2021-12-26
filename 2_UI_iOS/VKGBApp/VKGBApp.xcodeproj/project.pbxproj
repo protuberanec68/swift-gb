@@ -29,6 +29,7 @@
 		406D74CC27541B6A00B28D8F /* PromiseNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406D74CB27541B6A00B28D8F /* PromiseNetworkService.swift */; };
 		4073BED627788190000B27B6 /* UIImage + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4073BED527788190000B27B6 /* UIImage + Ext.swift */; };
 		4073BEDA27788A3C000B27B6 /* NewsFetchAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4073BED927788A3C000B27B6 /* NewsFetchAdapter.swift */; };
+		4073BEE12778AC0C000B27B6 /* FriendsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4073BEE02778AC0C000B27B6 /* FriendsFactory.swift */; };
 		780E23642708A89E00052ABE /* VKLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780E23632708A89E00052ABE /* VKLoginViewController.swift */; };
 		780E23672708B8DA00052ABE /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780E23662708B8DA00052ABE /* NetworkService.swift */; };
 		780E236F270F9BE600052ABE /* VKResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780E236E270F9BE600052ABE /* VKResponse.swift */; };
@@ -100,6 +101,7 @@
 		406D74CB27541B6A00B28D8F /* PromiseNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromiseNetworkService.swift; sourceTree = "<group>"; };
 		4073BED527788190000B27B6 /* UIImage + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage + Ext.swift"; sourceTree = "<group>"; };
 		4073BED927788A3C000B27B6 /* NewsFetchAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFetchAdapter.swift; sourceTree = "<group>"; };
+		4073BEE02778AC0C000B27B6 /* FriendsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsFactory.swift; sourceTree = "<group>"; };
 		780E23632708A89E00052ABE /* VKLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKLoginViewController.swift; sourceTree = "<group>"; };
 		780E23662708B8DA00052ABE /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		780E236E270F9BE600052ABE /* VKResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKResponse.swift; sourceTree = "<group>"; };
@@ -259,6 +261,14 @@
 			path = Adapter;
 			sourceTree = "<group>";
 		};
+		4073BEDB277898A5000B27B6 /* Factory */ = {
+			isa = PBXGroup;
+			children = (
+				4073BEE02778AC0C000B27B6 /* FriendsFactory.swift */,
+			);
+			path = Factory;
+			sourceTree = "<group>";
+		};
 		780E23652708B8AF00052ABE /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -334,6 +344,7 @@
 		784973FE26C5B7D90048E855 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				4073BEDB277898A5000B27B6 /* Factory */,
 				780E23632708A89E00052ABE /* VKLoginViewController.swift */,
 				784973ED26C5B7860048E855 /* LoginViewController.swift */,
 				785BC20026D581E600F0A28F /* FriendsTableViewController.swift */,
@@ -559,6 +570,7 @@
 				404C49692730276600213C7A /* TextNewsCell.swift in Sources */,
 				7842976E26E91A3A00AC3545 /* Progress.swift in Sources */,
 				7842977226ECE59700AC3545 /* LikeView.swift in Sources */,
+				4073BEE12778AC0C000B27B6 /* FriendsFactory.swift in Sources */,
 				7872991526F92D1A00B4FE77 /* CustomAnimatedNavigationController.swift in Sources */,
 				40673449274A90C80075A9E8 /* AsyncOperation.swift in Sources */,
 				7842974726DF49D600AC3545 /* MeViewController.swift in Sources */,
