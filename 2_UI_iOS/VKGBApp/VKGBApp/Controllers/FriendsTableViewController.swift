@@ -13,6 +13,7 @@ class FriendsTableViewController: UITableViewController {
     private var selectedUserID = 0
     private var dictOfFriends: [String:[RealmUser]] = [:]
     private var firstCharsFriendsName: [String] = []
+    private let headerColor = UIColor(white: 1.0, alpha: 0.7)
     
     private var networkRequester = Network()
     
@@ -52,7 +53,7 @@ class FriendsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        view.tintColor = UIColor(white: 1.0, alpha: 0.7)
+        view.tintColor = headerColor
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

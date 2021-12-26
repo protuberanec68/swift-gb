@@ -27,7 +27,7 @@ class FriendViewCell: UITableViewCell {
         self.friendNameLabel.text = friend.lastName + " " + friend.firstName
         self.friendNickNameLabel.text = friend.nickname
         guard let url = URL(string: friend.photoURL) else {
-            self.friendAvatarView.imageView.image = UIImage(named: "default")
+            self.friendAvatarView.imageView.image = UIImage.defaultImage
             return
         }
         Nuke.loadImage(

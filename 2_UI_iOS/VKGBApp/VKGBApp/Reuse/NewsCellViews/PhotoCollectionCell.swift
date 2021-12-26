@@ -17,7 +17,7 @@ class PhotoCollectionCell: UICollectionViewCell {
 
     func configure(photo: URL?){
         guard let url = photo else {
-            photoImageView.image = UIImage(systemName: "scribble")
+            photoImageView.image = UIImage.scribbleImage
             return
         }
         Nuke.loadImage(

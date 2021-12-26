@@ -74,7 +74,7 @@ class FriendCollectionViewController: UICollectionViewController {
                 with: url,
                 into: cell.friendFotoImage)
         } else {
-            cell.friendFotoImage.image = UIImage(named: "default")
+            cell.friendFotoImage.image = UIImage.defaultImage
         }
         cell.friendFotoImage.translatesAutoresizingMaskIntoConstraints = true
         return cell

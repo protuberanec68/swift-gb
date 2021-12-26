@@ -7,7 +7,7 @@
 
 import UIKit
 
-let defaultFoto = UIImage(named: "default")!
+let defaultFoto = UIImage.defaultImage!
 
 var isPostLiked = false
 var likesPostCount = 236

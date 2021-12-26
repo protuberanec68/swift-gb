@@ -22,7 +22,7 @@ class DocsNewsCell: UITableViewCell {
     
     func configure(new: VKNew, row: Int){
         let doc = new.docs[new.returnCellsCounter()[row].1]
-        docImageView.image = UIImage(systemName: "doc")
+        docImageView.image = UIImage.docImage
         docNameLabel.text = doc.title
         docSizeLadel.text = String(doc.size) + " bytes"
     }
