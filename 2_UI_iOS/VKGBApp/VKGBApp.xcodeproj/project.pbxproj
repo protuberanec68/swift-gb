@@ -28,6 +28,7 @@
 		406D74CA275406B500B28D8F /* PromiseKit in Frameworks */ = {isa = PBXBuildFile; productRef = 406D74C9275406B500B28D8F /* PromiseKit */; };
 		406D74CC27541B6A00B28D8F /* PromiseNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406D74CB27541B6A00B28D8F /* PromiseNetworkService.swift */; };
 		4073BED627788190000B27B6 /* UIImage + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4073BED527788190000B27B6 /* UIImage + Ext.swift */; };
+		4073BEDA27788A3C000B27B6 /* NewsFetchAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4073BED927788A3C000B27B6 /* NewsFetchAdapter.swift */; };
 		780E23642708A89E00052ABE /* VKLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780E23632708A89E00052ABE /* VKLoginViewController.swift */; };
 		780E23672708B8DA00052ABE /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780E23662708B8DA00052ABE /* NetworkService.swift */; };
 		780E236F270F9BE600052ABE /* VKResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780E236E270F9BE600052ABE /* VKResponse.swift */; };
@@ -98,6 +99,7 @@
 		40673451274A96970075A9E8 /* SaveRealmVKFriends.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveRealmVKFriends.swift; sourceTree = "<group>"; };
 		406D74CB27541B6A00B28D8F /* PromiseNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromiseNetworkService.swift; sourceTree = "<group>"; };
 		4073BED527788190000B27B6 /* UIImage + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage + Ext.swift"; sourceTree = "<group>"; };
+		4073BED927788A3C000B27B6 /* NewsFetchAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFetchAdapter.swift; sourceTree = "<group>"; };
 		780E23632708A89E00052ABE /* VKLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKLoginViewController.swift; sourceTree = "<group>"; };
 		780E23662708B8DA00052ABE /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		780E236E270F9BE600052ABE /* VKResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKResponse.swift; sourceTree = "<group>"; };
@@ -249,9 +251,18 @@
 			path = FriendsCellViews;
 			sourceTree = "<group>";
 		};
+		4073BED827788A1F000B27B6 /* Adapter */ = {
+			isa = PBXGroup;
+			children = (
+				4073BED927788A3C000B27B6 /* NewsFetchAdapter.swift */,
+			);
+			path = Adapter;
+			sourceTree = "<group>";
+		};
 		780E23652708B8AF00052ABE /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				4073BED827788A1F000B27B6 /* Adapter */,
 				780E23662708B8DA00052ABE /* NetworkService.swift */,
 				78778A7C271C30DB00C4355E /* RealmService.swift */,
 				406D74CB27541B6A00B28D8F /* PromiseNetworkService.swift */,
@@ -532,6 +543,7 @@
 			files = (
 				785BC1F326D51BF900F0A28F /* DemoData.swift in Sources */,
 				404C497427302C1D00213C7A /* HeaderNewsView.swift in Sources */,
+				4073BEDA27788A3C000B27B6 /* NewsFetchAdapter.swift in Sources */,
 				785BC20526D5822B00F0A28F /* MyGroupsTableViewController.swift in Sources */,
 				7842973226D6EC0600AC3545 /* AllGroupsViewCell.swift in Sources */,
 				780E23672708B8DA00052ABE /* NetworkService.swift in Sources */,
