@@ -26,7 +26,7 @@ class FotoView: UIView {
         currentFoto = newFoto
         
         guard let url = URL(string: currentFoto.photoURL["y"] ?? "") else {
-            fotoImageView.image = UIImage(named: "default")
+            fotoImageView.image = UIImage.defaultImage
             return
         }
         Nuke.loadImage(
@@ -64,7 +64,7 @@ class FotoView: UIView {
         fotoImageView.contentMode = .scaleAspectFit
         
         guard let url = URL(string: currentFoto.photoURL["y"] ?? "") else {
-            fotoImageView.image = UIImage(named: "default")
+            fotoImageView.image = UIImage.defaultImage
             return
         }
         Nuke.loadImage(

@@ -32,9 +32,9 @@ class FooterNewsView: UITableViewHeaderFooterView {
         likeView.configure(firstLike: Like(new.isLiked, new.likesCount))
         likeView.backgroundColor = .systemBackground
         likeView.isOpaque = true
-        repostImageView.image = UIImage(systemName: "arrowshape.turn.up.forward")
+        repostImageView.image = UIImage.arrowshapeImage
         repostCountLabel.text = String(new.repostsCount)
-        viewsImageView.image = UIImage(systemName: "eye")
+        viewsImageView.image = UIImage.eyeImage
         viewsCountLabel.text = String(new.viewsCount)
         
     }

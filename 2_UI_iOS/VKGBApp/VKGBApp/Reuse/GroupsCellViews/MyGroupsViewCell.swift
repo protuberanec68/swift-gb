@@ -31,7 +31,7 @@ class MyGroupsViewCell: UITableViewCell {
         self.nameLabel.text = self.group.name
         self.detailLabel.text = self.group.groupDescription
         guard let url = URL(string: self.group.photoURL) else {
-            self.groupImage.image = UIImage(named: "default")
+            self.groupImage.image = UIImage.defaultImage
             return
         }
         Nuke.loadImage(

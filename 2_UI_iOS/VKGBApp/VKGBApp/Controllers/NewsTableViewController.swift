@@ -13,7 +13,8 @@ protocol TableDelegate: AnyObject {
 
 class NewsTableViewController: UITableViewController {
 
-    private let networkRequester = Network()
+    private let newsFetchAdapter = NewsFetchAdapter()
+    
     private var news: [VKNew] = [] {
         didSet {
             self.tableView.reloadData()
@@ -70,30 +71,13 @@ class NewsTableViewController: UITableViewController {
         }
     }
     
-//MARK: FetchNews
+    //MARK: FetchNews (with adapter)
     private func fetchNews(nextListVKNewsID: String = "\"\"") {
-        networkRequester.sendRequest(
-            endpoint: VKNews.init(),
-            requestType: "newsfeed.getRecommended",
-            nextListVKNewsID: nextListVKNewsID) {
-            [weak self] result in
+        newsFetchAdapter.fetchNews(nextListVKNewsID: nextListVKNewsID) {
+            [weak self] news, nextListVKNewsID in
             guard let self = self else {return}
-            switch result {
-            case .success(let result):
-                DispatchQueue.global(qos: .userInteractive).async {
-                    guard let news = result?.news(),
-                          let nextListVKNewsID = result?.nextFrom
-                    else {return}
-                    DispatchQueue.main.async {
-                        if news.last?.date != self.news.last?.date {
-                            self.news += news
-                        }
-                        self.nextListVKNewsID = nextListVKNewsID
-                    }
-                }
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
+            self.news += news
+            self.nextListVKNewsID = nextListVKNewsID
         }
     }
     
