@@ -7,7 +7,17 @@
 
 import UIKit
 
-final class Network {
+protocol NetworkProtocol {
+    func sendRequest<T: Decodable>(
+        endpoint: T,
+        requestType: String,
+        userID: Int,
+        queryString: String,
+        nextListVKNewsID nextFrom: String,
+        completion: (@escaping (Result<T,VKError>) -> Void ))
+}
+
+final class Network: NetworkProtocol {
     
     private let session = URLSession.shared
     

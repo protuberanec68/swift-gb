@@ -11,6 +11,7 @@ class AllGroupsTableViewController: UITableViewController {
 
     @IBOutlet var groupSearchBar: UISearchBar!
     private var networkRequester = Network()
+    private var proxyNetworkLogger: ProxyNetworkLogger!
     private var searchedGroups: [VKGroup] = [] {
         didSet {
             tableView.reloadData()
@@ -20,7 +21,7 @@ class AllGroupsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         groupSearchBar.delegate = self
-        
+        proxyNetworkLogger = ProxyNetworkLogger(networkService: self.networkRequester)
         tableView.register(
             UINib(
                 nibName: "AllGroupsViewCell",
@@ -82,7 +83,7 @@ extension AllGroupsTableViewController: UISearchBarDelegate {
             return
         }
         
-        networkRequester.sendRequest(
+        proxyNetworkLogger.sendRequest(
             endpoint: VKGroups.init(items: []),
             requestType: "groups.search",
             queryString: query

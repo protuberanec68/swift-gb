@@ -30,6 +30,7 @@
 		4073BED627788190000B27B6 /* UIImage + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4073BED527788190000B27B6 /* UIImage + Ext.swift */; };
 		4073BEDA27788A3C000B27B6 /* NewsFetchAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4073BED927788A3C000B27B6 /* NewsFetchAdapter.swift */; };
 		4073BEE12778AC0C000B27B6 /* FriendsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4073BEE02778AC0C000B27B6 /* FriendsFactory.swift */; };
+		409759CD278395B500D46F3B /* ProxyLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409759CC278395B500D46F3B /* ProxyLogger.swift */; };
 		780E23642708A89E00052ABE /* VKLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780E23632708A89E00052ABE /* VKLoginViewController.swift */; };
 		780E23672708B8DA00052ABE /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780E23662708B8DA00052ABE /* NetworkService.swift */; };
 		780E236F270F9BE600052ABE /* VKResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 780E236E270F9BE600052ABE /* VKResponse.swift */; };
@@ -102,6 +103,7 @@
 		4073BED527788190000B27B6 /* UIImage + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage + Ext.swift"; sourceTree = "<group>"; };
 		4073BED927788A3C000B27B6 /* NewsFetchAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFetchAdapter.swift; sourceTree = "<group>"; };
 		4073BEE02778AC0C000B27B6 /* FriendsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsFactory.swift; sourceTree = "<group>"; };
+		409759CC278395B500D46F3B /* ProxyLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProxyLogger.swift; sourceTree = "<group>"; };
 		780E23632708A89E00052ABE /* VKLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKLoginViewController.swift; sourceTree = "<group>"; };
 		780E23662708B8DA00052ABE /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		780E236E270F9BE600052ABE /* VKResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKResponse.swift; sourceTree = "<group>"; };
@@ -269,9 +271,18 @@
 			path = Factory;
 			sourceTree = "<group>";
 		};
+		409759CB2783959500D46F3B /* Proxy */ = {
+			isa = PBXGroup;
+			children = (
+				409759CC278395B500D46F3B /* ProxyLogger.swift */,
+			);
+			path = Proxy;
+			sourceTree = "<group>";
+		};
 		780E23652708B8AF00052ABE /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				409759CB2783959500D46F3B /* Proxy */,
 				4073BED827788A1F000B27B6 /* Adapter */,
 				780E23662708B8DA00052ABE /* NetworkService.swift */,
 				78778A7C271C30DB00C4355E /* RealmService.swift */,
@@ -568,6 +579,7 @@
 				7872991326F9297000B4FE77 /* PushPopAnimation.swift in Sources */,
 				78778A84271C330B00C4355E /* RealmPhoto.swift in Sources */,
 				404C49692730276600213C7A /* TextNewsCell.swift in Sources */,
+				409759CD278395B500D46F3B /* ProxyLogger.swift in Sources */,
 				7842976E26E91A3A00AC3545 /* Progress.swift in Sources */,
 				7842977226ECE59700AC3545 /* LikeView.swift in Sources */,
 				4073BEE12778AC0C000B27B6 /* FriendsFactory.swift in Sources */,
