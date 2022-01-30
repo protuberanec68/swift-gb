@@ -15,6 +15,8 @@
 		40A4C01427A713A800A82826 /* ASCollectionView in Frameworks */ = {isa = PBXBuildFile; productRef = 40A4C01327A713A800A82826 /* ASCollectionView */; };
 		40A4C01627A7143900A82826 /* PhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A4C01527A7143900A82826 /* PhotoView.swift */; };
 		40A4C01827A716CA00A82826 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A4C01727A716CA00A82826 /* Photo.swift */; };
+		40A4C01A27A719CA00A82826 /* FirstCharMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A4C01927A719CA00A82826 /* FirstCharMaker.swift */; };
+		40A4C01C27A71C4700A82826 /* PreparedUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A4C01B27A71C4700A82826 /* PreparedUsers.swift */; };
 		40BB9245279A0A780031BA2D /* VKGB_SwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BB9244279A0A780031BA2D /* VKGB_SwiftUIApp.swift */; };
 		40BB9247279A0A780031BA2D /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BB9246279A0A780031BA2D /* LoginView.swift */; };
 		40BB9249279A0A7A0031BA2D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40BB9248279A0A7A0031BA2D /* Assets.xcassets */; };
@@ -29,6 +31,8 @@
 		40A4C01027A707C100A82826 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		40A4C01527A7143900A82826 /* PhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoView.swift; sourceTree = "<group>"; };
 		40A4C01727A716CA00A82826 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
+		40A4C01927A719CA00A82826 /* FirstCharMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstCharMaker.swift; sourceTree = "<group>"; };
+		40A4C01B27A71C4700A82826 /* PreparedUsers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreparedUsers.swift; sourceTree = "<group>"; };
 		40BB9241279A0A780031BA2D /* VKGB_SwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VKGB_SwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		40BB9244279A0A780031BA2D /* VKGB_SwiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKGB_SwiftUIApp.swift; sourceTree = "<group>"; };
 		40BB9246279A0A780031BA2D /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -66,6 +70,8 @@
 			children = (
 				40A4C00A27A6F6F000A82826 /* User.swift */,
 				40A4C01727A716CA00A82826 /* Photo.swift */,
+				40A4C01927A719CA00A82826 /* FirstCharMaker.swift */,
+				40A4C01B27A71C4700A82826 /* PreparedUsers.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -189,7 +195,9 @@
 				40BB9247279A0A780031BA2D /* LoginView.swift in Sources */,
 				40BB9245279A0A780031BA2D /* VKGB_SwiftUIApp.swift in Sources */,
 				40A4C00727A6EFE400A82826 /* ContentView.swift in Sources */,
+				40A4C01A27A719CA00A82826 /* FirstCharMaker.swift in Sources */,
 				40A4C00F27A6FAB700A82826 /* UsersView.swift in Sources */,
+				40A4C01C27A71C4700A82826 /* PreparedUsers.swift in Sources */,
 				40A4C01627A7143900A82826 /* PhotoView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

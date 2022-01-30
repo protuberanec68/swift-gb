@@ -18,24 +18,45 @@ struct UsersView: View {
             "Makarenko",
             "dog"),
         User(
+            "Алексей",
+            "Павлов",
+            nil),
+        User(
             "Сергей",
             "Петров",
-            "soup")
+            "soup"),
+        User(
+            "Заур",
+            "порошин",
+            nil)
     ]
     
+    let firstCharMaker = FirstCharMaker()
+    let preparedUsers = PreparedUsers()
+    @State var firstChars: [FirstChar] = []
+    @State var dictOfFriends: [FirstChar:[User]] = [:]
     
     var body: some View {
-        List(users) { user in
-            NavigationLink(destination: PhotoView()) {
-                CellView(user: user)
-                   }
+        List(firstChars) { char in
+            Section(header: Text(char.id)){
+                ForEach(dictOfFriends[char]! ) { user in
+                    NavigationLink(destination: PhotoView()) {
+                        CellView(user: user)
+                        
+                    }
+                }
+            }
+            .navigationBarTitle("Мои друзья", displayMode: .inline)
         }
-        .navigationBarTitle("Мои друзья", displayMode: .inline)
+        .onAppear(perform: prepareUsers)
     }
-}
-
-struct UsersView_Previews: PreviewProvider {
-    static var previews: some View {
-        UsersView()
+    
+    private func prepareUsers(){
+            firstCharMaker.prepareFriendsModel(
+                from: users,
+                to: preparedUsers)
+        firstChars = preparedUsers.firstCharsUsersName
+        dictOfFriends = preparedUsers.dictOfUsers
+        
     }
 }

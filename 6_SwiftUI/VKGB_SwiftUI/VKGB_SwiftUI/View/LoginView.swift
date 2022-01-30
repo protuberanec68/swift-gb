@@ -89,8 +89,11 @@ struct LoginView: View {
     //MARK: login func
     private func checkLoginPassword() {
         if myLogin == login, myPassword == password {
+            login = ""
+            password = ""
             presentMainScreen = true
         } else {
+            password = ""
             isAlertPresented = true
         }
     }
