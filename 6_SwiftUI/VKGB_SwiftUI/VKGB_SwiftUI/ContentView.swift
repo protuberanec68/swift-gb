@@ -32,17 +32,18 @@ struct ContentView: View {
                             .padding(.top, 50.0)
                             .font(.title2)
                             .foregroundColor(.white)
-                        TextField(
-                            "Email address", text: $login
-                        )
+                        
+                        TextField(                            "Email address", text: $login)
                             .textInputAutocapitalization(.never)
                             .disableAutocorrection(true)
                             .keyboardType(UIKeyboardType.emailAddress)
                             .frame(maxWidth: 200)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
+                        
                         Text("Password")
                             .font(.title2)
                             .foregroundColor(.white)
+                        
                         SecureField(
                             "Password", text: $password
                         ) {
@@ -55,6 +56,7 @@ struct ContentView: View {
                             Text("Log in")
                                 .font(.title)
                                 .foregroundColor(.green)
+                            
                         }
                         .padding(.top, 30.0)
                         .disabled(login.isEmpty || password.isEmpty)
@@ -66,7 +68,7 @@ struct ContentView: View {
                     UIApplication.shared.hideKeyboard()
                 }
             }
-        }
+        }.ignoresSafeArea(.keyboard, edges: .bottom)
     }
 }
 
