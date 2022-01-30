@@ -23,6 +23,7 @@ struct ContentView: View {
             }
             .navigationBarHidden(true)
             .navigationTitle(Text("Logout"))
+            
         }
     }
 }

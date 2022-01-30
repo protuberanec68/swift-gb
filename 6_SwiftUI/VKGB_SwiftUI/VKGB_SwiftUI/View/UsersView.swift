@@ -26,7 +26,7 @@ struct UsersView: View {
     
     var body: some View {
         List(users) { user in
-            NavigationLink(destination: CellView(user: user)) {
+            NavigationLink(destination: PhotoView()) {
                 CellView(user: user)
                    }
         }
