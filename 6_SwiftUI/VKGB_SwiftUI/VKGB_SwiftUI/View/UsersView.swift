@@ -26,8 +26,11 @@ struct UsersView: View {
     
     var body: some View {
         List(users) { user in
-            CellView(user: user)
+            NavigationLink(destination: CellView(user: user)) {
+                CellView(user: user)
+                   }
         }
+        .navigationBarTitle("Мои друзья", displayMode: .inline)
     }
 }
 

@@ -13,12 +13,16 @@ struct ContentView: View {
         NavigationView {
             HStack{
                 LoginView(presentMainScreen: $presentMainScreen)
+                
                 NavigationLink(
                     isActive: $presentMainScreen,
-                    destination: { EmptyView() },
+                    destination: { MainView() },
                     label: { EmptyView() }
                 )
+
             }
+            .navigationBarHidden(true)
+            .navigationTitle(Text("Logout"))
         }
     }
 }
