@@ -10,6 +10,14 @@ import SwiftUI
 struct UsersView: View {
     let users: [User] = [
         User(
+            "Заур",
+            "порошин",
+            nil),
+        User(
+            "Дмитрий",
+            "парошин",
+            nil),
+        User(
             "Egor",
             "Androniev",
             nil),
@@ -18,17 +26,14 @@ struct UsersView: View {
             "Makarenko",
             "dog"),
         User(
-            "Алексей",
-            "Павлов",
-            nil),
-        User(
             "Сергей",
             "Петров",
             "soup"),
         User(
-            "Заур",
-            "порошин",
-            nil)
+            "Алексей",
+            "Павлов",
+            nil),
+
     ]
     
     let firstCharMaker = FirstCharMaker()
