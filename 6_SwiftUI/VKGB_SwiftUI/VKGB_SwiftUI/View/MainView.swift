@@ -10,23 +10,38 @@ import SwiftUI
 struct MainView: View {
     var body: some View {
         TabView{
-            UsersView()
-                .tabItem{
-                    Image(systemName: "person.2.fill")
-                    Text("Друзья")
-                }
+            NavigationView{
+                UsersView()
+                    .navigationBarTitle(Text("Мои Друзья"), displayMode: .inline)
+            }
+            .tabItem{
+                Image(systemName: "person.2.fill")
+                
+                Text("Друзья")
+                
+            }
             
-            Text("Здесь будут Группы")
-                .tabItem{
-                    Image(systemName: "book.fill")
-                    Text("Группы")
-                }
+            NavigationView{
+                Text("Здесь будут Группы")
+                    .navigationBarTitle(Text("Мои Группы"), displayMode: .inline)
+            }
+            .tabItem{
+                Image(systemName: "book.fill")
+                
+                Text("Группы")
+                
+            }
             
-            Text("Здесь будут Новости")
-                .tabItem{
-                    Image(systemName: "list.bullet.rectangle.portrait.fill")
-                    Text("Новости")
-                }
+            NavigationView{
+                Text("Здесь будут Новости")
+                    .navigationBarTitle(Text("Мои Новости"), displayMode: .inline)
+            }
+            .tabItem{
+                Image(systemName: "list.bullet.rectangle.portrait.fill")
+                
+                Text("Новости")
+                
+            }
         }
     }
 }

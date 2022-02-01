@@ -112,6 +112,6 @@ struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
         LoginView(presentMainScreen: .constant(false))
             .previewDevice("iPhone 12")
-.previewInterfaceOrientation(.portrait)
+            .previewInterfaceOrientation(.portrait)
     }
 }

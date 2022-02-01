@@ -29,16 +29,20 @@ struct CellView: View {
     
     var body: some View {
         HStack(alignment: .center){
-            ImageCellView() {
+            ImageCellView{
                 Image(uiImage: UIImage(named: image) ?? UIImage(systemName: "face.smiling")!)
+                
             }
             VStack(alignment: .leading){
                 Text(firstLine)
                     .modifier(TextCellViewModifier(font: .title3, color: .black))
+                
                 Text(secondLine)
                     .modifier(TextCellViewModifier(font: .body, color: .black))
+                
             }
             Spacer()
+            
         }
         .frame(maxWidth: .infinity)
         .background(.white.opacity(0.1))
@@ -51,7 +55,7 @@ struct TextCellViewModifier: ViewModifier {
     let color: Color
     
     func body(content: Content) -> some View {
-            content
+        content
             .font(font)
             .foregroundColor(color)
     }

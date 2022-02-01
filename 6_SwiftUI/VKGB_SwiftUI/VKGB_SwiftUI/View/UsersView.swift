@@ -33,7 +33,7 @@ struct UsersView: View {
             "Алексей",
             "Павлов",
             nil),
-
+        
     ]
     
     let firstCharMaker = FirstCharMaker()
@@ -57,9 +57,9 @@ struct UsersView: View {
     }
     
     private func prepareUsers(){
-            firstCharMaker.prepareFriendsModel(
-                from: users,
-                to: preparedUsers)
+        firstCharMaker.prepareFriendsModel(
+            from: users,
+            to: preparedUsers)
         firstChars = preparedUsers.firstCharsUsersName
         dictOfFriends = preparedUsers.dictOfUsers
         

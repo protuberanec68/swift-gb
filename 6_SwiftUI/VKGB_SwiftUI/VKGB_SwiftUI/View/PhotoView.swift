@@ -19,13 +19,14 @@ struct PhotoView: View {
         ASCollectionView(data: photos) { (photo, context) in
             Image(uiImage: UIImage(named: photo.photo) ?? UIImage(named: "default")!)
                 .resizable()
-                }.layout {
-                    .grid(
-                        layoutMode: .fixedNumberOfColumns(2),
-                        itemSpacing: 8,
-                        lineSpacing: 8)
-                }.navigationBarTitle("123333")
-
+            
+        }.layout {
+            .grid(
+                layoutMode: .fixedNumberOfColumns(2),
+                itemSpacing: 8,
+                lineSpacing: 8)
+        }.navigationBarTitle("123333")
+        
     }
 }
 
