@@ -6,3 +6,13 @@
 //
 
 import Foundation
+
+struct VKResponse<T:Decodable> {
+    let response: T
+}
+
+extension VKResponse: Decodable {
+    enum CodingKeys: String, CodingKey {
+        case response
+    }
+}

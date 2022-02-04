@@ -10,7 +10,7 @@ import Foundation
 class Singleton {
     static let instance = Singleton()
     
-    var id = 0
+    var userID = ""
     var token = ""
     
     private init(){}

@@ -6,14 +6,15 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct CellView: View {
-    let image: String
+    let image: URL?
     let firstLine: String
     let secondLine: String
     
     init(
-        image: String,
+        image: URL?,
         firstLine: String,
         secondLine: String) {
             self.image = image
@@ -22,7 +23,7 @@ struct CellView: View {
         }
     
     init(user: User) {
-        self.image = user.photo
+        self.image = user.photoURL
         self.firstLine = user.name
         self.secondLine = ""
     }
@@ -30,7 +31,8 @@ struct CellView: View {
     var body: some View {
         HStack(alignment: .center){
             ImageCellView{
-                Image(uiImage: UIImage(named: image) ?? UIImage(systemName: "face.smiling")!)
+                KFImage(image)
+                //Image(uiImage: UIImage(named: image) ?? UIImage(systemName: "face.smiling")!)
                 
             }
             VStack(alignment: .leading){
@@ -63,9 +65,9 @@ struct TextCellViewModifier: ViewModifier {
 
 // MARK: Image ViewBuilder
 struct ImageCellView: View {
-    var content: Image
+    var content: KFImage
     
-    init(@ViewBuilder content: () -> Image) {
+    init(@ViewBuilder content: () -> KFImage) {
         self.content = content()
     }
     
@@ -81,7 +83,7 @@ struct ImageCellView: View {
 struct CellView_Previews: PreviewProvider {
     static var previews: some View {
         CellView(
-            image: "face.smiling",
+            image: nil,
             firstLine: "Text you want 1",
             secondLine: "Text you want 2ds")
     }

@@ -8,10 +8,12 @@
 import SwiftUI
 
 struct MainView: View {
+    let usersModel = UsersModel()
+    
     var body: some View {
         TabView{
             NavigationView{
-                UsersView()
+                UsersView(usersModel: usersModel)
                     .navigationBarTitle(Text("Мои Друзья"), displayMode: .inline)
             }
             .tabItem{

@@ -8,22 +8,42 @@
 import Foundation
 
 class UsersModel: ObservableObject{
-    @Published var users: [User] = []
-    let networkService = NetworkService()
+    var users: [User] = []
     
-    func fetchUsers(
-        endpoint: VKUsers.init(items: []),
-        requestType: "friends.get") {
-            [weak self] result in
-            switch result {
-            case .success(let users):
-                let realmFriends = users.items.map { RealmUser($0) }
-                DispatchQueue.main.async {
-                    try? RealmService.save(items: realmFriends)
+    private let networkService = NetworkService()
+    private let firstCharMaker = FirstCharMaker()
+    let preparedUsers = PreparedUsers()
+    
+    @Published var firstChars: [FirstChar] = []
+    @Published var dictOfFriends: [FirstChar:[User]] = [:]
+    
+    init() {
+    }
+    
+    init(users: [User]) {
+        self.users = users
+    }
+    
+    func fetchUsers(){
+        networkService.fetchUsers(from: Singleton.instance.userID) {
+                [weak self] result in
+                guard let self = self else { return }
+                switch result {
+                case .success(let users):
+                    self.users = users
+                    self.prepareUsers()
+                case .failure(let error):
+                    print(error.localizedDescription)
                 }
-            case .failure(let error):
-                print(error.localizedDescription)
             }
-        }
+    }
     
+    func prepareUsers(){
+        firstCharMaker.prepareFriendsModel(
+            from: users,
+            to: preparedUsers)
+        firstChars = preparedUsers.firstCharsUsersName
+        dictOfFriends = preparedUsers.dictOfUsers
+        
+    }
 }
