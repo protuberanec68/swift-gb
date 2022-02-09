@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		401B1B3127B453120006BFCE /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401B1B3027B453120006BFCE /* LoginViewModel.swift */; };
 		40A4C00727A6EFE400A82826 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A4C00627A6EFE400A82826 /* ContentView.swift */; };
 		40A4C00B27A6F6F000A82826 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A4C00A27A6F6F000A82826 /* User.swift */; };
 		40A4C00D27A6F91400A82826 /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A4C00C27A6F91400A82826 /* CellView.swift */; };
@@ -31,6 +32,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		401B1B3027B453120006BFCE /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		40A4C00627A6EFE400A82826 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		40A4C00A27A6F6F000A82826 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		40A4C00C27A6F91400A82826 /* CellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellView.swift; sourceTree = "<group>"; };
@@ -66,12 +68,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		401B1B2F27B452ED0006BFCE /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				40BB9246279A0A780031BA2D /* LoginView.swift */,
+				401B1B3027B453120006BFCE /* LoginViewModel.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
 		40A4C00827A6F6BC00A82826 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				401B1B2F27B452ED0006BFCE /* Login */,
 				40A4C00627A6EFE400A82826 /* ContentView.swift */,
 				40A4C07127AC612E00A82826 /* VKLoginWebView.swift */,
-				40BB9246279A0A780031BA2D /* LoginView.swift */,
 				40A4C01027A707C100A82826 /* MainView.swift */,
 				40A4C00E27A6FAB700A82826 /* UsersView.swift */,
 				40A4C00C27A6F91400A82826 /* CellView.swift */,
@@ -234,6 +245,7 @@
 				40A4C01827A716CA00A82826 /* Photo.swift in Sources */,
 				40BB9247279A0A780031BA2D /* LoginView.swift in Sources */,
 				40BB9245279A0A780031BA2D /* VKGB_SwiftUIApp.swift in Sources */,
+				401B1B3127B453120006BFCE /* LoginViewModel.swift in Sources */,
 				40A4C00727A6EFE400A82826 /* ContentView.swift in Sources */,
 				40A4C01A27A719CA00A82826 /* FirstCharMaker.swift in Sources */,
 				40A4C00F27A6FAB700A82826 /* UsersView.swift in Sources */,

@@ -14,8 +14,7 @@ struct LoginView: View {
     @State private var isAlertPresented = false
     @Binding private var presentMainScreen: Bool
     
-    private let myLogin = "1"
-    private let myPassword = "1"
+    let loginViewModel = LoginViewModel()
     
     init(presentMainScreen: Binding<Bool>){
         self._presentMainScreen = presentMainScreen
@@ -61,7 +60,14 @@ struct LoginView: View {
                         .frame(maxWidth: 200)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         
-                        Button(action: { checkLoginPassword() }) {
+                        Button(action: {
+                            presentMainScreen = loginViewModel.checkLoginPassword(
+                                login: login,
+                                password: password)
+                            if !presentMainScreen {
+                                isAlertPresented = true
+                            }
+                        }) {
                             Text("Log in")
                                 .font(.title)
                                 .foregroundColor(.green)
@@ -85,19 +91,6 @@ struct LoginView: View {
                 message: Text("Пара логин/пароль не верны. Логин и пароль это '1'"))
         }
     }
-    
-    //MARK: login func
-    private func checkLoginPassword() {
-        if myLogin == login, myPassword == password {
-            login = ""
-            password = ""
-            presentMainScreen = true
-        } else {
-            password = ""
-            isAlertPresented = true
-        }
-    }
-    
 }
 
 //MARK: hideKeyboard

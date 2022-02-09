@@ -14,19 +14,14 @@ struct ContentView: View {
     @State private var presentMainScreen = false
     
     var body: some View {
-        NavigationView {
-            HStack{
-                if !presentMainScreen{
-                    VKLoginWebView()
-                    
-                } else {
-                    MainView()
-                    
-                }
-
+        HStack{
+            if !presentMainScreen{
+                VKLoginWebView()
+                
+            } else {
+                MainView()
+                
             }
-            .navigationBarHidden(true)
-            //.navigationTitle(Text("Logout"))
             
         }
         .onReceive(pub){ (output) in
