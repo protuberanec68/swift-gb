@@ -8,22 +8,24 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    private var pub = NotificationCenter.default.publisher(for: NSNotification.Name("vkTokenSaved"))
+    
     @State private var presentMainScreen = false
+    
     var body: some View {
-        NavigationView {
-            HStack{
-                LoginView(presentMainScreen: $presentMainScreen)
+        HStack{
+            if !presentMainScreen{
+                VKLoginWebView()
                 
-                NavigationLink(
-                    isActive: $presentMainScreen,
-                    destination: { MainView() },
-                    label: { EmptyView() }
-                )
-
+            } else {
+                MainView()
+                
             }
-            .navigationBarHidden(true)
-            .navigationTitle(Text("Logout"))
             
+        }
+        .onReceive(pub){ (output) in
+            presentMainScreen = true
         }
     }
 }
